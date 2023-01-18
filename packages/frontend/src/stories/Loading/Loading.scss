@@ -1,0 +1,27 @@
+@import '../../styles/colors';
+
+.m-loading-light .p-progressbar,
+.m-loading-dark .p-progressbar {
+  width: 140px;
+  height: 3px;
+}
+
+.m-loading-light {
+  .p-progressbar {
+    background: $gray240;
+
+    .p-progressbar-value {
+      background: $blue;
+    }
+  }
+}
+
+.m-loading-dark {
+  .p-progressbar {
+    background: $blue;
+
+    .p-progressbar-value {
+      background: $white;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="Slack_logo" data-name="Slack logo" transform="translate(-1541 -306)">
+    <circle id="Ellipse_2747" data-name="Ellipse 2747" cx="15" cy="15" r="15" transform="translate(1541 306)" fill="#fff"/>
+    <g id="slack-new-logo" transform="translate(1547.999 313)">
+      <path id="Path_1155" data-name="Path 1155" d="M5.85,0a1.6,1.6,0,0,0,0,3.2h1.6V1.6A1.6,1.6,0,0,0,5.85,0h0m0,4.264H1.6a1.6,1.6,0,0,0,0,3.2H5.85a1.6,1.6,0,0,0,0-3.2Z" fill="#36c5f0" fill-rule="evenodd"/>
+      <path id="Path_1156" data-name="Path 1156" d="M1312.847,5.862a1.6,1.6,0,1,0-3.192,0v1.6h1.6A1.6,1.6,0,0,0,1312.847,5.862Zm-4.255,0V1.6a1.6,1.6,0,1,0-3.191,0V5.862a1.6,1.6,0,1,0,3.191,0Z" transform="translate(-1296.89 0)" fill="#2eb67d" fill-rule="evenodd"/>
+      <path id="Path_1157" data-name="Path 1157" d="M1306.9,1315.363a1.6,1.6,0,0,0,0-3.2h-1.6v1.6A1.6,1.6,0,0,0,1306.9,1315.363Zm0-4.265h4.255a1.6,1.6,0,0,0,0-3.2H1306.9a1.6,1.6,0,0,0,0,3.2Z" transform="translate(-1296.79 -1299.373)" fill="#ecb22e" fill-rule="evenodd"/>
+      <path id="Path_1158" data-name="Path 1158" d="M0,1309.6a1.6,1.6,0,1,0,3.192,0V1308H1.6A1.6,1.6,0,0,0,0,1309.6Zm4.255,0v4.264a1.6,1.6,0,1,0,3.191,0V1309.6a1.6,1.6,0,1,0-3.191,0h0" transform="translate(0 -1299.472)" fill="#e01e5a" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+  <g id="header_icon" data-name="header icon" transform="translate(-339 -116)">
+    <g id="frame" transform="translate(340 117)" fill="none" stroke="#fff" stroke-width="1" opacity="0">
+      <rect width="24" height="24" stroke="none"/>
+      <rect x="-0.5" y="-0.5" width="25" height="25" fill="none"/>
+    </g>
+    <g id="org" transform="translate(320.5 -157.816)">
+      <g id="Rectangle_1490" data-name="Rectangle 1490" transform="translate(20.5 290.817)" fill="none" stroke="#222" stroke-width="1.5">
+        <rect width="6" height="6" stroke="none"/>
+        <rect x="0.75" y="0.75" width="4.5" height="4.5" fill="none"/>
+      </g>
+      <line id="Line_25" data-name="Line 25" y2="5" transform="translate(23.5 286.067)" fill="none" stroke="#222" stroke-width="1.5"/>
+      <line id="Line_26" data-name="Line 26" y2="5" transform="translate(39.5 286.067)" fill="none" stroke="#222" stroke-width="1.5"/>
+      <g id="Rectangle_1491" data-name="Rectangle 1491" transform="translate(28.5 276.817)" fill="none" stroke="#222" stroke-width="1.5">
+        <rect width="6" height="6" stroke="none"/>
+        <rect x="0.75" y="0.75" width="4.5" height="4.5" fill="none"/>
+      </g>
+      <g id="Rectangle_1492" data-name="Rectangle 1492" transform="translate(36.5 290.817)" fill="none" stroke="#222" stroke-width="1.5">
+        <rect width="6" height="6" stroke="none"/>
+        <rect x="0.75" y="0.75" width="4.5" height="4.5" fill="none"/>
+      </g>
+      <line id="Line_27" data-name="Line 27" x1="17" transform="translate(23 286.817)" fill="none" stroke="#222" stroke-width="1.5"/>
+      <line id="Line_28" data-name="Line 28" y2="5" transform="translate(31.5 281.817)" fill="none" stroke="#222" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

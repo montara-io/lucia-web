@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <g id="Engagement" transform="translate(-337.699 -115)">
+    <g id="frame" transform="translate(338.699 116)" fill="none" stroke="#fff" stroke-width="1" opacity="0">
+      <rect width="20" height="20" stroke="none"/>
+      <rect x="-0.5" y="-0.5" width="21" height="21" fill="none"/>
+    </g>
+    <g id="wedding-rings" transform="translate(340.738 117.737)">
+      <g id="Ellipse_305" data-name="Ellipse 305" transform="translate(3.961 4.263)" fill="none" stroke="#222" stroke-width="1">
+        <circle cx="6" cy="6" r="6" stroke="none"/>
+        <circle cx="6" cy="6" r="5.5" fill="none"/>
+      </g>
+      <g id="Ellipse_306" data-name="Ellipse 306" transform="translate(-0.039 0.263)" fill="none" stroke="#222" stroke-width="1">
+        <circle cx="6" cy="6" r="6" stroke="none"/>
+        <circle cx="6" cy="6" r="5.5" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>
