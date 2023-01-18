@@ -1,0 +1,15 @@
+serviceName: data_pipeline
+http:
+  port: 3000
+logger:
+  level: "debug"
+  isDev: true
+db:
+  type: "postgres"
+  name: "data_pipeline"
+  host: "localhost"
+  port: 5432
+  username: "postgres"
+  password: "postgres"
+  database: "data_pipeline"
+

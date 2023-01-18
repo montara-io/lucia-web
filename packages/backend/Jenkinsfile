@@ -1,0 +1,73 @@
+pipeline {
+    agent { label 'master' }
+        environment {
+            NPM_TOKEN = ''
+            env_ns = 'stg'
+            app = "${sh(script:'echo ${JOB_NAME}', returnStdout: true).trim()}"
+            // for debug
+            // app = "data-pipeline-service"
+            //ECRTAG="${env.BRANCH_NAME}"
+            // gitlabgorupid = '2229322'
+            // gitlab = credentials('gitlabpat')
+            DOCKER_REGISTRY = '115322008410.dkr.ecr.us-east-2.amazonaws.com'
+            AWS_DEFAULT_REGION = 'us-east-2'
+            lasatimage = sh(script: "aws ecr describe-images --region us-east-2 --repository-name ${JOB_NAME} | jq '.imageDetails[]| select(.imageTags[] | match(\"latest\")) .imageTags' | grep -i -w 'master' | tr -d '\", '",returnStdout: true).trim()
+            lasatimageadmin = sh(script: "aws ecr describe-images --region us-east-2 --repository-name ${JOB_NAME}-admin | jq '.imageDetails[]| select(.imageTags[] | match(\"latest\")) .imageTags' | grep -i -w 'master' | tr -d '\", '",returnStdout: true).trim()
+        }
+        stages {
+            stage('git checkout') {
+                steps {
+                git branch: 'master',
+                    credentialsId: 'gitlab-ssh-key',
+                    url: 'git@gitlab.com:montara/backend/${JOB_NAME}.git'
+                }
+            }
+                stage('get ecr latest image number') {
+                    steps {
+                        script {
+                            /* groovylint-disable-next-line GStringExpressionWithinString */
+                            sh '''
+                            imagetag=$DOCKER_REGISTRY/$app:$lasatimage
+                            echo ${imagetag} > $WORKSPACE/imagetag.txt
+                            imagetag_admin=$DOCKER_REGISTRY/$app-admin:$lasatimageadmin
+                            echo ${imagetag_admin} > $WORKSPACE/imagetag_admin.txt
+                            '''
+                        }
+                    }
+                }
+                stage ('Deploy To Prod') {
+                    steps {
+                        script {
+                        dir ("$WORKSPACE")
+                                {
+                        def imagetag = sh(script:"cat $WORKSPACE/imagetag.txt", returnStdout: true).trim() as String
+                        def imagetagadmin = sh(script:"cat $WORKSPACE/imagetag_admin.txt", returnStdout: true).trim() as String
+                        sh "echo step before the depoly start"
+                        sh "echo folder: ${WORKSPACE} app : ${app}"
+                        sh "cat templates/${app}-deployment-dev.yaml"
+                        sh "cat templates/${app}-admin-deployment-dev.yaml"
+                        sh "echo Deploy ${env_ns}"
+                        sh "sed -i -e 's/%environment/${env_ns}/g' templates/$app*dev.yaml"
+                        sh "sed -i -e 's/%app/${app}/g' templates/$app*dev.yaml"
+                        sh "sed -i -e s#%imageurl%#${imagetag}#g templates/$app*dev.yaml"
+                        sh "sed -i -e s#%imageurl-admin%#${imagetagadmin}#g templates/$app-admin*dev.yaml"
+                        sh "sed -i -e s#%dockerversion%#$lasatimage#g templates/$app*dev.yaml"
+                        sh "sed -i -e s#%dockerversion-admin%#$lasatimageadmin#g templates/$app-admin*dev.yaml"                  
+                        sh "cat templates/${app}-deployment-dev.yaml"
+                        sh "cat templates/${app}-admin-deployment-dev.yaml"
+                        sh "aws sts get-caller-identity"
+                        sh "kubectl apply -f templates/${app}-deployment-dev.yaml"
+                        sh "kubectl apply -f templates/${app}-admin-deployment-dev.yaml"
+                                }
+                        }
+                    }
+                }
+        }
+    post {
+            success {
+                slackSend channel: '#Jenkins-dev',
+                          color: 'good',
+                          message: "version : ${lasatimage} , admin version : ${lasatimageadmin} \n ${currentBuild.fullDisplayName} deployd successfully."
+            }
+    }        
+}

@@ -1,0 +1,97 @@
+pipeline {
+    parameters {
+      choice(name: 'region',
+        choices: 'us01\neu01',
+        description: 'region to deploy?')
+      choice(name: 'replicas',
+        choices: '2\n3',
+        description: 'how many pods?')
+    }
+      agent { label params.region}
+    environment {
+        app = "${sh(script:'echo ${JOB_NAME}', returnStdout: true).trim()}"
+      DOCKER_REGISTRY = '115322008410.dkr.ecr.us-east-2.amazonaws.com'
+      AWS_DEFAULT_REGION = 'us-east-2'
+          lasatimage = sh(script: "aws ecr describe-images --registry-id 115322008410 --region us-east-2 --repository-name ${JOB_NAME} | jq '.imageDetails[]| select(.imageTags[] | match(\"lastrelease\")) .imageTags' | grep -i -w 'release' | tr -d '\", '",returnStdout: true).trim()
+          lasatimageadmin = sh(script: "aws ecr describe-images --registry-id 115322008410 --region us-east-2 --repository-name ${JOB_NAME}-admin | jq '.imageDetails[]| select(.imageTags[] | match(\"lastrelease\")) .imageTags' | grep -i -w 'release' | tr -d '\", '",returnStdout: true).trim()        
+    }
+        stages    {
+            stage('git checkout') {
+                steps {
+                git branch: 'master',
+                    credentialsId: 'gitlab-ssh-key',
+                    url: 'git@gitlab.com:montara/backend/${JOB_NAME}.git'
+                }
+            }
+            stage('get ecr latest image number') {
+                  steps {
+                    script {
+                        /* groovylint-disable-next-line GStringExpressionWithinString */
+                        sh '''
+                        imagetag=$DOCKER_REGISTRY/$app:$lasatimage
+                        echo ${imagetag} > $WORKSPACE/imagetag.txt
+                        imagetag_admin=$DOCKER_REGISTRY/$app-admin:$lasatimageadmin
+                        echo ${imagetag_admin} > $WORKSPACE/imagetag_admin.txt
+                        '''
+                    }
+                  }
+            }
+            stage('prams info') {
+              steps {
+                echo "region: ${params.region}"
+                echo "replicas: ${params.replicas}"
+                echo "app: ${app}"
+              }
+            }
+            stage('change yaml to ...') {
+              steps {
+                script{
+              def imagetag = sh(script:"cat $WORKSPACE/imagetag.txt", returnStdout: true).trim() as String
+              def imagetagadmin = sh(script:"cat $WORKSPACE/imagetag_admin.txt", returnStdout: true).trim() as String              
+              sh """ 
+                    echo step before the depoly start
+                    echo folder: ${WORKSPACE} app : ${app}
+                    sed -i -e 's/%app/${app}/g' templates/$app*prod.yaml
+                    sed -i -e s/%environment/${getnsdata(params.region)['ns']}/g templates/$app*prod.yaml
+                    sed s/%replicas/$replicas/g -i templates/$app*prod.yaml
+                    sed -i -e s#"%imageurl%"#${imagetag}#g templates/$app*prod.yaml
+                    sed -i -e s#"%imageurl-admin%"#${imagetagadmin}#g templates/$app*prod.yaml
+                    sed -i -e s#"%dockerversion%"#$lasatimage#g templates/$app*prod.yaml
+                    sed -i -e s#"%dockerversion-admin%"#$lasatimageadmin#g templates/$app*prod.yaml
+                  """
+                }
+              }
+            }
+            stage('deploying') {
+              steps {
+                script{
+                sh """
+                      cat templates/$app-deployment-prod.yaml
+                      cat templates/$app-admin-deployment-prod.yaml
+                      aws sts get-caller-identity
+                      kubectl apply -f templates/$app-deployment-prod.yaml
+                      kubectl apply -f templates/$app-admin-deployment-prod.yaml
+                  """
+                } 
+              }
+            }
+          }
+    post {
+            success {
+                slackSend channel: '#Jenkins-prod',
+                          color: 'good',
+                          message: "deployd successfully in region: ${region} version : ${lasatimage} , admin version : ${lasatimageadmin} \n ${currentBuild.fullDisplayName}."
+            }
+    }   
+}
+def getnsdata(region){
+    def data = [
+        'us01': [
+            'ns': 'us01-prod'
+        ],
+        'eu01': [
+            'ns': 'eu01-prod'
+        ]
+    ]
+    return data[region]
+}
