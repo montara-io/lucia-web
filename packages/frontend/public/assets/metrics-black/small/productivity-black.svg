@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_7331" data-name="Path 7331" d="M8,8V0h8V16H0V8Z" fill="red" opacity="0.1"/>
+    </clipPath>
+  </defs>
+  <g id="Productivity" transform="translate(-65.096 -248.199)">
+    <g id="frame" transform="translate(66.096 249.199)" fill="none" stroke="#fff" stroke-width="1" opacity="0">
+      <rect width="20" height="20" stroke="none"/>
+      <rect x="-0.5" y="-0.5" width="21" height="21" fill="none"/>
+    </g>
+    <g id="productivity-2" data-name="productivity" transform="translate(-33.306 227.732)">
+      <g id="Mask_Group_132" data-name="Mask Group 132" transform="translate(101.401 23.464)" clip-path="url(#clip-path)">
+        <g id="Ellipse_2684" data-name="Ellipse 2684" transform="translate(-0.001 0.003)" fill="none" stroke="#222" stroke-width="1.4">
+          <circle cx="8" cy="8" r="8" stroke="none"/>
+          <circle cx="8" cy="8" r="7.3" fill="none"/>
+        </g>
+      </g>
+      <circle id="Ellipse_2685" data-name="Ellipse 2685" cx="0.7" cy="0.7" r="0.7" transform="translate(108.651 30.717)" fill="#222"/>
+      <rect id="Rectangle_3636" data-name="Rectangle 3636" width="5" height="1.4" rx="0.7" transform="translate(108.401 31.352) rotate(-45)" fill="#222"/>
+      <circle id="Ellipse_2686" data-name="Ellipse 2686" cx="0.7" cy="0.7" r="0.7" transform="translate(108.651 23.467)" fill="#222"/>
+      <circle id="Ellipse_2687" data-name="Ellipse 2687" cx="0.7" cy="0.7" r="0.7" transform="translate(101.401 30.717)" fill="#222"/>
+      <circle id="Ellipse_2688" data-name="Ellipse 2688" cx="1" cy="1" r="1" transform="translate(102.401 26.926)" fill="#222"/>
+      <circle id="Ellipse_2689" data-name="Ellipse 2689" cx="1" cy="1" r="1" transform="translate(104.864 24.464)" fill="#222"/>
+    </g>
+  </g>
+</svg>

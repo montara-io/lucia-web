@@ -1,0 +1,57 @@
+@import 'colors';
+
+@mixin none-severity {
+  background: $gray230;
+}
+
+@mixin no-severity {
+  background: $no-severity;
+}
+
+@mixin mid-severity {
+  background: $mid-severity;
+}
+
+@mixin high-severity {
+  background: $high-severity;
+}
+
+@mixin internal-link {
+  font-family: inherit;
+  float: right;
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: $secondary;
+  width: 7.25rem;
+  padding: 0.188rem 1.063rem 0.188rem 1.063rem;
+  background-color: $gray260;
+  border-top-left-radius: 28px;
+  border-bottom-right-radius: 16px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  height: 1.5rem;
+  border-bottom: 0;
+  border-right: 0;
+  border-top: 1px solid $gray220;
+  border-left: 1px solid $gray220;
+  outline: none;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: $gray240;
+
+    img {
+      right: -6px;
+    }
+  }
+
+  img {
+    transition: all 0.2s;
+    position: relative;
+    right: -4px;
+    padding: 0 4px;
+  }
+}

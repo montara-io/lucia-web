@@ -1,0 +1,15 @@
+export enum IssuesTypes {
+  RETENTION = 'RETENTION',
+  PRODUCTIVITY = 'PRODUCTIVITY',
+  INFLUENCE = 'INFLUENCE',
+  COACHING = 'COACHING',
+  COMMITMENT = 'COMMITMENT',
+  TEAM_COMMITMENT = 'TEAM_COMMITMENT',
+  TEAM_WELLBEING = 'TEAM_WELLBEING',
+  FAIRNESS = 'FAIRNESS',
+  COGNITIVE_LOAD = 'COGNITIVE_LOAD',
+  MANAGER_IMPACT = 'MANAGER_IMPACT',
+}
+
+// TODO: add all translation to en.json
+export declare type IssueType = keyof typeof IssuesTypes;

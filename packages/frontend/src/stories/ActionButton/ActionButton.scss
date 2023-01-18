@@ -1,0 +1,29 @@
+@import '../../styles/colors';
+
+.action-button.p-button {
+  color: $blue;
+  padding: 15.5px 11px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  font-weight: 600;
+  background-color: $gray260;
+  height: inherit;
+
+  &:enabled:hover {
+    background-color: $gray250;
+    color: $blue;
+  }
+  &:disabled {
+    background-color: $gray260;
+    color: $gray200;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}

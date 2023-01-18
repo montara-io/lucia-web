@@ -1,0 +1,1146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test DataTable Component Snapshot renders correctly - header 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        id="m-data-table"
+      >
+        <div
+          class="p-datatable p-component p-datatable-scrollable p-datatable-auto-layout"
+          data-scrollselectors=".p-datatable-scrollable-body, .p-datatable-unfrozen-view .p-datatable-scrollable-body"
+          id="IssuesTable"
+        >
+          <div
+            class="p-datatable-scrollable-wrapper"
+          >
+            <div
+              class="p-datatable-scrollable-view"
+              style="width: calc(100% - null);"
+            >
+              <div
+                class="p-datatable-scrollable-header"
+              >
+                <div
+                  class="p-datatable-scrollable-header-box"
+                  style="margin-right: 0px;"
+                >
+                  <table
+                    class="p-datatable-scrollable-header-table"
+                  >
+                    <colgroup
+                      class="p-datatable-scrollable-colgroup"
+                    >
+                      <col
+                        style="width: 10rem;"
+                      />
+                    </colgroup>
+                    <thead
+                      class="p-datatable-thead"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <th
+                          class="p-sortable-disabled"
+                          role="columnheader"
+                          style="width: 10rem;"
+                        >
+                          <span
+                            class="p-column-title"
+                          >
+                            STATE
+                          </span>
+                        </th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+              <div
+                class="p-datatable-scrollable-body"
+                style="overflow-y: scroll; visibility: visible; height: auto; max-height: 100px;"
+              >
+                <table
+                  class="p-datatable-scrollable-body-table"
+                  style="top: 0px;"
+                >
+                  <colgroup
+                    class="p-datatable-scrollable-colgroup"
+                  >
+                    <col
+                      style="width: 10rem;"
+                    />
+                  </colgroup>
+                  <tbody
+                    class="p-datatable-tbody"
+                  >
+                    <tr
+                      class="p-datatable-emptymessage"
+                      role="row"
+                    >
+                      <td
+                        colspan="1"
+                        role="cell"
+                      >
+                        <div
+                          class="no-data-container"
+                        >
+                          <img
+                            alt="No data to show"
+                            class="no-data-icon"
+                            src="/assets/no-data.png"
+                          />
+                          <span
+                            class="caption"
+                          >
+                            No data to show
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  class="p-datatable-virtual-scroller"
+                />
+              </div>
+              <div
+                class="p-datatable-scrollable-footer"
+              >
+                <div
+                  class="p-datatable-scrollable-footer-box"
+                  style="margin-right: 0px;"
+                >
+                  <table
+                    class="p-datatable-scrollable-footer-table"
+                  >
+                    <colgroup
+                      class="p-datatable-scrollable-colgroup"
+                    >
+                      <col
+                        style="width: 10rem;"
+                      />
+                    </colgroup>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-paginator p-component p-paginator-bottom"
+          >
+            <button
+              class="p-paginator-prev p-paginator-element p-link p-disabled"
+              disabled=""
+              type="button"
+            >
+              <span
+                class="p-p-3"
+              >
+                &lt; Prev
+              </span>
+            </button>
+            <div
+              class=""
+            >
+              1
+              /
+              1
+            </div>
+            <button
+              class="p-paginator-next p-paginator-element p-link p-disabled"
+              disabled=""
+              type="button"
+            >
+              <span
+                class="p-p-3"
+              >
+                Next &gt;
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      id="m-data-table"
+    >
+      <div
+        class="p-datatable p-component p-datatable-scrollable p-datatable-auto-layout"
+        data-scrollselectors=".p-datatable-scrollable-body, .p-datatable-unfrozen-view .p-datatable-scrollable-body"
+        id="IssuesTable"
+      >
+        <div
+          class="p-datatable-scrollable-wrapper"
+        >
+          <div
+            class="p-datatable-scrollable-view"
+            style="width: calc(100% - null);"
+          >
+            <div
+              class="p-datatable-scrollable-header"
+            >
+              <div
+                class="p-datatable-scrollable-header-box"
+                style="margin-right: 0px;"
+              >
+                <table
+                  class="p-datatable-scrollable-header-table"
+                >
+                  <colgroup
+                    class="p-datatable-scrollable-colgroup"
+                  >
+                    <col
+                      style="width: 10rem;"
+                    />
+                  </colgroup>
+                  <thead
+                    class="p-datatable-thead"
+                  >
+                    <tr
+                      role="row"
+                    >
+                      <th
+                        class="p-sortable-disabled"
+                        role="columnheader"
+                        style="width: 10rem;"
+                      >
+                        <span
+                          class="p-column-title"
+                        >
+                          STATE
+                        </span>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+            <div
+              class="p-datatable-scrollable-body"
+              style="overflow-y: scroll; visibility: visible; height: auto; max-height: 100px;"
+            >
+              <table
+                class="p-datatable-scrollable-body-table"
+                style="top: 0px;"
+              >
+                <colgroup
+                  class="p-datatable-scrollable-colgroup"
+                >
+                  <col
+                    style="width: 10rem;"
+                  />
+                </colgroup>
+                <tbody
+                  class="p-datatable-tbody"
+                >
+                  <tr
+                    class="p-datatable-emptymessage"
+                    role="row"
+                  >
+                    <td
+                      colspan="1"
+                      role="cell"
+                    >
+                      <div
+                        class="no-data-container"
+                      >
+                        <img
+                          alt="No data to show"
+                          class="no-data-icon"
+                          src="/assets/no-data.png"
+                        />
+                        <span
+                          class="caption"
+                        >
+                          No data to show
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div
+                class="p-datatable-virtual-scroller"
+              />
+            </div>
+            <div
+              class="p-datatable-scrollable-footer"
+            >
+              <div
+                class="p-datatable-scrollable-footer-box"
+                style="margin-right: 0px;"
+              >
+                <table
+                  class="p-datatable-scrollable-footer-table"
+                >
+                  <colgroup
+                    class="p-datatable-scrollable-colgroup"
+                  >
+                    <col
+                      style="width: 10rem;"
+                    />
+                  </colgroup>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="p-paginator p-component p-paginator-bottom"
+        >
+          <button
+            class="p-paginator-prev p-paginator-element p-link p-disabled"
+            disabled=""
+            type="button"
+          >
+            <span
+              class="p-p-3"
+            >
+              &lt; Prev
+            </span>
+          </button>
+          <div
+            class=""
+          >
+            1
+            /
+            1
+          </div>
+          <button
+            class="p-paginator-next p-paginator-element p-link p-disabled"
+            disabled=""
+            type="button"
+          >
+            <span
+              class="p-p-3"
+            >
+              Next &gt;
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Test DataTable Component Snapshot renders correctly - no data 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        id="m-data-table"
+      >
+        <div
+          class="p-datatable p-component p-datatable-scrollable p-datatable-auto-layout"
+          data-scrollselectors=".p-datatable-scrollable-body, .p-datatable-unfrozen-view .p-datatable-scrollable-body"
+          id="IssuesTable"
+        >
+          <div
+            class="p-datatable-scrollable-wrapper"
+          >
+            <div
+              class="p-datatable-scrollable-view"
+              style="width: calc(100% - null);"
+            >
+              <div
+                class="p-datatable-scrollable-header"
+              >
+                <div
+                  class="p-datatable-scrollable-header-box"
+                  style="margin-right: 0px;"
+                >
+                  <table
+                    class="p-datatable-scrollable-header-table"
+                  >
+                    <colgroup
+                      class="p-datatable-scrollable-colgroup"
+                    >
+                      <col
+                        style="width: 10rem;"
+                      />
+                    </colgroup>
+                    <thead
+                      class="p-datatable-thead"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <th
+                          aria-sort="none"
+                          class="p-sortable-column"
+                          role="columnheader"
+                          style="width: 10rem;"
+                          tabindex="0"
+                        >
+                          <span
+                            class="p-column-title"
+                          >
+                            NAME
+                          </span>
+                          <span
+                            class="p-sortable-column-icon pi pi-fw pi-sort-alt"
+                          />
+                        </th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+              <div
+                class="p-datatable-scrollable-body"
+                style="overflow-y: scroll; visibility: visible; height: auto; max-height: 100px;"
+              >
+                <table
+                  class="p-datatable-scrollable-body-table"
+                  style="top: 0px;"
+                >
+                  <colgroup
+                    class="p-datatable-scrollable-colgroup"
+                  >
+                    <col
+                      style="width: 10rem;"
+                    />
+                  </colgroup>
+                  <tbody
+                    class="p-datatable-tbody"
+                  >
+                    <tr
+                      class="p-datatable-emptymessage"
+                      role="row"
+                    >
+                      <td
+                        colspan="1"
+                        role="cell"
+                      >
+                        <div
+                          class="no-data-container"
+                        >
+                          <img
+                            alt="No data to show"
+                            class="no-data-icon"
+                            src="/assets/no-data.png"
+                          />
+                          <span
+                            class="caption"
+                          >
+                            No data to show
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  class="p-datatable-virtual-scroller"
+                />
+              </div>
+              <div
+                class="p-datatable-scrollable-footer"
+              >
+                <div
+                  class="p-datatable-scrollable-footer-box"
+                  style="margin-right: 0px;"
+                >
+                  <table
+                    class="p-datatable-scrollable-footer-table"
+                  >
+                    <colgroup
+                      class="p-datatable-scrollable-colgroup"
+                    >
+                      <col
+                        style="width: 10rem;"
+                      />
+                    </colgroup>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-paginator p-component p-paginator-bottom"
+          >
+            <button
+              class="p-paginator-prev p-paginator-element p-link p-disabled"
+              disabled=""
+              type="button"
+            >
+              <span
+                class="p-p-3"
+              >
+                &lt; Prev
+              </span>
+            </button>
+            <div
+              class=""
+            >
+              1
+              /
+              1
+            </div>
+            <button
+              class="p-paginator-next p-paginator-element p-link p-disabled"
+              disabled=""
+              type="button"
+            >
+              <span
+                class="p-p-3"
+              >
+                Next &gt;
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      id="m-data-table"
+    >
+      <div
+        class="p-datatable p-component p-datatable-scrollable p-datatable-auto-layout"
+        data-scrollselectors=".p-datatable-scrollable-body, .p-datatable-unfrozen-view .p-datatable-scrollable-body"
+        id="IssuesTable"
+      >
+        <div
+          class="p-datatable-scrollable-wrapper"
+        >
+          <div
+            class="p-datatable-scrollable-view"
+            style="width: calc(100% - null);"
+          >
+            <div
+              class="p-datatable-scrollable-header"
+            >
+              <div
+                class="p-datatable-scrollable-header-box"
+                style="margin-right: 0px;"
+              >
+                <table
+                  class="p-datatable-scrollable-header-table"
+                >
+                  <colgroup
+                    class="p-datatable-scrollable-colgroup"
+                  >
+                    <col
+                      style="width: 10rem;"
+                    />
+                  </colgroup>
+                  <thead
+                    class="p-datatable-thead"
+                  >
+                    <tr
+                      role="row"
+                    >
+                      <th
+                        aria-sort="none"
+                        class="p-sortable-column"
+                        role="columnheader"
+                        style="width: 10rem;"
+                        tabindex="0"
+                      >
+                        <span
+                          class="p-column-title"
+                        >
+                          NAME
+                        </span>
+                        <span
+                          class="p-sortable-column-icon pi pi-fw pi-sort-alt"
+                        />
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+            <div
+              class="p-datatable-scrollable-body"
+              style="overflow-y: scroll; visibility: visible; height: auto; max-height: 100px;"
+            >
+              <table
+                class="p-datatable-scrollable-body-table"
+                style="top: 0px;"
+              >
+                <colgroup
+                  class="p-datatable-scrollable-colgroup"
+                >
+                  <col
+                    style="width: 10rem;"
+                  />
+                </colgroup>
+                <tbody
+                  class="p-datatable-tbody"
+                >
+                  <tr
+                    class="p-datatable-emptymessage"
+                    role="row"
+                  >
+                    <td
+                      colspan="1"
+                      role="cell"
+                    >
+                      <div
+                        class="no-data-container"
+                      >
+                        <img
+                          alt="No data to show"
+                          class="no-data-icon"
+                          src="/assets/no-data.png"
+                        />
+                        <span
+                          class="caption"
+                        >
+                          No data to show
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div
+                class="p-datatable-virtual-scroller"
+              />
+            </div>
+            <div
+              class="p-datatable-scrollable-footer"
+            >
+              <div
+                class="p-datatable-scrollable-footer-box"
+                style="margin-right: 0px;"
+              >
+                <table
+                  class="p-datatable-scrollable-footer-table"
+                >
+                  <colgroup
+                    class="p-datatable-scrollable-colgroup"
+                  >
+                    <col
+                      style="width: 10rem;"
+                    />
+                  </colgroup>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="p-paginator p-component p-paginator-bottom"
+        >
+          <button
+            class="p-paginator-prev p-paginator-element p-link p-disabled"
+            disabled=""
+            type="button"
+          >
+            <span
+              class="p-p-3"
+            >
+              &lt; Prev
+            </span>
+          </button>
+          <div
+            class=""
+          >
+            1
+            /
+            1
+          </div>
+          <button
+            class="p-paginator-next p-paginator-element p-link p-disabled"
+            disabled=""
+            type="button"
+          >
+            <span
+              class="p-p-3"
+            >
+              Next &gt;
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Test DataTable Component Snapshot renders correctly - table of data 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        id="m-data-table"
+      >
+        <div
+          class="p-datatable p-component p-datatable-scrollable p-datatable-auto-layout"
+          data-scrollselectors=".p-datatable-scrollable-body, .p-datatable-unfrozen-view .p-datatable-scrollable-body"
+          id="IssuesTable"
+        >
+          <div
+            class="p-datatable-scrollable-wrapper"
+          >
+            <div
+              class="p-datatable-scrollable-view"
+              style="width: calc(100% - null);"
+            >
+              <div
+                class="p-datatable-scrollable-header"
+              >
+                <div
+                  class="p-datatable-scrollable-header-box"
+                  style="margin-right: 0px;"
+                >
+                  <table
+                    class="p-datatable-scrollable-header-table"
+                  >
+                    <colgroup
+                      class="p-datatable-scrollable-colgroup"
+                    >
+                      <col
+                        style="width: 10rem;"
+                      />
+                    </colgroup>
+                    <thead
+                      class="p-datatable-thead"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <th
+                          aria-sort="none"
+                          class="p-sortable-column"
+                          role="columnheader"
+                          style="width: 10rem;"
+                          tabindex="0"
+                        >
+                          <span
+                            class="p-column-title"
+                          />
+                          <span
+                            class="p-sortable-column-icon pi pi-fw pi-sort-alt"
+                          />
+                        </th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+              <div
+                class="p-datatable-scrollable-body"
+                style="overflow-y: scroll; visibility: visible; height: auto; max-height: 100px;"
+              >
+                <table
+                  class="p-datatable-scrollable-body-table"
+                  style="top: 0px;"
+                >
+                  <colgroup
+                    class="p-datatable-scrollable-colgroup"
+                  >
+                    <col
+                      style="width: 10rem;"
+                    />
+                  </colgroup>
+                  <tbody
+                    class="p-datatable-tbody"
+                  >
+                    <tr
+                      class=""
+                      role="row"
+                    >
+                      <td
+                        class=""
+                        role="cell"
+                      >
+                        <div
+                          class="m-display-flex"
+                        >
+                          <div
+                            class="m-row-content"
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  class="p-datatable-virtual-scroller"
+                />
+              </div>
+              <div
+                class="p-datatable-scrollable-footer"
+              >
+                <div
+                  class="p-datatable-scrollable-footer-box"
+                  style="margin-right: 0px;"
+                >
+                  <table
+                    class="p-datatable-scrollable-footer-table"
+                  >
+                    <colgroup
+                      class="p-datatable-scrollable-colgroup"
+                    >
+                      <col
+                        style="width: 10rem;"
+                      />
+                    </colgroup>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-paginator p-component p-paginator-bottom"
+          >
+            <button
+              class="p-paginator-prev p-paginator-element p-link p-disabled"
+              disabled=""
+              type="button"
+            >
+              <span
+                class="p-p-3"
+              >
+                &lt; Prev
+              </span>
+            </button>
+            <div
+              class=""
+            >
+              1
+              /
+              1
+            </div>
+            <button
+              class="p-paginator-next p-paginator-element p-link p-disabled"
+              disabled=""
+              type="button"
+            >
+              <span
+                class="p-p-3"
+              >
+                Next &gt;
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      id="m-data-table"
+    >
+      <div
+        class="p-datatable p-component p-datatable-scrollable p-datatable-auto-layout"
+        data-scrollselectors=".p-datatable-scrollable-body, .p-datatable-unfrozen-view .p-datatable-scrollable-body"
+        id="IssuesTable"
+      >
+        <div
+          class="p-datatable-scrollable-wrapper"
+        >
+          <div
+            class="p-datatable-scrollable-view"
+            style="width: calc(100% - null);"
+          >
+            <div
+              class="p-datatable-scrollable-header"
+            >
+              <div
+                class="p-datatable-scrollable-header-box"
+                style="margin-right: 0px;"
+              >
+                <table
+                  class="p-datatable-scrollable-header-table"
+                >
+                  <colgroup
+                    class="p-datatable-scrollable-colgroup"
+                  >
+                    <col
+                      style="width: 10rem;"
+                    />
+                  </colgroup>
+                  <thead
+                    class="p-datatable-thead"
+                  >
+                    <tr
+                      role="row"
+                    >
+                      <th
+                        aria-sort="none"
+                        class="p-sortable-column"
+                        role="columnheader"
+                        style="width: 10rem;"
+                        tabindex="0"
+                      >
+                        <span
+                          class="p-column-title"
+                        />
+                        <span
+                          class="p-sortable-column-icon pi pi-fw pi-sort-alt"
+                        />
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+            <div
+              class="p-datatable-scrollable-body"
+              style="overflow-y: scroll; visibility: visible; height: auto; max-height: 100px;"
+            >
+              <table
+                class="p-datatable-scrollable-body-table"
+                style="top: 0px;"
+              >
+                <colgroup
+                  class="p-datatable-scrollable-colgroup"
+                >
+                  <col
+                    style="width: 10rem;"
+                  />
+                </colgroup>
+                <tbody
+                  class="p-datatable-tbody"
+                >
+                  <tr
+                    class=""
+                    role="row"
+                  >
+                    <td
+                      class=""
+                      role="cell"
+                    >
+                      <div
+                        class="m-display-flex"
+                      >
+                        <div
+                          class="m-row-content"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div
+                class="p-datatable-virtual-scroller"
+              />
+            </div>
+            <div
+              class="p-datatable-scrollable-footer"
+            >
+              <div
+                class="p-datatable-scrollable-footer-box"
+                style="margin-right: 0px;"
+              >
+                <table
+                  class="p-datatable-scrollable-footer-table"
+                >
+                  <colgroup
+                    class="p-datatable-scrollable-colgroup"
+                  >
+                    <col
+                      style="width: 10rem;"
+                    />
+                  </colgroup>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="p-paginator p-component p-paginator-bottom"
+        >
+          <button
+            class="p-paginator-prev p-paginator-element p-link p-disabled"
+            disabled=""
+            type="button"
+          >
+            <span
+              class="p-p-3"
+            >
+              &lt; Prev
+            </span>
+          </button>
+          <div
+            class=""
+          >
+            1
+            /
+            1
+          </div>
+          <button
+            class="p-paginator-next p-paginator-element p-link p-disabled"
+            disabled=""
+            type="button"
+          >
+            <span
+              class="p-p-3"
+            >
+              Next &gt;
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

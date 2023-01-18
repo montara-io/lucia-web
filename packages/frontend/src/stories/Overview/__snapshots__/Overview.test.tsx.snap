@@ -1,0 +1,698 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overview Component Snapshot renders correctly  - full data 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="overview-container"
+      >
+        <div
+          class="overview-item item-border"
+          data-testid="overview-item"
+        >
+          <div
+            class="overview-item-data no-severity"
+            data-testid="overview-item-data"
+            style="color: rgb(34, 34, 34);"
+          >
+            <img
+              alt="overview-item-icon"
+              class="overview-item-icon"
+              data-testid="overview-item-icon"
+              src="/assets/wedding-rings.svg"
+            />
+            <div
+              class="overview-item-title"
+              data-testid="overview-item-title"
+            >
+              Engagement
+            </div>
+            <div
+              class="overview-item-score"
+              data-testid="overview-item-score"
+            >
+              77
+            </div>
+            <span
+              class="overview-item-explore"
+              data-testid="overview-item-explore"
+            >
+              Explore
+            </span>
+          </div>
+        </div>
+        <div
+          class="overview-item item-border"
+          data-testid="overview-item"
+        >
+          <div
+            class="overview-item-data mid-severity"
+            data-testid="overview-item-data"
+            style="color: rgb(34, 34, 34);"
+          >
+            <img
+              alt="overview-item-icon"
+              class="overview-item-icon"
+              data-testid="overview-item-icon"
+              src="/assets/retention.svg"
+            />
+            <div
+              class="overview-item-title"
+              data-testid="overview-item-title"
+            >
+              Retention
+            </div>
+            <div
+              class="overview-item-score"
+              data-testid="overview-item-score"
+            >
+              73
+            </div>
+          </div>
+        </div>
+        <div
+          class="overview-item no-border"
+          data-testid="overview-item"
+        >
+          <div
+            class="overview-item-data high-severity"
+            data-testid="overview-item-data"
+            style="color: rgb(34, 34, 34);"
+          >
+            <img
+              alt="overview-item-icon"
+              class="overview-item-icon"
+              data-testid="overview-item-icon"
+              src="/assets/wedding-rings.svg"
+            />
+            <div
+              class="overview-item-title"
+              data-testid="overview-item-title"
+            >
+              Wellbeing
+            </div>
+            <div
+              class="overview-item-score"
+              data-testid="overview-item-score"
+            >
+              30
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="overview-container"
+    >
+      <div
+        class="overview-item item-border"
+        data-testid="overview-item"
+      >
+        <div
+          class="overview-item-data no-severity"
+          data-testid="overview-item-data"
+          style="color: rgb(34, 34, 34);"
+        >
+          <img
+            alt="overview-item-icon"
+            class="overview-item-icon"
+            data-testid="overview-item-icon"
+            src="/assets/wedding-rings.svg"
+          />
+          <div
+            class="overview-item-title"
+            data-testid="overview-item-title"
+          >
+            Engagement
+          </div>
+          <div
+            class="overview-item-score"
+            data-testid="overview-item-score"
+          >
+            77
+          </div>
+          <span
+            class="overview-item-explore"
+            data-testid="overview-item-explore"
+          >
+            Explore
+          </span>
+        </div>
+      </div>
+      <div
+        class="overview-item item-border"
+        data-testid="overview-item"
+      >
+        <div
+          class="overview-item-data mid-severity"
+          data-testid="overview-item-data"
+          style="color: rgb(34, 34, 34);"
+        >
+          <img
+            alt="overview-item-icon"
+            class="overview-item-icon"
+            data-testid="overview-item-icon"
+            src="/assets/retention.svg"
+          />
+          <div
+            class="overview-item-title"
+            data-testid="overview-item-title"
+          >
+            Retention
+          </div>
+          <div
+            class="overview-item-score"
+            data-testid="overview-item-score"
+          >
+            73
+          </div>
+        </div>
+      </div>
+      <div
+        class="overview-item no-border"
+        data-testid="overview-item"
+      >
+        <div
+          class="overview-item-data high-severity"
+          data-testid="overview-item-data"
+          style="color: rgb(34, 34, 34);"
+        >
+          <img
+            alt="overview-item-icon"
+            class="overview-item-icon"
+            data-testid="overview-item-icon"
+            src="/assets/wedding-rings.svg"
+          />
+          <div
+            class="overview-item-title"
+            data-testid="overview-item-title"
+          >
+            Wellbeing
+          </div>
+          <div
+            class="overview-item-score"
+            data-testid="overview-item-score"
+          >
+            30
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Overview Component Snapshot renders correctly  - no data 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="overview-container"
+      >
+        <div
+          class="overview-item item-border"
+          data-testid="overview-item"
+        >
+          <div
+            class="overview-item-data none-severity"
+            data-testid="overview-item-data"
+            style="color: rgb(34, 34, 34);"
+          >
+            <img
+              alt="overview-item-icon"
+              class="overview-item-icon"
+              data-testid="overview-item-icon"
+              src="/assets/wedding-rings.svg"
+            />
+            <div
+              class="overview-item-title"
+              data-testid="overview-item-title"
+            >
+              Engagement
+            </div>
+            <div
+              class="no-data no-data-0"
+              data-testid="no-score"
+              style="color: rgb(34, 34, 34);"
+            >
+              No data to show
+            </div>
+          </div>
+        </div>
+        <div
+          class="overview-item no-border"
+          data-testid="overview-item"
+        >
+          <div
+            class="overview-item-data none-severity"
+            data-testid="overview-item-data"
+            style="color: rgb(200, 200, 200);"
+          >
+            <img
+              alt="overview-item-icon"
+              class="overview-item-icon disabled-icon"
+              data-testid="overview-item-icon"
+              src="/assets/wedding-rings.svg"
+            />
+            <div
+              class="overview-item-title"
+              data-testid="overview-item-title"
+            >
+              Wellbeing
+            </div>
+            <div
+              class="no-data no-data-1"
+              data-testid="no-score"
+              style="color: rgb(100, 100, 100);"
+            >
+              Soon...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="overview-container"
+    >
+      <div
+        class="overview-item item-border"
+        data-testid="overview-item"
+      >
+        <div
+          class="overview-item-data none-severity"
+          data-testid="overview-item-data"
+          style="color: rgb(34, 34, 34);"
+        >
+          <img
+            alt="overview-item-icon"
+            class="overview-item-icon"
+            data-testid="overview-item-icon"
+            src="/assets/wedding-rings.svg"
+          />
+          <div
+            class="overview-item-title"
+            data-testid="overview-item-title"
+          >
+            Engagement
+          </div>
+          <div
+            class="no-data no-data-0"
+            data-testid="no-score"
+            style="color: rgb(34, 34, 34);"
+          >
+            No data to show
+          </div>
+        </div>
+      </div>
+      <div
+        class="overview-item no-border"
+        data-testid="overview-item"
+      >
+        <div
+          class="overview-item-data none-severity"
+          data-testid="overview-item-data"
+          style="color: rgb(200, 200, 200);"
+        >
+          <img
+            alt="overview-item-icon"
+            class="overview-item-icon disabled-icon"
+            data-testid="overview-item-icon"
+            src="/assets/wedding-rings.svg"
+          />
+          <div
+            class="overview-item-title"
+            data-testid="overview-item-title"
+          >
+            Wellbeing
+          </div>
+          <div
+            class="no-data no-data-1"
+            data-testid="no-score"
+            style="color: rgb(100, 100, 100);"
+          >
+            Soon...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Overview Component Snapshot renders correctly  - partial data 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="overview-container"
+      >
+        <div
+          class="overview-item item-border"
+          data-testid="overview-item"
+        >
+          <div
+            class="overview-item-data no-severity"
+            data-testid="overview-item-data"
+            style="color: rgb(34, 34, 34);"
+          >
+            <img
+              alt="overview-item-icon"
+              class="overview-item-icon"
+              data-testid="overview-item-icon"
+              src="/assets/wedding-rings.svg"
+            />
+            <div
+              class="overview-item-title"
+              data-testid="overview-item-title"
+            >
+              Engagement
+            </div>
+            <div
+              class="overview-item-score"
+              data-testid="overview-item-score"
+            >
+              77
+            </div>
+          </div>
+        </div>
+        <div
+          class="overview-item item-border"
+          data-testid="overview-item"
+        >
+          <div
+            class="overview-item-data none-severity"
+            data-testid="overview-item-data"
+            style="color: rgb(200, 200, 200);"
+          >
+            <img
+              alt="overview-item-icon"
+              class="overview-item-icon disabled-icon"
+              data-testid="overview-item-icon"
+              src="/assets/retention.svg"
+            />
+            <div
+              class="overview-item-title"
+              data-testid="overview-item-title"
+            >
+              Retention
+            </div>
+            <div
+              class="no-data no-data-1"
+              data-testid="no-score"
+              style="color: rgb(100, 100, 100);"
+            >
+              Soon...
+            </div>
+          </div>
+        </div>
+        <div
+          class="overview-item no-border"
+          data-testid="overview-item"
+        >
+          <div
+            class="overview-item-data none-severity"
+            data-testid="overview-item-data"
+            style="color: rgb(34, 34, 34);"
+          >
+            <img
+              alt="overview-item-icon"
+              class="overview-item-icon"
+              data-testid="overview-item-icon"
+              src="/assets/wedding-rings.svg"
+            />
+            <div
+              class="overview-item-title"
+              data-testid="overview-item-title"
+            >
+              Wellbeing
+            </div>
+            <div
+              class="no-data no-data-2"
+              data-testid="no-score"
+              style="color: rgb(34, 34, 34);"
+            >
+              No data to show
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="overview-container"
+    >
+      <div
+        class="overview-item item-border"
+        data-testid="overview-item"
+      >
+        <div
+          class="overview-item-data no-severity"
+          data-testid="overview-item-data"
+          style="color: rgb(34, 34, 34);"
+        >
+          <img
+            alt="overview-item-icon"
+            class="overview-item-icon"
+            data-testid="overview-item-icon"
+            src="/assets/wedding-rings.svg"
+          />
+          <div
+            class="overview-item-title"
+            data-testid="overview-item-title"
+          >
+            Engagement
+          </div>
+          <div
+            class="overview-item-score"
+            data-testid="overview-item-score"
+          >
+            77
+          </div>
+        </div>
+      </div>
+      <div
+        class="overview-item item-border"
+        data-testid="overview-item"
+      >
+        <div
+          class="overview-item-data none-severity"
+          data-testid="overview-item-data"
+          style="color: rgb(200, 200, 200);"
+        >
+          <img
+            alt="overview-item-icon"
+            class="overview-item-icon disabled-icon"
+            data-testid="overview-item-icon"
+            src="/assets/retention.svg"
+          />
+          <div
+            class="overview-item-title"
+            data-testid="overview-item-title"
+          >
+            Retention
+          </div>
+          <div
+            class="no-data no-data-1"
+            data-testid="no-score"
+            style="color: rgb(100, 100, 100);"
+          >
+            Soon...
+          </div>
+        </div>
+      </div>
+      <div
+        class="overview-item no-border"
+        data-testid="overview-item"
+      >
+        <div
+          class="overview-item-data none-severity"
+          data-testid="overview-item-data"
+          style="color: rgb(34, 34, 34);"
+        >
+          <img
+            alt="overview-item-icon"
+            class="overview-item-icon"
+            data-testid="overview-item-icon"
+            src="/assets/wedding-rings.svg"
+          />
+          <div
+            class="overview-item-title"
+            data-testid="overview-item-title"
+          >
+            Wellbeing
+          </div>
+          <div
+            class="no-data no-data-2"
+            data-testid="no-score"
+            style="color: rgb(34, 34, 34);"
+          >
+            No data to show
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

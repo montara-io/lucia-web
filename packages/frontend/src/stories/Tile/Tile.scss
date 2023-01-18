@@ -1,0 +1,14 @@
+@import '../../styles/colors';
+
+.m-tile {
+  border: 2px solid $gray240;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+
+  &:hover {
+    box-shadow: 0 3px 6px #00000029 !important;
+    opacity: 1;
+    background: $white 0 0 no-repeat padding-box;
+  }
+}

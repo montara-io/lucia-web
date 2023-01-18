@@ -1,0 +1,39 @@
+@import '../../styles/colors';
+@import '../../styles/global';
+
+.m-help-tooltip {
+  margin-top: -2px;
+  margin-right: 23px;
+  right: 0;
+  transform: translate(50%, -100%);
+  width: max-content;
+  background-color: $secondary;
+  font-size: 0.65rem;
+  position: absolute;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-align: start;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  display: inline-block;
+  z-index: 111;
+
+  &.left {
+    margin-top: 14px;
+    transform: initial;
+    right: 28px;
+  }
+
+  .m-help-tooltip-inner {
+    max-width: 117px;
+    padding: $spacing-unit-8 / 2 + 1 $spacing-unit-8;
+    color: $white;
+    text-align: center;
+  }
+}

@@ -1,0 +1,41 @@
+@import '../../styles/mixins';
+
+.m-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-shadow: 0 3px 6px #00000033;
+  border-radius: 20px;
+
+  .children-container {
+    padding: 0.938rem 1.375rem;
+  }
+
+  .internal-button {
+    @include internal-link;
+  }
+
+  .m-help-tooltip-icon {
+    float: right;
+    padding: 8px;
+    margin: 8px;
+    border-radius: 50%;
+    height: 34px;
+    width: 34px;
+    transition: all 0.1s ease-in-out;
+
+    img {
+      height: 18px;
+      width: 18px;
+    }
+
+    &.clickable:hover {
+      cursor: pointer;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 3px 6px $black033;
+    }
+  }
+}

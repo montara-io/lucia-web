@@ -1,0 +1,25 @@
+@import '../../styles/colors';
+
+.no-data-container {
+  height: 16.5625em;
+  position: relative;
+  .no-data-icon {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
+  .caption {
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-top: 60px;
+    font: normal normal normal 12px/20px 'Montserrat';
+    letter-spacing: 0px;
+    color: $primary;
+  }
+}

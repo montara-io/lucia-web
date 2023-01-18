@@ -1,0 +1,122 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/global';
+
+@mixin severity-indicator {
+  content: '';
+  height: 2.5rem;
+  width: 6px;
+  border-radius: 30px;
+  position: absolute;
+  margin-top: 38px;
+  margin-left: 0px;
+}
+
+.no-data {
+  margin-left: 1.25rem;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  color: $primary;
+}
+
+.disabled-icon {
+  fill: $gray200;
+  filter: invert(95%) sepia(3%) saturate(15%) hue-rotate(316deg) brightness(85%)
+    contrast(90%);
+}
+
+.no-border {
+  border-right: none;
+}
+
+.item-border {
+  border-right: 1px solid $gray230;
+}
+
+.overview-container {
+  width: inherit;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: auto;
+  align-content: center;
+
+  .overview-item {
+    height: 90px;
+    width: 11.125rem;
+    margin-left: 2.625rem;
+    position: relative;
+    .no-severity {
+      &:before {
+        @include severity-indicator;
+        background-color: $no-severity;
+      }
+    }
+
+    .mid-severity {
+      &:before {
+        @include severity-indicator;
+        background-color: $mid-severity;
+      }
+    }
+
+    .high-severity {
+      &:before {
+        @include severity-indicator;
+        background-color: $high-severity;
+      }
+    }
+
+    .none-severity {
+      &:before {
+        @include severity-indicator;
+        background-color: $gray230;
+      }
+    }
+
+    .overview-item-data {
+      height: 120px;
+      display: flex;
+      flex-direction: column;
+      color: $primary;
+      letter-spacing: 0px;
+      text-align: left;
+
+      .overview-item-icon {
+        width: 18px;
+        height: 18px;
+        margin-left: 1.25rem;
+      }
+      .overview-item-title {
+        font-size: 0.75rem;
+        font-weight: 600;
+        line-height: 0.813rem;
+        text-transform: uppercase;
+        margin-top: 17px;
+        margin-left: 1.25rem;
+        width: 7.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .overview-item-score {
+        font-size: 2rem;
+        font-weight: 500;
+        line-height: 2.063rem;
+        margin-left: 1.25rem;
+      }
+      .overview-item-explore {
+        font-size: 0.75rem;
+        margin-left: 1.25rem;
+        color: $blue;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

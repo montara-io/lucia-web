@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="14.164" height="11.414" viewBox="0 0 14.164 11.414">
+  <g id="arrow" transform="translate(1.414 10.414) rotate(-90)">
+    <line id="Line_1" data-name="Line 1" x1="9" transform="translate(0 3)" fill="none" stroke="#646464" stroke-linecap="round" stroke-width="2"/>
+    <line id="Line_2" data-name="Line 2" x2="3" y2="3" transform="translate(6)" fill="none" stroke="#646464" stroke-linecap="round" stroke-width="2"/>
+    <line id="Line_1278" data-name="Line 1278" y1="5" transform="translate(0 7)" fill="none" stroke="#646464" stroke-linecap="round" stroke-width="1.5"/>
+    <line id="Line_1279" data-name="Line 1279" y1="3" transform="translate(3 7)" fill="none" stroke="#646464" stroke-linecap="round" stroke-width="1.5"/>
+    <line id="Line_1280" data-name="Line 1280" y1="1" transform="translate(6 7)" fill="none" stroke="#646464" stroke-linecap="round" stroke-width="1.5"/>
+  </g>
+</svg>

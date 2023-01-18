@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" viewBox="0 0 41 41">
+  <g id="block" transform="translate(-77.5 -9.5)">
+    <path id="block-2" data-name="block" d="M0,20A20,20,0,1,0,20,0,20.023,20.023,0,0,0,0,20Zm36.757,0a16.748,16.748,0,0,1-27.4,12.934L32.934,9.359A16.68,16.68,0,0,1,36.757,20ZM20,3.243A16.68,16.68,0,0,1,30.641,7.066L7.066,30.641A16.748,16.748,0,0,1,20,3.243Z" transform="translate(78 10)" fill="#e6e6e6" stroke="#e6e6e6" stroke-width="1"/>
+  </g>
+</svg>

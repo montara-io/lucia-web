@@ -1,0 +1,760 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Menu Component Snapshot renders correctly 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="m-menu"
+        data-testid="m-menu"
+      >
+        <nav
+          class="sc-bdnxRM jRVjHE m-sidenav expanded sidenav---sidenav---_2tBP sidenav---expanded---1KdUL"
+        >
+          <div
+            class="logo expanded"
+          />
+          <button
+            aria-expanded="true"
+            class="sidenav---sidenav-toggle---1KRjR"
+            role="button"
+          >
+            <span
+              class="sidenav---icon-bar---u1f02"
+            />
+            <span
+              class="sidenav---icon-bar---u1f02"
+            />
+            <span
+              class="sidenav---icon-bar---u1f02"
+            />
+            <span
+              class="small-arrow"
+            />
+          </button>
+          <div
+            class="sidenav---sidenav-nav---3tvij sidenav---expanded---1KdUL"
+            role="menu"
+          >
+            <div
+              class="m-subtitle hide false"
+            >
+              <span
+                class="sc-gKAaRy dBIOPp"
+              />
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-dashboard sidenav---selected---1EK3y  sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="DASHBOARD"
+                    src="/assets/icons/home.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  DASHBOARD
+                </div>
+              </div>
+            </div>
+            <div
+              class="m-subtitle false false"
+            >
+              <span
+                class="sc-gKAaRy dBIOPp"
+              >
+                MY TEAM
+              </span>
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-team-engagement disabled sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="ENGAGEMENT"
+                    src="/assets/icons/pulse.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  ENGAGEMENT
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-team-productivity sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="PRODUCTIVITY"
+                    src="/assets/icons/energy.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  PRODUCTIVITY
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-team-wellbeing sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="WELLBEING"
+                    src="/assets/icons/calm.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  WELLBEING
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-team-team-members sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="TEAM MEMBERS"
+                    src="/assets/icons/team.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  TEAM MEMBERS
+                </div>
+              </div>
+            </div>
+            <div
+              class="m-subtitle false false"
+            >
+              <span
+                class="sc-gKAaRy dBIOPp"
+              >
+                ME
+              </span>
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-productivity sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="PRODUCTIVITY"
+                    src="/assets/icons/energy.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  PRODUCTIVITY
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-wellbeing sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="WELLBEING"
+                    src="/assets/icons/calm.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  WELLBEING
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-leadership sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="LEADERSHIP"
+                    src="/assets/icons/goal.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  LEADERSHIP
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-career sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="CAREER GROWTH"
+                    src="/assets/icons/compass.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  CAREER GROWTH
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="m-profile"
+          >
+            <div
+              class="p-avatar p-component p-avatar-image p-avatar-circle p-avatar-lg"
+            >
+              <img
+                alt="avatar"
+                src="/assets/avatar.png"
+              />
+            </div>
+          </div>
+          <div
+            class="m-footer sidenav---sidenav-nav---3tvij sidenav---expanded---1KdUL"
+            role="menu"
+          >
+            <div
+              class="m-subtitle hide false"
+            >
+              <span
+                class="sc-gKAaRy dBIOPp"
+              />
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-settings sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="SETTINGS"
+                    src="/assets/icons/settings.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  SETTINGS
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-hKFxyN ljtVim NavItem-logout sidenav---sidenav-navitem---uwIJ-"
+              role="presentation"
+            >
+              <div
+                class="sidenav---navitem---9uL5T"
+                role="menuitem"
+                tabindex="-1"
+              >
+                <div
+                  class="sidenav---navicon---3gCRo"
+                >
+                  <img
+                    alt="LOGOUT"
+                    src="/assets/icons/log-out.svg"
+                  />
+                </div>
+                <div
+                  class="sidenav---navtext---1AE_f"
+                >
+                  LOGOUT
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="m-menu"
+      data-testid="m-menu"
+    >
+      <nav
+        class="sc-bdnxRM jRVjHE m-sidenav expanded sidenav---sidenav---_2tBP sidenav---expanded---1KdUL"
+      >
+        <div
+          class="logo expanded"
+        />
+        <button
+          aria-expanded="true"
+          class="sidenav---sidenav-toggle---1KRjR"
+          role="button"
+        >
+          <span
+            class="sidenav---icon-bar---u1f02"
+          />
+          <span
+            class="sidenav---icon-bar---u1f02"
+          />
+          <span
+            class="sidenav---icon-bar---u1f02"
+          />
+          <span
+            class="small-arrow"
+          />
+        </button>
+        <div
+          class="sidenav---sidenav-nav---3tvij sidenav---expanded---1KdUL"
+          role="menu"
+        >
+          <div
+            class="m-subtitle hide false"
+          >
+            <span
+              class="sc-gKAaRy dBIOPp"
+            />
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-dashboard sidenav---selected---1EK3y  sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="DASHBOARD"
+                  src="/assets/icons/home.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                DASHBOARD
+              </div>
+            </div>
+          </div>
+          <div
+            class="m-subtitle false false"
+          >
+            <span
+              class="sc-gKAaRy dBIOPp"
+            >
+              MY TEAM
+            </span>
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-team-engagement disabled sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="ENGAGEMENT"
+                  src="/assets/icons/pulse.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                ENGAGEMENT
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-team-productivity sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="PRODUCTIVITY"
+                  src="/assets/icons/energy.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                PRODUCTIVITY
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-team-wellbeing sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="WELLBEING"
+                  src="/assets/icons/calm.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                WELLBEING
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-team-team-members sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="TEAM MEMBERS"
+                  src="/assets/icons/team.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                TEAM MEMBERS
+              </div>
+            </div>
+          </div>
+          <div
+            class="m-subtitle false false"
+          >
+            <span
+              class="sc-gKAaRy dBIOPp"
+            >
+              ME
+            </span>
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-productivity sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="PRODUCTIVITY"
+                  src="/assets/icons/energy.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                PRODUCTIVITY
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-wellbeing sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="WELLBEING"
+                  src="/assets/icons/calm.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                WELLBEING
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-leadership sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="LEADERSHIP"
+                  src="/assets/icons/goal.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                LEADERSHIP
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-career sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="CAREER GROWTH"
+                  src="/assets/icons/compass.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                CAREER GROWTH
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="m-profile"
+        >
+          <div
+            class="p-avatar p-component p-avatar-image p-avatar-circle p-avatar-lg"
+          >
+            <img
+              alt="avatar"
+              src="/assets/avatar.png"
+            />
+          </div>
+        </div>
+        <div
+          class="m-footer sidenav---sidenav-nav---3tvij sidenav---expanded---1KdUL"
+          role="menu"
+        >
+          <div
+            class="m-subtitle hide false"
+          >
+            <span
+              class="sc-gKAaRy dBIOPp"
+            />
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-settings sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="SETTINGS"
+                  src="/assets/icons/settings.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                SETTINGS
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-hKFxyN ljtVim NavItem-logout sidenav---sidenav-navitem---uwIJ-"
+            role="presentation"
+          >
+            <div
+              class="sidenav---navitem---9uL5T"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <div
+                class="sidenav---navicon---3gCRo"
+              >
+                <img
+                  alt="LOGOUT"
+                  src="/assets/icons/log-out.svg"
+                />
+              </div>
+              <div
+                class="sidenav---navtext---1AE_f"
+              >
+                LOGOUT
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
