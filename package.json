@@ -2,11 +2,12 @@
   "name": "lucia-web",
   "version": "0.0.1",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "frontend-start": "yarn workspace frontend start"
+    "frontend-start": "yarn workspace frontend start",
+    "backend-start": "yarn workspace backend start",
+    "frontend-install": "cd packages/frontend && npm install",
+    "backend-install": "cd packages/backend && npm install",
+    "install-all": "npm run frontend-install && npm run backend-install"
   },
   "main": "index.js",
   "repository": "git@github.com:montara-io/lucia-web.git",

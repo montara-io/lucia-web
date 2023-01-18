@@ -10,12 +10,15 @@ import { DivTitle, DivTitleContainer } from './styles';
 
 type PageWithTableProps = {
   fetchUrl: string;
-  fallbackHeaderData: any;
-  fallbackBodyData: any;
+  fallbackHeaderData?: any;
+  fallbackBodyData?: any;
   id: string;
   pageHeader: string;
   tableHeader?: string;
   children?: any;
+  dataFormatterCallback?: (
+    responseData: any,
+  ) => { headerData: HeaderRow[]; bodyData: DataRow[] };
 };
 
 function PageWithTable({
@@ -26,6 +29,7 @@ function PageWithTable({
   pageHeader,
   children,
   tableHeader,
+  dataFormatterCallback,
 }: PageWithTableProps) {
   const [headerData, setHeaderData] = useState([] as HeaderRow[]);
   const [bodyData, setBodyData] = useState([] as DataRow[]);
@@ -34,9 +38,16 @@ function PageWithTable({
     async function fetchData() {
       setIsLoading(true);
       try {
-        const { headerData, bodyData } = await get(fetchUrl);
-        setHeaderData(headerData);
-        setBodyData(bodyData);
+        const responseData = await get(fetchUrl);
+        if (dataFormatterCallback) {
+          const { headerData, bodyData } = dataFormatterCallback(responseData);
+          setHeaderData(headerData);
+          setBodyData(bodyData);
+          return;
+        } else if (fallbackHeaderData && fallbackBodyData) {
+          setHeaderData(fallbackHeaderData);
+          setBodyData(fallbackBodyData);
+        }
       } catch (error) {
         console.error(error);
         setHeaderData(fallbackHeaderData);

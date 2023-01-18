@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom';
-import PageWithTable from '../../components/common/PageWithTable';
-import ActionButton from '../../stories/ActionButton/ActionButton';
-import { ExploreButton, GroupContainer, PipelineTitle } from './styles';
+import { useNavigate } from 'react-router-dom'
+import PageWithTable from '../../components/common/PageWithTable'
+import ActionButton from '../../stories/ActionButton/ActionButton'
+import { ExploreButton, GroupContainer, PipelineTitle } from './styles'
 
 const PipelineRunPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   return (
     <PageWithTable
       fallbackHeaderData={[
@@ -22,7 +22,7 @@ const PipelineRunPage = () => {
                   {data.job}
                 </PipelineTitle>
               </GroupContainer>
-            );
+            )
           },
         },
         {
@@ -70,7 +70,7 @@ const PipelineRunPage = () => {
                 data-testid="explore-button"
                 id="explore-button"
                 onClick={() => {
-                  navigate('/job/123');
+                  navigate('/job/123')
                 }}
               >
                 {'See Job History'}
@@ -109,7 +109,7 @@ const PipelineRunPage = () => {
       id={'pipelineRun'}
       pageHeader={'Monty Python Daily 2022-01-01'}
     />
-  );
-};
+  )
+}
 
-export default PipelineRunPage;
+export default PipelineRunPage

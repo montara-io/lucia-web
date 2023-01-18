@@ -1,5 +1,5 @@
 import { Controller, Get, Query, ValidationPipe } from '@nestjs/common'
-import { PipelineService as PipelineService } from './pipeline.service'
+import { PipelineService } from './pipeline.service'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { GetPipelineRunsDTO } from './dto/get-pipeline-runs.dto'
 import { PipelineRunDTO } from './dto/pipeline-run.dto'
