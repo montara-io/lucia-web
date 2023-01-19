@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} first test for github actions 🚀
 on: [push]
 defaults:
   run:
-    working-directory: ./packages/backend
+    working-directory: packages/backend
 jobs:
   backend-pipeline:
     runs-on: ubuntu-latest
