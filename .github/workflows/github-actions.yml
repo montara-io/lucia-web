@@ -20,6 +20,5 @@ jobs:
         with:
           node-version: 16
       - name: backend tests
-          working-directory: ./packages/backend                
+          working-directory: packages/backend                
           run: npm i
-          run: npm run test
