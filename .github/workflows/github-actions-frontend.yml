@@ -1,25 +1,10 @@
-name: Web monorepo github actions
-run-name: ${{ github.actor }} run nmonorepo ci 🚀
+name: Frontend github actions
+run-name: ${{ github.actor }} run nmonorepo ci for frontend 🚀
 on: [push]
 
 jobs:
-  backend-pipeline:
+  frontend-pipeline:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: kartoza/postgis:13-3.1
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_USER: postgres
-          POSTGRES_DB: data_pipeline
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
@@ -34,12 +19,9 @@ jobs:
         with:
           node-version: 14
       - name: install packages
-        working-directory: ./packages/backend
+        working-directory: ./packages/frontend
         run: npm i
-      - name: unit tests
-        working-directory: ./packages/backend
-        run: npm run test
-      - name: component tests
-        working-directory: ./packages/backend
-        run: npm run test:e2e-ci
+      - name: build
+        working-directory: ./packages/frontend
+        run: npm run build
       - run: echo "🍏 This job's status is ${{ job.status }}."

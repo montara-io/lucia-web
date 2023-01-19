@@ -1,0 +1,48 @@
+name: Backend github actions
+run-name: ${{ github.actor }} run nmonorepo ci for backend 🚀
+on: [push]
+
+jobs:
+  backend-pipeline:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: kartoza/postgis:13-3.1
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: data_pipeline
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: install packages
+        working-directory: ./packages/backend
+        run: npm i
+      - name: build
+        working-directory: ./packages/backend
+        run: npm run build
+      - name: unit tests
+        working-directory: ./packages/backend
+        run: npm run test
+      - name: component tests
+        working-directory: ./packages/backend
+        run: npm run test:e2e-ci
+      - run: echo "🍏 This job's status is ${{ job.status }}."
