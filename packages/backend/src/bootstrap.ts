@@ -8,6 +8,8 @@ import cookieParser from 'cookie-parser'
 import { Logger } from 'nestjs-pino'
 import { loadConfig } from './utils/configuration'
 import { flyway } from './utils/flyway'
+import helmet from 'helmet'
+import cors from 'cors'
 
 export async function bootstrap() {
   const config = loadConfig()
@@ -36,6 +38,8 @@ export async function bootstrap() {
   )
 
   enrichAppWithSwagger(app)
+
+  app.use(helmet(), cors())
 
   logger.log(`Server running on port ${config.http.port}`)
   logger.log('Server commit %s, mem: %o', process.env.GIT_COMMIT, process.memoryUsage())
