@@ -12,6 +12,8 @@ jobs:
         image: kartoza/postgis:13-3.1
         env:
           POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: data_pipeline
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
