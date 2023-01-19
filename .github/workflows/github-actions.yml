@@ -1,12 +1,12 @@
 name: Web monorepo github actions
 run-name: ${{ github.actor }} first test for github actions 🚀
 on: [push]
+defaults:
+  run:
+    working-directory: ./packages/backend
 jobs:
   backend-pipeline:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/backend
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
