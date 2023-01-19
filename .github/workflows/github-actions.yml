@@ -1,14 +1,12 @@
 name: Web monorepo github actions
-run-name: ${{ github.actor }} first test for github actions 🚀
+run-name: ${{ github.actor }} run nmonorepo ci 🚀
 on: [push]
 
 jobs:
   backend-pipeline:
     runs-on: ubuntu-latest
     services:
-      # Label used to access the service container
       postgres:
-        # Docker Hub image
         image: kartoza/postgis:13-3.1
         env:
           POSTGRES_PASSWORD: postgres
@@ -24,7 +22,6 @@ jobs:
 
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -33,7 +30,6 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
       - uses: actions/setup-node@v3
         with:
           node-version: 14
@@ -46,3 +42,4 @@ jobs:
       - name: component tests
         working-directory: ./packages/backend
         run: npm run test:e2e-ci
+      - run: echo "🍏 This job's status is ${{ job.status }}."
