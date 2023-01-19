@@ -37,7 +37,7 @@ export class JobController {
   async getJobRunsByName(@Query(ValidationPipe) query: GetJobsDTO): Promise<JobRunDTO[]> {
     this.logger.debug('getting job runs by id')
     const response = await this.jobService.getJobRunsById(query)
-    this.logger.debug('get job runs by id response: %o', response)
+    this.logger.debug('get job runs by id  response: %o', response)
 
     return response
   }
