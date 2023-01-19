@@ -5,7 +5,6 @@ jobs:
   backend-pipeline:
     runs-on: ubuntu-latest
     steps:
-      - working-directory: ./packages/backend
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
@@ -17,7 +16,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-      - run: npm run test
+      - name: backend tests
+          working-directory: ./packages/backend      
+          uses: actions/setup-node@v3
+            with:
+              node-version: 14
+          run: npm run test
