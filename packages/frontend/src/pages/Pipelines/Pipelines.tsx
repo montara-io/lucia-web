@@ -30,7 +30,7 @@ const PipelinesPage = () => {
         },
         {
           field: 'date',
-          title: 'date',
+          title: 'date 11',
           sortType: 'string',
           sortable: true,
         },
