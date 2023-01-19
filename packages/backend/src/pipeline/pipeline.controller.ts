@@ -19,7 +19,7 @@ export class PipelineController {
   async getPipeline(@Query(ValidationPipe) query: GetByIdDTO): Promise<PipelineRunDTO> {
     this.logger.debug('getting pipeline by id')
     const response = await this.pipelineService.getPipelineById(query.id)
-    this.logger.debug('get pipeline by id : %o', response)
+    this.logger.debug('get pipeline by id: %o', response)
 
     return response
   }
