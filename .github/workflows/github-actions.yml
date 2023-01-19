@@ -37,7 +37,7 @@ jobs:
         run: npm i
       - name: unit tests
         working-directory: ./packages/backend
-        run: npm test
+        run: npm run test
       - name: component tests
         working-directory: ./packages/backend
-        run: npm test:e2e-ci
+        run: npm run test:e2e-ci
