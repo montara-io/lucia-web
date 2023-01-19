@@ -1,0 +1,34 @@
+name: Frontend github actions
+run-name: ${{ github.actor }} run monorepo ci for frontend 🚀
+on: [push]
+
+jobs:
+  frontend-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 100
+      - uses: marceloprado/has-changed-path@v1.0.1
+        id: changed-frontend
+        with:
+          paths: packages/frontend
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: install packages
+        working-directory: ./packages/frontend
+        if: steps.changed-frontend.outputs.changed == 'true'
+        run: npm i
+      - name: build
+        working-directory: ./packages/frontend
+        if: steps.changed-frontend.outputs.changed == 'true'
+        run: npm run build
+      - run: echo "🍏 This job's status is ${{ job.status }}."

@@ -16,6 +16,7 @@ services:
   frontend:
     build:
       context: packages/frontend
+      dockerfile: Dockerfile.debug
     ports:
       - 3000:3000
     volumes:
