@@ -1,5 +1,5 @@
 name: Frontend github actions
-run-name: ${{ github.actor }} run nmonorepo ci for frontend 🚀
+run-name: ${{ github.actor }} run monorepo ci for frontend 🚀
 on: [push]
 
 jobs:
