@@ -4,6 +4,9 @@ on: [push]
 jobs:
   backend-pipeline:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/backend
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -20,5 +23,4 @@ jobs:
         with:
           node-version: 16
       - name: backend tests
-          run: npm i
-          working-directory: packages/backend                          
+        run: npm i
