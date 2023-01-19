@@ -30,15 +30,15 @@ jobs:
         env:
           DOCKER_HUB_USERNAME: ${{secrets.DOCKER_HUB_USERNAME}}
           DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PASSWORD}}
-        if: steps.changed-frontend.outputs.changed == 'true'
+        # if: steps.changed-frontend.outputs.changed == 'true'
         run: |
           docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
       - name: build docker
         working-directory: ./packages/frontend
-        if: steps.changed-frontend.outputs.changed == 'true'
+        # if: steps.changed-frontend.outputs.changed == 'true'
         run: docker build -t ${{secrets.DOCKER_HUB_USERNAME}}/lucia-frontend .
       - name: deploy docker
         working-directory: ./packages/frontend
-        if: steps.changed-frontend.outputs.changed == 'true'
+        # if: steps.changed-frontend.outputs.changed == 'true'
         run: docker push ${{secrets.DOCKER_HUB_USERNAME}}/lucia-frontend
       - run: echo "🍏 This job's status is ${{ job.status }}."
