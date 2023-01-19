@@ -3,6 +3,8 @@ run-name: ${{ github.actor }} first test for github actions 🚀
 on: [push]
 jobs:
   backend-pipeline:
+    paths:
+      - 'packages/backend/**'
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -18,5 +20,5 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-      - run: npm test
+          node-version: 14
+      - run: npm run test
