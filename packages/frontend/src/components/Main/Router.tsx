@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 import JobHistory from '../../pages/JobHistory';
 import PipelineRun from '../../pages/PipelineRun/PipelineRun';
 
@@ -6,14 +10,23 @@ import PipelineRuns from '../../pages/PipelineRuns/PipelineRuns';
 import PipelinesPage from '../../pages/Pipelines/Pipelines';
 import JobsPage from '../../pages/Jobs';
 
+enum Routes {
+  pipelines = '/pipelines',
+  jobs = '/jobs',
+  pipelineRuns = '/pipeline/:pipelinId/runs',
+  pipelineRun = '/pipeline/:pipelinId/runs/:pipelineRunId/jobs',
+  jobHistory = '/job/:jobId',
+}
+
 const Router = () => {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <PipelinesPage />,
+
+      element: <Navigate to={Routes.pipelines} />,
     },
     {
-      path: '/pipelines',
+      path: Routes.pipelines,
       element: <PipelinesPage />,
     },
     {

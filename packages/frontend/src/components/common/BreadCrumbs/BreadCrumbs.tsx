@@ -18,11 +18,7 @@ export const BreadCrumbs = ({ history }: { history: BrowserHistory }) => {
   return (
     <BreadCrumbContainer>
       <span>
-        <img
-          src="/assets/icons/breadcrumbs.svg"
-          alt=""
-          onClick={() => history.push('/')}
-        />
+        <img src="/assets/icons/breadcrumbs.svg" alt="" />
 
         <span>{'>'}</span>
         <span>{pageTitle}</span>

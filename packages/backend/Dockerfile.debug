@@ -1,5 +1,4 @@
 FROM node:14 as build
-ARG GITLAB_ACCESS_TOKEN
 ARG GIT_COMMIT
 ENV GIT_COMMIT ${GIT_COMMIT}
 LABEL git-commit=$GIT_COMMIT
@@ -12,11 +11,6 @@ USER node
 WORKDIR /usr/src/app
 COPY --chown=node:node package.json ./
 COPY --chown=node:node package-lock.json ./
-RUN echo //gitlab.com/api/v4/projects/25331249/packages/npm/:_authToken=${GITLAB_ACCESS_TOKEN} > .npmrc
-RUN echo "//gitlab.com/api/v4/packages/npm/:_authToken=${GITLAB_ACCESS_TOKEN}" >> .npmrc
-RUN echo @montara:registry=https://gitlab.com/api/v4/packages/npm/ >> .npmrc
-RUN echo .npmrc
-COPY --chown=node:node ./npm-pack ./npm-pack
 RUN npm i -g @nestjs/cli
 RUN npm i
 COPY --chown=node:node . ./

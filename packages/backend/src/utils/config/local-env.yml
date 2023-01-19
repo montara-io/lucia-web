@@ -1,5 +1,5 @@
 http:
-  port: 3001
+  port: 3000
 db:
   host: db
   port: 5432
@@ -7,6 +7,3 @@ db:
   username: 'postgres'
   password: 'postgres'
   name: 'data_pipeline'
-logger:
-  level: 'debug'
-  isDev: true

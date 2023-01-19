@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "frontend-start": "yarn workspace frontend start",
-    "backend-start": "yarn workspace backend start",
+    "frontend-start": "cd packages/frontend && npm start",
+    "backend-start": "cd packages/backend && npm start",
     "frontend-install": "cd packages/frontend && npm install",
     "backend-install": "cd packages/backend && npm install",
     "install-all": "npm run frontend-install && npm run backend-install"
