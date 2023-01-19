@@ -4,9 +4,6 @@ db:
   host: db
   port: 5432
   database: data_pipeline
-  username: "postgres"
-  password: "postgres"
-  name: "data_pipeline"
-logger:
-  level: 'debug'
-  isDev: true
+  username: 'postgres'
+  password: 'postgres'
+  name: 'data_pipeline'
