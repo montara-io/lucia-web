@@ -23,5 +23,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: backend tests
+      - name: install packages
         run: npm i
+      - name: run tests
+        run: npm test
