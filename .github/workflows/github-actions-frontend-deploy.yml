@@ -1,8 +1,9 @@
 name: Frontend deploy github actions
 run-name: ${{ github.actor }} run monorepo cd for frontend 🚀
-on:
-  push:
-    branches: [main]
+# on:
+#   push:
+#     branches: [main]
+on: [push]
 
 jobs:
   frontend-pipeline:
@@ -27,16 +28,17 @@ jobs:
           node-version: 14
       - name: Log in to Docker Hub
         env:
-          DOCKER_HUB_USER: ${{secrets.DOCKER_HUB_USER}}
+          DOCKER_HUB_USERNAME: ${{secrets.DOCKER_HUB_USERNAME}}
           DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PASSWORD}}
         if: steps.changed-frontend.outputs.changed == 'true'
-        run: docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+        run: |
+          docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
       - name: build docker
         working-directory: ./packages/frontend
         if: steps.changed-frontend.outputs.changed == 'true'
-        run: docker build -t ${{secrets.DOCKER_HUB_USER}}/lucia-frontend .
+        run: docker build -t ${{secrets.DOCKER_HUB_USERNAME}}/lucia-frontend .
       - name: deploy docker
         working-directory: ./packages/frontend
         if: steps.changed-frontend.outputs.changed == 'true'
-        run: docker push ${{secrets.DOCKER_HUB_USER}}/lucia-frontend
+        run: docker push ${{secrets.DOCKER_HUB_USERNAME}}/lucia-frontend
       - run: echo "🍏 This job's status is ${{ job.status }}."
