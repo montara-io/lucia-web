@@ -1,4 +1,4 @@
 db:
-  host: postgres
+  host: localhost
   database: data_pipeline
   port: 5432
