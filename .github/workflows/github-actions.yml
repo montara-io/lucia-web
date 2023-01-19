@@ -5,9 +5,18 @@ on: [push]
 jobs:
   backend-pipeline:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: packages/backend
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: kartoza/postgis:13-3.1
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -26,6 +35,9 @@ jobs:
       - name: install packages
         working-directory: ./packages/backend
         run: npm i
-      - name: run tests
+      - name: unit tests
         working-directory: ./packages/backend
         run: npm test
+      - name: component tests
+        working-directory: ./packages/backend
+        run: npm test:e2e-ci
