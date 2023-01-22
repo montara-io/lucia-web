@@ -7,19 +7,11 @@ import { middleware } from 'express-http-context'
 import cookieParser from 'cookie-parser'
 import { Logger } from 'nestjs-pino'
 import { loadConfig } from './utils/configuration'
-import { flyway } from './utils/flyway'
 import helmet from 'helmet'
 import cors from 'cors'
 
 export async function bootstrap() {
   const config = loadConfig()
-
-  try {
-    await flyway(config, 'src/utils/migrations')
-  } catch (e) {
-    console.log('failed because of:', e)
-    process.exit(1)
-  }
 
   const app = await NestFactory.create(AppModule)
   const logger: Logger = app.get(Logger)
