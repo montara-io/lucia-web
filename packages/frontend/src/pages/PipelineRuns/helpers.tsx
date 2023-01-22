@@ -1,5 +1,7 @@
 import ExploreButton from '../../components/common/ExploreButton';
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
+import { OverviewItem } from '../../stories/Overview/Overview';
+import { arrayAverage } from '../../utils/arrays';
 
 export type PipelineRunResponse = {
   id: string;
@@ -14,7 +16,7 @@ export type PipelineRunResponse = {
   date: Date;
 };
 
-const responseDataFallback: PipelineRunResponse[] = [
+export const responseDataFallback: PipelineRunResponse[] = [
   {
     pipelineId: 'Monty Python 02/01',
     id: 'Monty Python 02/01',
@@ -82,6 +84,12 @@ export function dataFormatterCallback(params: {
         sortable: true,
       },
       {
+        field: 'avgUtilization',
+        title: 'Avg. Utilization',
+        sortType: 'string',
+        sortable: true,
+      },
+      {
         field: 'explore',
         title: '',
         sortType: 'string',
@@ -107,6 +115,44 @@ export function dataFormatterCallback(params: {
       avgRuntime: rd.avgUtilization,
       totalCoreHours: rd.totalCoreHours,
       avgWaitingTime: `${rd.avgWaitingTime} Hrs.`,
+      avgUtilization: `${rd.avgUtilization}%`,
     })),
   };
+}
+
+export function formatOverview(
+  pipelineRuns: PipelineRunResponse[],
+): OverviewItem[] {
+  return [
+    {
+      title: 'Total Runtime',
+      score: arrayAverage(
+        pipelineRuns.map((pipelineRun) => pipelineRun.totalRuntime || 0),
+      ),
+    },
+    {
+      title: 'Avg. Utilization',
+      score: `${arrayAverage(
+        pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
+      )}%`,
+    },
+    {
+      title: 'Avg. Utilization',
+      score: `${arrayAverage(
+        pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
+      )}%`,
+    },
+    {
+      title: 'Avg. Utilization',
+      score: `${arrayAverage(
+        pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
+      )}%`,
+    },
+    {
+      title: 'Avg. Utilization',
+      score: `${arrayAverage(
+        pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
+      )}%`,
+    },
+  ];
 }

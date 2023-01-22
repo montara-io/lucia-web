@@ -3,14 +3,13 @@ import './Overview.scss';
 import classNames from 'classnames';
 import { Tooltip } from 'primereact/tooltip';
 import { TooltipPositionType } from 'primereact/tooltip/tooltipoptions';
-import { gray200, primary, secondary } from '../../styles/colors';
+import { primary } from '../../styles/colors';
 import { NO_DATA_MESSAGE } from '../utils/consts';
 
 export interface OverviewItem {
   imgUrl?: string;
   title: string;
-  score?: number;
-  isSoon?: boolean;
+  score?: string | number;
   exploreOnClick?: () => void;
   tooltip?: string;
   tooltipPosition?: TooltipPositionType;
@@ -36,7 +35,7 @@ const Overview: React.FunctionComponent<OverviewProps> = ({ items = [] }) => {
             <div
               data-testid="overview-item-data"
               className={classNames('overview-item-data', 'no-severity')}
-              style={{ color: item?.isSoon ? gray200 : primary }}
+              style={{ color: primary }}
             >
               <img
                 src={item?.imgUrl ?? '/assets/menu-icons/Engagement.svg'}
@@ -50,7 +49,7 @@ const Overview: React.FunctionComponent<OverviewProps> = ({ items = [] }) => {
               >
                 {item?.title}
               </div>
-              {!item?.isSoon && item?.score ? (
+              {item?.score ? (
                 <>
                   <div
                     data-testid="overview-item-score"
@@ -82,9 +81,9 @@ const Overview: React.FunctionComponent<OverviewProps> = ({ items = [] }) => {
                   <div
                     data-testid="no-score"
                     className={classNames('no-data', `no-data-${index}`)}
-                    style={{ color: item?.isSoon ? secondary : primary }}
+                    style={{ color: primary }}
                   >
-                    {item?.isSoon ? 'Soon...' : NO_DATA_MESSAGE}
+                    {NO_DATA_MESSAGE}
                   </div>
                 </>
               )}

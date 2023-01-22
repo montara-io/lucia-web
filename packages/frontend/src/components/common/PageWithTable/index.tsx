@@ -15,24 +15,22 @@ export type DataFormatterResponse = {
 
 type PageWithTableProps = {
   fetchUrl: string;
-  fallbackHeaderData?: any;
-  fallbackBodyData?: any;
   id: string;
   pageHeader: string;
   tableHeader?: string;
   children?: any;
-  dataFormatterCallback?: (responseData: any) => DataFormatterResponse;
+  dataFormatterCallback: (responseData: any) => DataFormatterResponse;
+  onData?: (data: any) => void;
 };
 
 function PageWithTable({
   fetchUrl,
-  fallbackHeaderData,
-  fallbackBodyData,
   id,
   pageHeader,
   children,
   tableHeader,
   dataFormatterCallback,
+  onData,
 }: PageWithTableProps) {
   const [headerData, setHeaderData] = useState([] as HeaderRow[]);
   const [bodyData, setBodyData] = useState([] as DataRow[]);
@@ -42,19 +40,13 @@ function PageWithTable({
       setIsLoading(true);
       try {
         const responseData = await get(fetchUrl);
-        if (dataFormatterCallback) {
-          const { headerData, bodyData } = dataFormatterCallback(responseData);
-          setHeaderData(headerData);
-          setBodyData(bodyData);
-          return;
-        } else if (fallbackHeaderData && fallbackBodyData) {
-          setHeaderData(fallbackHeaderData);
-          setBodyData(fallbackBodyData);
-        }
+
+        const { headerData, bodyData } = dataFormatterCallback(responseData);
+        typeof onData === 'function' && onData(responseData);
+        setHeaderData(headerData);
+        setBodyData(bodyData);
       } catch (error) {
         console.error(error);
-        setHeaderData(fallbackHeaderData);
-        setBodyData(fallbackBodyData);
       } finally {
         setIsLoading(false);
       }

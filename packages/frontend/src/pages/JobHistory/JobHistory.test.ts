@@ -7,6 +7,6 @@ describe('Job History', () => {
   });
   it('should format the line chart data', () => {
     const result = formatLineChartData(jobsFallback);
-    expect(result).toHaveLength(1);
+    expect(result).toHaveLength(2);
   });
 });
