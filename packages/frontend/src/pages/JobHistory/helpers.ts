@@ -42,7 +42,7 @@ export const jobsFallback: JobRun[] = [
       jobRunId: 'Monty Python',
       utilization: 80,
       runtime: 20,
-      waitingTime: 20,
+      waitingTime: 50,
       coreHours: 20,
       usedMemory: 20,
       numberOfCores: 20,
@@ -105,6 +105,14 @@ export function formatLineChartData(jobs: JobRun[]): LineChartData[] {
       chartTitle: 'Utilization',
       scores: jobs.map((job) => ({
         score: job.sparkJobMetrics?.utilization || 0,
+        label: job.date.toISOString().split('T')[0],
+        date: job.date.toISOString().split('T')[0],
+      })),
+    },
+    {
+      chartTitle: 'Avg. Waiting time',
+      scores: jobs.map((job) => ({
+        score: job.sparkJobMetrics?.waitingTime || 0,
         label: job.date.toISOString().split('T')[0],
         date: job.date.toISOString().split('T')[0],
       })),

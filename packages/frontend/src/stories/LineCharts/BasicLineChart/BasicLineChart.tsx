@@ -31,7 +31,7 @@ export type BasicLineChartProps = {
 };
 
 const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
-  props
+  props,
 ) => {
   const howManyLabelsToDisplay = props.howManyLabelsToDisplay || 3;
   const [chartOptions, setChartOptions] = React.useState<any>({});
@@ -107,13 +107,13 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
     if (indexOfRing > -1) {
       copyOptions.series[MARKERS_SERIES_POSITION].markPoint.data.splice(
         indexOfRing,
-        1
+        1,
       );
     }
     const indexOfHighIcon = copyOptions.series[
       MARKERS_SERIES_POSITION
     ].markPoint.data.findIndex(
-      (x) => x.symbolOffset && x.symbolOffset[1] === -22
+      (x) => x.symbolOffset && x.symbolOffset[1] === -22,
     );
     if (indexOfHighIcon > -1) {
       copyOptions.series[MARKERS_SERIES_POSITION].markPoint.data[
@@ -214,7 +214,7 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
               xAxis: i,
               yAxis: item.score,
               itemStyle: { color: noSeverity },
-            }
+            },
           );
           item.focused &&
             options.series[MARKERS_SERIES_POSITION].markPoint.data.push({
@@ -287,7 +287,7 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
         axisLabel: {
           interval: (index: number, value: string) => {
             const internal = Math.round(
-              props.data.length / (howManyLabelsToDisplay - 1)
+              props.data.length / (howManyLabelsToDisplay - 1),
             );
             return (
               index === 0 ||
@@ -373,21 +373,7 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
                       1 || props?.data?.length - 1
                   ]?.score || 0
                 : 0,
-              itemStyle: {
-                color: (function () {
-                  const last = props?.data
-                    ? props?.data?.findIndex(
-                        ({ score }) => score === undefined
-                      ) - 1 ||
-                      props?.data[props?.data?.length - 1]?.score ||
-                      props?.data[0]?.score
-                    : null;
-                  if (!last) {
-                    return;
-                  }
-                  return noSeverity;
-                })(),
-              },
+              itemStyle: noSeverity,
               symbol: 'circle',
               symbolSize: CIRCLE_SIZE,
               cursor: 'auto',

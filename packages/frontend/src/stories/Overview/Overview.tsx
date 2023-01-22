@@ -3,8 +3,6 @@ import './Overview.scss';
 import classNames from 'classnames';
 import { Tooltip } from 'primereact/tooltip';
 import { TooltipPositionType } from 'primereact/tooltip/tooltipoptions';
-import { getSeverityByValue } from '../utils';
-import { SEVERITY_COLOR } from '../utils/enums';
 import { gray200, primary, secondary } from '../../styles/colors';
 import { NO_DATA_MESSAGE } from '../utils/consts';
 
