@@ -31,8 +31,8 @@ services:
     environment:
       service_config: "./src/utils/config/local-env.yml"
     depends_on:
-      db:
-        condition: service_healthy
+      flyway:
+        condition: service_completed_successfully
   flyway:
     image: flyway/flyway
     command: -url=jdbc:postgresql://db:5432/data_pipeline -schemas=postgres -user=postgres -password=postgres -connectRetries=60 migrate
