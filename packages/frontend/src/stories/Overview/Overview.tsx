@@ -19,54 +19,30 @@ export interface OverviewItem {
 }
 
 export type OverviewProps = {
-  data?: OverviewItem[];
-  disabledIconClassName?: string;
+  items?: OverviewItem[];
 };
 
-const locale = navigator.language;
-
-const Overview: React.FunctionComponent<OverviewProps> = ({
-  data = [],
-  disabledIconClassName = '',
-}) => {
+const Overview: React.FunctionComponent<OverviewProps> = ({ items = [] }) => {
   return (
     <div className="overview-container">
-      {data?.map((item, index) => {
+      {items?.map((item, index) => {
         return (
           <div
             key={`${item?.title}-overview`}
             data-testid="overview-item"
             className={classNames(
               'overview-item',
-              index === data?.length - 1 ? 'no-border' : 'item-border',
+              index === items?.length - 1 ? 'no-border' : 'item-border',
             )}
           >
             <div
               data-testid="overview-item-data"
-              className={classNames(
-                'overview-item-data',
-                getSeverityByValue(item?.score) === SEVERITY_COLOR?.NO_SEVERITY
-                  ? 'no-severity'
-                  : '',
-                getSeverityByValue(item?.score) === SEVERITY_COLOR?.MID_SEVERITY
-                  ? 'mid-severity'
-                  : '',
-                getSeverityByValue(item?.score) ===
-                  SEVERITY_COLOR?.HIGH_SEVERITY
-                  ? 'high-severity'
-                  : '',
-                getSeverityByValue(item?.score) === SEVERITY_COLOR?.NONE
-                  ? 'none-severity'
-                  : '',
-              )}
+              className={classNames('overview-item-data', 'no-severity')}
               style={{ color: item?.isSoon ? gray200 : primary }}
             >
               <img
                 src={item?.imgUrl ?? '/assets/menu-icons/Engagement.svg'}
-                className={classNames(
-                  'overview-item-icon',
-                  item?.isSoon ? disabledIconClassName : '',
-                )}
+                className={classNames('overview-item-icon')}
                 alt="overview-item-icon"
                 data-testid="overview-item-icon"
               />

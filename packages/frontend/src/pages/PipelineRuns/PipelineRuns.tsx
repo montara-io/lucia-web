@@ -7,37 +7,7 @@ import { dataFormatterCallback } from './helpers';
 
 export const PipelineRunsPage = () => {
   const navigate = useNavigate();
-  const overviewProps: OverviewProps = {
-    data: [
-      {
-        title: 'Avg. Utilization',
-        score: 50,
-      },
-      {
-        title: 'test2',
-        score: 50,
-      },
-      {
-        title: 'test3',
 
-        score: 50,
-      },
-      {
-        title: 'test4',
-
-        score: 50,
-      },
-      {
-        title: 'test5',
-
-        score: 50,
-      },
-      {
-        title: 'test6',
-        score: 50,
-      },
-    ],
-  };
   return (
     <PageWithTable
       fetchUrl="/pipeline/runs?pipelineId=Monty Python"
@@ -51,7 +21,37 @@ export const PipelineRunsPage = () => {
       <DivTitle>Monty Python</DivTitle>
       <div>
         <Card>
-          <Overview {...overviewProps} />
+          <Overview
+            items={[
+              {
+                title: 'Avg. Utilization',
+                score: 50,
+              },
+              {
+                title: 'test2',
+                score: 50,
+              },
+              {
+                title: 'test3',
+
+                score: 50,
+              },
+              {
+                title: 'test4',
+
+                score: 50,
+              },
+              {
+                title: 'test5',
+
+                score: 50,
+              },
+              {
+                title: 'test6',
+                score: 50,
+              },
+            ]}
+          />
         </Card>
       </div>
     </PageWithTable>
