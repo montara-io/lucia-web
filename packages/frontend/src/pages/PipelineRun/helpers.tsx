@@ -39,6 +39,24 @@ export const responseDataFallback: JobByPipelineRunIdResponse[] = [
       waitingTime: 5,
     },
   },
+  {
+    date: new Date('01-01-2022'),
+    id: 'Cohort',
+    jobId: 'Cohort',
+    pipelineRunId: 'asdasd',
+    sparkJobMetrics: {
+      coreHours: 5,
+      cpuUtilization: 50,
+      id: 'asdasd',
+      jobRunId: 'asdasd',
+      memoryUtilization: 50,
+      numberOfCores: 5,
+      runtime: 5,
+      utilization: 50,
+      usedMemory: 5,
+      waitingTime: 5,
+    },
+  },
 ];
 
 export function dataFormatterCallback(params: {
@@ -99,7 +117,7 @@ export function dataFormatterCallback(params: {
         template: () => (
           <ExploreButton
             onClick={() => navigate('/job/123')}
-            text={'See Job History'}
+            text={'Job History'}
           />
         ),
       },
