@@ -1,10 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import PageWithTable, {
-  DataFormatterResponse,
-} from '../../components/common/PageWithTable';
-import ActionButton from '../../stories/ActionButton/ActionButton';
+import PageWithTable from '../../components/common/PageWithTable';
 import { dataFormatterCallback } from './helpers';
-import { ExploreButton } from './styles';
 
 export type Pipeline = {
   id: string;

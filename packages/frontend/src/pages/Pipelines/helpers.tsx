@@ -1,6 +1,5 @@
+import ExploreButton from '../../components/common/ExploreButton';
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
-import ActionButton from '../../stories/ActionButton/ActionButton';
-import { ExploreButton } from './styles';
 
 export type PipelineAllResponse = {
   id: string;
@@ -12,13 +11,42 @@ export type PipelineAllResponse = {
   avgUtilization: number;
   avgCpuUtilization: number;
   avgMemoryUtilization: number;
+  date: Date;
 };
 
-export function dataFormatterCallback(
-  responseData: PipelineAllResponse,
-  navigate?: any,
-): DataFormatterResponse {
-  console.log(responseData);
+const responseDataFallback: PipelineAllResponse[] = [
+  {
+    id: 'Monty Grail',
+    pipelineId: 'Monty Grail',
+    date: new Date('01-01-2022'),
+    totalRuntime: 20,
+    totalCoreHours: 56,
+    avgCpuUtilization: 50,
+    avgMemoryUtilization: 50,
+    avgUtilization: 50,
+    avgWaitingTime: 5,
+    numberOfJobs: 3,
+  },
+  {
+    id: 'Monty Python',
+    pipelineId: 'Monty Python',
+    date: new Date('01-01-2022'),
+    totalRuntime: 20,
+    totalCoreHours: 56,
+    avgCpuUtilization: 50,
+    avgMemoryUtilization: 50,
+    avgUtilization: 50,
+    avgWaitingTime: 5,
+    numberOfJobs: 3,
+  },
+];
+
+export function dataFormatterCallback(params: {
+  responseData: PipelineAllResponse[];
+  navigate: any;
+}): DataFormatterResponse {
+  const { responseData, navigate } = params;
+
   return {
     headerData: [
       {
@@ -27,17 +55,14 @@ export function dataFormatterCallback(
         placeholder: 'Search',
       },
       {
-        field: 'avgRuntime',
+        field: 'totalRuntime',
         title: 'Total Runtime',
       },
       {
         field: 'lastRunDate',
         title: 'Last run date',
       },
-      {
-        field: 'avgRuntime',
-        title: 'Avg. Runtime',
-      },
+
       {
         field: 'avgCoreHours',
         title: 'Avg. Core Hours',
@@ -53,43 +78,21 @@ export function dataFormatterCallback(
           cellWidth: '12rem',
         },
         template: () => (
-          <>
-            <ExploreButton>
-              <ActionButton
-                data-testid="explore-button"
-                id="explore-button"
-                onClick={() => {
-                  navigate('/pipeline/123/runs');
-                }}
-              >
-                {'Explore Runs'}
-              </ActionButton>
-            </ExploreButton>
-          </>
+          <ExploreButton
+            onClick={() => navigate('/pipeline/123/runs')}
+            text={'Explore'}
+          />
         ),
       },
     ],
-    bodyData: [
-      {
-        name: 'Monty Grail',
-        id: 'Monty Grail',
-        lastRunDate: '01-01-2022',
-        totalRuntime: 20,
-        avgRuntime: 53,
-        avgCoreHours: 56,
-        avgWaitingTime: 5,
-        numberOfJobs: 3,
-      },
-      {
-        name: 'Monty Python',
-        id: 'Monty Python',
-        lastRunDate: '01-02-2022',
-        avgRuntime: 78,
-        avgCoreHours: 15,
-        avgWaitingTime: 3,
-        avgUtilization: 50,
-        numberOfJobs: 2,
-      },
-    ],
+    bodyData: (responseData || responseDataFallback).map((rd) => ({
+      name: rd.pipelineId,
+      id: rd.pipelineId,
+      lastRunDate: rd.date.toDateString(),
+      totalRuntime: `${rd.totalRuntime} Hrs.`,
+      avgRuntime: rd.avgUtilization,
+      avgCoreHours: rd.avgCpuUtilization,
+      avgWaitingTime: `${rd.avgWaitingTime} Hrs.`,
+    })),
   };
 }
