@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import PageWithTable from '../../components/common/PageWithTable';
 import { dataFormatterCallback } from './helpers';
-import { GroupContainer, PipelineTitle } from './styles';
 
 const PipelineRunPage = () => {
   const navigate = useNavigate();

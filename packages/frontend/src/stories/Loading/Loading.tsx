@@ -8,7 +8,6 @@ export type LoadingProps = {
   mode: 'dark' | 'light';
   className?: string;
 };
-const locale = navigator.language;
 
 const Loading: FunctionComponent<LoadingProps> = ({ mode, id, className }) => {
   return (

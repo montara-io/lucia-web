@@ -1,7 +1,6 @@
 import React from 'react';
 import './NumericTrend.scss';
 
-const locale = navigator.language;
 export type NumericTrendProps = {
   primaryNumber: string;
   percentageNumber: string;
