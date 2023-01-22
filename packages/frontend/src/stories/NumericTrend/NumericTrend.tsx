@@ -1,6 +1,4 @@
 import React from 'react';
-import { FormattedMessage, IntlProvider, useIntl } from 'react-intl';
-import lang from '../lang/en.json';
 import './NumericTrend.scss';
 
 const locale = navigator.language;
@@ -19,7 +17,6 @@ const NumericTrend: React.FunctionComponent<NumericTrendProps> = ({
   timeText,
   showTrend = false,
 }) => {
-  const intl = useIntl();
   const sign = +percentageNumber > 0 ? '+' : percentageNumber?.charAt(0);
   const big = 'big';
   const small = 'small';
@@ -28,19 +25,12 @@ const NumericTrend: React.FunctionComponent<NumericTrendProps> = ({
     fontSize = small;
   }
   if (!timeText) {
-    timeText = intl.formatMessage({
-      id: 'no.data.to.show',
-      defaultMessage: 'No data to show',
-    });
+    timeText = 'No data to show';
   }
 
   const renderPercentageNumber = () => {
     if (percentageNumber === '0') {
-      return (
-        <div className="same-as">
-          <FormattedMessage id="same.as" defaultMessage="Same as" />
-        </div>
-      );
+      return <div className="same-as">{'Same as'}</div>;
     } else if (!percentageNumber) {
       return (
         <div className="gray">
@@ -82,11 +72,7 @@ const NumericTrend: React.FunctionComponent<NumericTrendProps> = ({
 };
 
 const WrappedNumericTrend = (props) => {
-  return (
-    <IntlProvider locale={locale} messages={lang}>
-      <NumericTrend {...props} />
-    </IntlProvider>
-  );
+  return <NumericTrend {...props} />;
 };
 
 export default WrappedNumericTrend;

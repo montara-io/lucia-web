@@ -1,8 +1,6 @@
 import React from 'react';
 import './Overview.scss';
 import classNames from 'classnames';
-import { useIntl, IntlProvider } from 'react-intl';
-import lang from '../lang/en.json';
 import { Tooltip } from 'primereact/tooltip';
 import { TooltipPositionType } from 'primereact/tooltip/tooltipoptions';
 import { getSeverityByValue } from '../utils';
@@ -31,8 +29,6 @@ const Overview: React.FunctionComponent<OverviewProps> = ({
   data = [],
   disabledIconClassName = '',
 }) => {
-  const intl = useIntl();
-
   return (
     <div className="overview-container">
       {data?.map((item, index) => {
@@ -42,7 +38,7 @@ const Overview: React.FunctionComponent<OverviewProps> = ({
             data-testid="overview-item"
             className={classNames(
               'overview-item',
-              index === data?.length - 1 ? 'no-border' : 'item-border'
+              index === data?.length - 1 ? 'no-border' : 'item-border',
             )}
           >
             <div
@@ -61,7 +57,7 @@ const Overview: React.FunctionComponent<OverviewProps> = ({
                   : '',
                 getSeverityByValue(item?.score) === SEVERITY_COLOR?.NONE
                   ? 'none-severity'
-                  : ''
+                  : '',
               )}
               style={{ color: item?.isSoon ? gray200 : primary }}
             >
@@ -69,7 +65,7 @@ const Overview: React.FunctionComponent<OverviewProps> = ({
                 src={item?.imgUrl ?? '/assets/menu-icons/Engagement.svg'}
                 className={classNames(
                   'overview-item-icon',
-                  item?.isSoon ? disabledIconClassName : ''
+                  item?.isSoon ? disabledIconClassName : '',
                 )}
                 alt="overview-item-icon"
                 data-testid="overview-item-icon"
@@ -96,10 +92,7 @@ const Overview: React.FunctionComponent<OverviewProps> = ({
                       data-testid="overview-item-explore"
                       className="overview-item-explore"
                     >
-                      {intl.formatMessage({
-                        id: 'explore',
-                        defaultMessage: 'Explore',
-                      })}
+                      {'Explore'}
                     </span>
                   )}
                 </>
@@ -117,12 +110,7 @@ const Overview: React.FunctionComponent<OverviewProps> = ({
                     className={classNames('no-data', `no-data-${index}`)}
                     style={{ color: item?.isSoon ? secondary : primary }}
                   >
-                    {intl.formatMessage({
-                      id: item?.isSoon ? 'soon' : 'no.data.to.show',
-                      defaultMessage: item?.isSoon
-                        ? 'Soon...'
-                        : NO_DATA_MESSAGE,
-                    })}
+                    {item?.isSoon ? 'Soon...' : NO_DATA_MESSAGE}
                   </div>
                 </>
               )}
@@ -135,10 +123,6 @@ const Overview: React.FunctionComponent<OverviewProps> = ({
 };
 
 const WrappedOverview = (props) => {
-  return (
-    <IntlProvider locale={locale} messages={lang}>
-      <Overview {...props} />
-    </IntlProvider>
-  );
+  return <Overview {...props} />;
 };
 export default WrappedOverview;

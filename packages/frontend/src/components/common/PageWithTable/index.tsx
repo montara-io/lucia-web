@@ -8,6 +8,11 @@ import Loading from '../../../stories/Loading/Loading';
 
 import { DivTitle, DivTitleContainer } from './styles';
 
+export type DataFormatterResponse = {
+  headerData: HeaderRow[];
+  bodyData: DataRow[];
+};
+
 type PageWithTableProps = {
   fetchUrl: string;
   fallbackHeaderData?: any;
@@ -16,9 +21,7 @@ type PageWithTableProps = {
   pageHeader: string;
   tableHeader?: string;
   children?: any;
-  dataFormatterCallback?: (
-    responseData: any,
-  ) => { headerData: HeaderRow[]; bodyData: DataRow[] };
+  dataFormatterCallback?: (responseData: any) => DataFormatterResponse;
 };
 
 function PageWithTable({

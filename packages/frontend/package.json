@@ -16,7 +16,6 @@
     "@types/react-dom": "^18.0.10",
     "@web/dev-server-esbuild": "^0.3.3",
     "axios": "^1.2.2",
-    "babel-loader": "^9.1.2",
     "classnames": "^2.3.2",
     "echarts": "^5.3.3",
     "echarts-for-react": "^3.0.2",
@@ -36,7 +35,6 @@
     "primereact": "^8.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-intl": "^6.2.5",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
@@ -63,25 +61,6 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "rules": {
-      "import/no-anonymous-default-export": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -93,6 +72,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.5.15",
@@ -107,7 +91,6 @@
     "@storybook/testing-library": "^0.0.13",
     "@types/redux-mock-store": "^1.0.3",
     "@types/styled-components": "^5.1.26",
-    "babel-plugin-named-exports-order": "^0.0.2",
     "prop-types": "^15.8.1",
     "webpack": "^5.75.0"
   }

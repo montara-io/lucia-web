@@ -10,11 +10,9 @@ const pageTitles = {
 export const BreadCrumbs = ({ history }: { history: BrowserHistory }) => {
   const [pageTitle, setPageTitle] = useState('');
   useEffect(() => {
-    console.log(history.location.pathname);
     setPageTitle(pageTitles[history.location.pathname]);
   }, [history.location.pathname]);
 
-  console.log(pageTitle);
   return (
     <BreadCrumbContainer>
       <span>

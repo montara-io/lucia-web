@@ -7,6 +7,7 @@ Object {
     <div>
       <div
         class="p-avatar p-component p-avatar-image p-avatar-circle p-avatar-lg"
+        src="/assets/avatars/3.jpg"
       >
         <img
           alt="avatar"
@@ -18,6 +19,7 @@ Object {
   "container": <div>
     <div
       class="p-avatar p-component p-avatar-image p-avatar-circle p-avatar-lg"
+      src="/assets/avatars/3.jpg"
     >
       <img
         alt="avatar"
