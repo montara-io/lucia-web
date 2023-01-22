@@ -1,4 +1,4 @@
-name: Backend deploy github actions
+name: Backend publish github actions
 run-name: ${{ github.actor }} run monorepo cd for backend 🚀
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
         working-directory: ./packages/backend
         if: steps.changed-backend.outputs.changed == 'true'
         run: docker build -t ${{secrets.DOCKER_HUB_USERNAME}}/lucia-backend .
-      - name: deploy docker
+      - name: publish docker
         working-directory: ./packages/backend
         if: steps.changed-backend.outputs.changed == 'true'
         run: docker push ${{secrets.DOCKER_HUB_USERNAME}}/lucia-backend
