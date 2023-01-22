@@ -14,7 +14,7 @@ export type PipelineAllResponse = {
   date: Date;
 };
 
-const responseDataFallback: PipelineAllResponse[] = [
+export const responseDataFallback: PipelineAllResponse[] = [
   {
     id: 'Monty Grail',
     pipelineId: 'Monty Grail',
@@ -85,7 +85,7 @@ export function dataFormatterCallback(params: {
         ),
       },
     ],
-    bodyData: (responseData || responseDataFallback).map((rd) => ({
+    bodyData: responseData.map((rd) => ({
       name: rd.pipelineId,
       id: rd.pipelineId,
       lastRunDate: rd.date.toDateString(),

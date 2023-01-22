@@ -1,6 +1,7 @@
 {
   "references": [
-    { "path": "./packages/frontend" },
-    { "path": "./packages/backend" }
-  ]
+    { "path": "packages/frontend" },
+    { "path": "packages/backend" }
+  ],
+  "exclude": ["dist", "build", "node_modules"]
 }
