@@ -4,12 +4,7 @@ import Card from '../../stories/Card/Card';
 import Loading from '../../stories/Loading/Loading';
 import Overview, { OverviewItem } from '../../stories/Overview/Overview';
 import ChartNumeric from './ChartNumeric/ChartNumeric';
-import {
-  formatLineChartData,
-  formatOverview,
-  jobsFallback,
-  LineChartData,
-} from './helpers';
+import { formatLineChartData, formatOverview, LineChartData } from './helpers';
 import { DivTitle, DivTitleContainer } from './styles';
 
 export const JobPage = () => {
@@ -20,9 +15,9 @@ export const JobPage = () => {
     async function fetchData() {
       setIsLoading(true);
       try {
-        const responseData = await get('/job/runs/by-job-id?jobId=1');
-        setOverview(formatOverview(responseData || jobsFallback));
-        setLineChartData(formatLineChartData(responseData || jobsFallback));
+        const responseData = await get('/job/runs/by-job-id?jobId=job1');
+        setOverview(formatOverview(responseData));
+        setLineChartData(formatLineChartData(responseData));
       } catch (error) {
         console.error(error);
       } finally {

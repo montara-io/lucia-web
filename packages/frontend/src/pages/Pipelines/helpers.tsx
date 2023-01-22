@@ -11,14 +11,14 @@ export type PipelineAllResponse = {
   avgUtilization: number;
   avgCpuUtilization: number;
   avgMemoryUtilization: number;
-  date: Date;
+  date: string;
 };
 
 export const responseDataFallback: PipelineAllResponse[] = [
   {
     id: 'Monty Grail',
     pipelineId: 'Monty Grail',
-    date: new Date('01-01-2022'),
+    date: '2022-09-05T08:23:25.960Z',
     avgRuntime: 20,
     totalCoreHours: 56,
     avgCpuUtilization: 50,
@@ -30,7 +30,7 @@ export const responseDataFallback: PipelineAllResponse[] = [
   {
     id: 'Monty Python',
     pipelineId: 'Monty Python',
-    date: new Date('01-01-2022'),
+    date: '2022-09-05T08:23:25.960Z',
     avgRuntime: 20,
     totalCoreHours: 56,
     avgCpuUtilization: 50,
@@ -88,7 +88,7 @@ export function dataFormatterCallback(params: {
     bodyData: responseData.map((rd) => ({
       name: rd.pipelineId,
       id: rd.pipelineId,
-      lastRunDate: rd.date.toDateString(),
+      lastRunDate: rd.date.split('T')[0],
       totalRuntime: `${rd.avgRuntime} Hrs.`,
       avgRuntime: rd.avgUtilization,
       avgCoreHours: rd.avgCpuUtilization,

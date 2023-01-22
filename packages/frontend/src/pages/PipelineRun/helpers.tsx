@@ -122,7 +122,7 @@ export function dataFormatterCallback(params: {
         ),
       },
     ],
-    bodyData: (responseData || responseDataFallback).map((rd) => ({
+    bodyData: responseData.map((rd) => ({
       job: rd.jobId,
       ramUtilization: rd.sparkJobMetrics?.memoryUtilization,
       cpuUtilization: rd.sparkJobMetrics?.cpuUtilization,

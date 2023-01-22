@@ -77,7 +77,7 @@ export function dataFormatterCallback(params: {
         ),
       },
     ],
-    bodyData: (responseData || responseDataFallback).map((rd) => ({
+    bodyData: responseData.map((rd) => ({
       jobId: rd.jobId,
       avgUtilization: rd.sparkJobMetrics?.avgUtilization,
       avgRuntime: `${rd.sparkJobMetrics?.avgRuntime} Hrs.`,

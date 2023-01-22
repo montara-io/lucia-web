@@ -3,7 +3,7 @@ import { OverviewItem } from './../../stories/Overview/Overview';
 export type JobRun = {
   pipelineRunId: string;
   jobId: string;
-  date: Date;
+  date: string;
   sparkJobMetrics?: {
     jobRunId: string;
     utilization: number;
@@ -21,7 +21,7 @@ export const jobsFallback: JobRun[] = [
   {
     pipelineRunId: 'Monty Python',
     jobId: 'Cohort',
-    date: new Date('01/01/2022'),
+    date: '2022-09-05T08:23:25.960Z',
     sparkJobMetrics: {
       jobRunId: 'Monty Python',
       utilization: 20,
@@ -37,7 +37,7 @@ export const jobsFallback: JobRun[] = [
   {
     pipelineRunId: 'Monty Python',
     jobId: 'Cohort',
-    date: new Date('01/02/2022'),
+    date: '2022-09-05T08:23:25.960Z',
     sparkJobMetrics: {
       jobRunId: 'Monty Python',
       utilization: 80,
@@ -105,16 +105,16 @@ export function formatLineChartData(jobs: JobRun[]): LineChartData[] {
       chartTitle: 'Utilization',
       scores: jobs.map((job) => ({
         score: job.sparkJobMetrics?.utilization || 0,
-        label: job.date.toISOString().split('T')[0],
-        date: job.date.toISOString().split('T')[0],
+        label: job.date.split('T')[0],
+        date: job.date.split('T')[0],
       })),
     },
     {
       chartTitle: 'Avg. Waiting time',
       scores: jobs.map((job) => ({
         score: job.sparkJobMetrics?.waitingTime || 0,
-        label: job.date.toISOString().split('T')[0],
-        date: job.date.toISOString().split('T')[0],
+        label: job.date.split('T')[0],
+        date: job.date.split('T')[0],
       })),
     },
   ];

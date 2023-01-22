@@ -6,7 +6,9 @@ const PipelineRunPage = () => {
   const navigate = useNavigate();
   return (
     <PageWithTable
-      fetchUrl={'/job/runs/by-pipeline-run-id?pipelineRunId=123'}
+      fetchUrl={
+        '/job/runs/by-pipeline-run-id?pipelineRunId=cf30f3a3-9194-4f04-9a3d-d93992d22651'
+      }
       dataFormatterCallback={(responseData) =>
         dataFormatterCallback({ navigate, responseData })
       }
