@@ -7,7 +7,7 @@ describe('data formatting', () => {
         {
           id: 'monty',
           pipelineId: 'monty',
-          totalRuntime: 20,
+          avgRuntime: 20,
           numberOfJobs: 20,
           totalCoreHours: 0,
           avgWaitingTime: 0,

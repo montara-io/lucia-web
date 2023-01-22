@@ -4,7 +4,7 @@ import { DataFormatterResponse } from '../../components/common/PageWithTable';
 export type PipelineAllResponse = {
   id: string;
   pipelineId: string;
-  totalRuntime: number;
+  avgRuntime: number;
   numberOfJobs: number;
   totalCoreHours: number;
   avgWaitingTime: number;
@@ -19,7 +19,7 @@ const responseDataFallback: PipelineAllResponse[] = [
     id: 'Monty Grail',
     pipelineId: 'Monty Grail',
     date: new Date('01-01-2022'),
-    totalRuntime: 20,
+    avgRuntime: 20,
     totalCoreHours: 56,
     avgCpuUtilization: 50,
     avgMemoryUtilization: 50,
@@ -31,7 +31,7 @@ const responseDataFallback: PipelineAllResponse[] = [
     id: 'Monty Python',
     pipelineId: 'Monty Python',
     date: new Date('01-01-2022'),
-    totalRuntime: 20,
+    avgRuntime: 20,
     totalCoreHours: 56,
     avgCpuUtilization: 50,
     avgMemoryUtilization: 50,
@@ -89,7 +89,7 @@ export function dataFormatterCallback(params: {
       name: rd.pipelineId,
       id: rd.pipelineId,
       lastRunDate: rd.date.toDateString(),
-      totalRuntime: `${rd.totalRuntime} Hrs.`,
+      totalRuntime: `${rd.avgRuntime} Hrs.`,
       avgRuntime: rd.avgUtilization,
       avgCoreHours: rd.avgCpuUtilization,
       avgWaitingTime: `${rd.avgWaitingTime} Hrs.`,
