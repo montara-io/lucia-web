@@ -51,6 +51,11 @@ export let loadConfig = (configFileName = process.env.service_config || defaultC
       configFileName === defaultConfig
         ? loadConfigFile(configFileName)
         : merge(loadConfigFile(defaultConfig), loadConfigFile(configFileName))
+
+    config.db.password = process.env.DB_PW ?? config.db.password
+    config.db.username = process.env.DB_USER ?? config.db.username
+    config.db.port = process.env.DB_PORT ?? config.db.port
+    config.db.host = process.env.DB_HOST ?? config.db.host
   }
   if (withRefresh) {
     refreshConfig(configFileName)
