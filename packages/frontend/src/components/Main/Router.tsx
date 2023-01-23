@@ -13,8 +13,8 @@ import JobsPage from '../../pages/Jobs';
 enum Routes {
   pipelines = '/pipelines',
   jobs = '/jobs',
-  pipelineRuns = '/pipeline/:pipelinId/runs',
-  pipelineRun = '/pipeline/:pipelinId/runs/:pipelineRunId/jobs',
+  pipelineRuns = '/pipeline/:pipelineId/runs',
+  pipelineRun = '/pipeline/:pipelineId/runs/:pipelineRunId/jobs',
   jobHistory = '/job/:jobId',
 }
 
@@ -34,12 +34,12 @@ const Router = () => {
       element: <JobsPage />,
     },
     {
-      path: '/pipeline/:pipelinId/runs/:pipelineRunId/jobs',
+      path: '/pipeline/:pipelineId/runs/:pipelineRunId/jobs',
       element: <PipelineRun />,
       errorElement: <div>Something went wrong</div>,
     },
     {
-      path: '/pipeline/:pipelinId/runs',
+      path: '/pipeline/:pipelineId/runs',
       element: <PipelineRuns />,
     },
     {

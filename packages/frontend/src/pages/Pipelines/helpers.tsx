@@ -77,9 +77,11 @@ export function dataFormatterCallback(params: {
         headerStyle: {
           cellWidth: '12rem',
         },
-        template: () => (
+        template: ({ id }) => (
           <ExploreButton
-            onClick={() => navigate('/pipeline/123/runs')}
+            onClick={() => {
+              navigate(`/pipeline/${id}/runs`);
+            }}
             text={'Explore'}
           />
         ),

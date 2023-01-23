@@ -2,19 +2,21 @@ import { DivTitle } from './styles';
 import Overview, { OverviewItem } from '../../stories/Overview/Overview';
 import Card from '../../stories/Card/Card';
 import PageWithTable from '../../components/common/PageWithTable';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { dataFormatterCallback, formatOverview } from './helpers';
 import { useState } from 'react';
 
 export const PipelineRunsPage = () => {
   const navigate = useNavigate();
   const [overview, setOverview] = useState([] as OverviewItem[]);
+
+  const { pipelineId = '' } = useParams();
   return (
     <PageWithTable
       onData={(data) => setOverview(formatOverview(data))}
-      fetchUrl="/pipeline/runs?pipelineId=6c933183-e4e8-3bb8-bebc-f23f380676d1"
+      fetchUrl={`/pipeline/runs?pipelineId=${pipelineId}`}
       dataFormatterCallback={(responseData) =>
-        dataFormatterCallback({ responseData, navigate })
+        dataFormatterCallback({ responseData, navigate, pipelineId })
       }
       id={'pipeline-runs'}
       pageHeader={'Pipeline Runs'}

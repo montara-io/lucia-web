@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { get } from '../../services/http.service';
 import Card from '../../stories/Card/Card';
 import Loading from '../../stories/Loading/Loading';
@@ -11,16 +12,15 @@ export const JobPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [overview, setOverview] = useState([] as OverviewItem[]);
   const [lineChartData, setLineChartData] = useState([] as LineChartData[]);
-  const [jobId, setJobId] = useState('');
+  const { jobId = '' } = useParams();
 
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
       try {
-        const responseData = await get('/job/runs/by-job-id?jobId=job1');
+        const responseData = await get(`/job/runs/by-job-id?jobId=${jobId}`);
         setOverview(formatOverview(responseData));
         setLineChartData(formatLineChartData(responseData));
-        setJobId(responseData[0]?.jobId);
       } catch (error) {
         console.error(error);
       } finally {

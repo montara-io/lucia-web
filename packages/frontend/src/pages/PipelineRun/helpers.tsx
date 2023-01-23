@@ -1,3 +1,4 @@
+import moment from 'moment';
 import ExploreButton from '../../components/common/ExploreButton';
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
 
@@ -5,7 +6,7 @@ export type JobByPipelineRunIdResponse = {
   id: string;
   pipelineRunId: string;
   jobId: string;
-  date: Date;
+  date: string;
   sparkJobMetrics?: {
     id: string;
     jobRunId: string;
@@ -22,7 +23,7 @@ export type JobByPipelineRunIdResponse = {
 
 export const responseDataFallback: JobByPipelineRunIdResponse[] = [
   {
-    date: new Date('01-01-2022'),
+    date: '2022-09-05T08:23:25.960Z',
     id: 'Feature Engine',
     jobId: 'Feature Engine',
     pipelineRunId: 'asdasd',
@@ -40,7 +41,7 @@ export const responseDataFallback: JobByPipelineRunIdResponse[] = [
     },
   },
   {
-    date: new Date('01-01-2022'),
+    date: '2022-09-05T08:23:25.960Z',
     id: 'Cohort',
     jobId: 'Cohort',
     pipelineRunId: 'asdasd',
@@ -68,13 +69,21 @@ export function dataFormatterCallback(params: {
   return {
     headerData: [
       {
-        field: 'job',
+        field: 'jobId',
         title: 'Job',
         sortType: 'string',
         placeholder: 'SEARCH',
         sortable: true,
         sortField: 'job',
       },
+      {
+        field: 'date',
+        title: 'Run Date',
+        sortType: 'string',
+        sortable: true,
+        sortField: 'date',
+      },
+
       {
         field: 'ramUtilization',
         title: 'RAM Utilization',
@@ -114,19 +123,21 @@ export function dataFormatterCallback(params: {
         headerStyle: {
           cellWidth: '12rem',
         },
-        template: () => (
+        template: ({ jobId }) => (
           <ExploreButton
-            onClick={() => navigate('/job/123')}
+            onClick={() => navigate(`/job/${jobId}`)}
             text={'Job History'}
           />
         ),
       },
     ],
     bodyData: responseData.map((rd) => ({
-      job: rd.jobId,
-      ramUtilization: rd.sparkJobMetrics?.memoryUtilization,
-      cpuUtilization: rd.sparkJobMetrics?.cpuUtilization,
-      runtime: rd.sparkJobMetrics?.runtime,
+      jobId: rd.jobId,
+      date: moment(rd.date).format('MM/DD/YYYY, h:mm A'),
+      ramUtilization: `${rd.sparkJobMetrics?.memoryUtilization}%`,
+      cpuUtilization: `${rd.sparkJobMetrics?.cpuUtilization}%`,
+
+      runtime: `${rd.sparkJobMetrics?.runtime} hrs.`,
       coreHours: rd.sparkJobMetrics?.coreHours,
       waitingTime: rd.sparkJobMetrics?.waitingTime,
     })),

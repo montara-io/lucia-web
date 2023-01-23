@@ -72,6 +72,7 @@ const metricsToTexts = [
   {
     chartTitle: 'Avg. Runtime',
     scoreField: 'runtime',
+    unit: 'Hrs.',
   },
   {
     chartTitle: 'Avg. Core Hours',
@@ -82,9 +83,9 @@ const metricsToTexts = [
 export function formatOverview(jobs: JobRun[]): OverviewItem[] {
   return metricsToTexts.map((curr) => ({
     title: curr.chartTitle,
-    score: arrayAverage(
+    score: `${arrayAverage(
       jobs.map((job) => job.sparkJobMetrics?.[curr.scoreField] || 0),
-    ),
+    )} ${curr.unit || '%'}`,
   }));
 }
 
@@ -97,22 +98,4 @@ export function formatLineChartData(jobs: JobRun[]): LineChartData[] {
       date: job.date.split('T')[0],
     })),
   }));
-  // return [
-  //   {
-  //     chartTitle: 'Utilization',
-  //     scores: jobs.map((job) => ({
-  //       score: job.sparkJobMetrics?.utilization || 0,
-  //       label: job.date.split('T')[0],
-  //       date: job.date.split('T')[0],
-  //     })),
-  //   },
-  //   {
-  //     chartTitle: 'Avg. Waiting time',
-  //     scores: jobs.map((job) => ({
-  //       score: job.sparkJobMetrics?.waitingTime || 0,
-  //       label: job.date.split('T')[0],
-  //       date: job.date.split('T')[0],
-  //     })),
-  //   },
-  // ];
 }

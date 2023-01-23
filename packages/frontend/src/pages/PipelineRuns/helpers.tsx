@@ -46,8 +46,9 @@ export const responseDataFallback: PipelineRunResponse[] = [
 export function dataFormatterCallback(params: {
   responseData: PipelineRunResponse[];
   navigate: any;
+  pipelineId: string;
 }): DataFormatterResponse {
-  const { responseData, navigate } = params;
+  const { responseData, navigate, pipelineId } = params;
 
   return {
     headerData: [
@@ -97,14 +98,16 @@ export function dataFormatterCallback(params: {
         headerStyle: {
           cellWidth: '12rem',
         },
-        template: () => (
-          <ExploreButton
-            onClick={() =>
-              navigate('/pipeline/:pipelinId/runs/:pipelineRunId/jobs')
-            }
-            text={'Explore Jobs'}
-          />
-        ),
+        template: ({ id }) => {
+          return (
+            <ExploreButton
+              onClick={() =>
+                navigate(`/pipeline/${pipelineId}/runs/${id}/jobs`)
+              }
+              text={'Explore Jobs'}
+            />
+          );
+        },
       },
     ],
     bodyData: (responseData || responseDataFallback).map((rd) => ({
