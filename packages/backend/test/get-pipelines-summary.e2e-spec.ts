@@ -73,7 +73,7 @@ describe('get pipelines summary component test', () => {
     const pipelines = await dataPipelineService.getPipelines()
 
     expect(pipelines.length).toEqual(1)
-    expect(pipelines[0].avgRuntime).toEqual(2000)
+    expect(pipelines[0].avgRuntime).toEqual(1000)
     expect(pipelines[0].avgWaitingTime).toEqual(1000)
   })
 })

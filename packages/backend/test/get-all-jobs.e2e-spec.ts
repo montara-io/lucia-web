@@ -190,8 +190,8 @@ describe('get job by id component test', () => {
     expect(jobs).toBeDefined()
     expect(jobs[0].jobId).toBe('job2')
     expect(jobs[1].jobId).toBe('job1')
-    expect(jobs[1].sparkJobMetrics.waitingTime).toBe(7)
-    expect(jobs[0].sparkJobMetrics.waitingTime).toBe(8)
+    expect(jobs[1].sparkJobMetrics?.avgWaitingTime).toBe(7)
+    expect(jobs[0].sparkJobMetrics?.avgWaitingTime).toBe(8)
   })
 })
 
