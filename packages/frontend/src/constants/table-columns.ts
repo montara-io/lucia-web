@@ -19,6 +19,7 @@ export const TABLE_COLUMNS = {
     title: 'Avg. Core Hours',
     sortable: true,
     sortType: 'string',
+    unit: 'Hrs.',
   },
   avgUtilization: {
     title: 'Avg. Utilization',
@@ -34,5 +35,40 @@ export const TABLE_COLUMNS = {
     title: 'Date',
     sortable: true,
     sortType: 'string',
+  },
+  jobId: {
+    title: 'Job',
+    sortable: true,
+    sortType: 'string',
+  },
+  ramUtilization: {
+    title: 'RAM Utilization',
+    sortable: true,
+    sortType: 'string',
+    unit: '%',
+  },
+  cpuUtilization: {
+    title: 'CPU Utilization',
+    sortable: true,
+    sortType: 'string',
+    unit: '%',
+  },
+  runtime: {
+    title: 'Runtime',
+    sortable: true,
+    sortType: 'string',
+    unit: 'Hrs.',
+  },
+  coreHours: {
+    title: 'Core Hours',
+    sortable: true,
+    sortType: 'string',
+    unit: 'Hrs.',
+  },
+  avgRuntime: {
+    title: 'Avg. Runtime',
+    sortable: true,
+    sortType: 'string',
+    unit: 'Hrs.',
   },
 };

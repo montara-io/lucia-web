@@ -4,7 +4,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import JobHistory from '../../pages/JobHistory';
-import PipelineRun from '../../pages/PipelineRun/PipelineRun';
+import PipelineRun from '../../pages/PipelineRun';
 
 import PipelineRuns from '../../pages/PipelineRuns';
 import PipelinesPage from '../../pages/Pipelines';
