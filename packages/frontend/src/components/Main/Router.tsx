@@ -7,43 +7,36 @@ import JobHistory from '../../pages/JobHistory';
 import PipelineRun from '../../pages/PipelineRun/PipelineRun';
 
 import PipelineRuns from '../../pages/PipelineRuns/PipelineRuns';
-import PipelinesPage from '../../pages/Pipelines/Pipelines';
+import PipelinesPage from '../../pages/Pipelines';
 import JobsPage from '../../pages/Jobs';
-
-enum Routes {
-  pipelines = '/pipelines',
-  jobs = '/jobs',
-  pipelineRuns = '/pipeline/:pipelineId/runs',
-  pipelineRun = '/pipeline/:pipelineId/runs/:pipelineRunId/jobs',
-  jobHistory = '/job/:jobId',
-}
+import { Routes } from '../../constants/routes';
 
 const Router = () => {
   const router = createBrowserRouter([
     {
       path: '/',
 
-      element: <Navigate to={Routes.pipelines} />,
+      element: <Navigate to={Routes.Pipelines} />,
     },
     {
-      path: Routes.pipelines,
+      path: Routes.Pipelines,
       element: <PipelinesPage />,
     },
     {
-      path: '/jobs',
+      path: Routes.Jobs,
       element: <JobsPage />,
     },
     {
-      path: '/pipeline/:pipelineId/runs/:pipelineRunId/jobs',
+      path: Routes.PipelineRun,
       element: <PipelineRun />,
       errorElement: <div>Something went wrong</div>,
     },
     {
-      path: '/pipeline/:pipelineId/runs',
+      path: Routes.PipelineRuns,
       element: <PipelineRuns />,
     },
     {
-      path: '/job/:jobId',
+      path: Routes.JobHistory,
       element: <JobHistory />,
     },
   ]);

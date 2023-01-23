@@ -9,15 +9,6 @@ export const Avatar = styled(WAvatar)`
   margin-right: 17px;
 `;
 
-export const GroupCell = styled.div<{ isActive: boolean | undefined }>`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  cursor: ${({ isActive }) => (isActive ? 'pointer' : 'auto')};
-`;
-
 export const Severity = styled.span`
   display: block;
   border-radius: 50px;
@@ -47,26 +38,4 @@ export const SubTitleContainer = styled.div`
   opacity: 1;
   text-align: left;
   padding-bottom: 21px;
-`;
-
-export const PipelineTitle = styled.div`
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 19px;
-  color: #272d3b;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 15em;
-`;
-
-export const PipelineDateTitle = styled.div`
-  font-size: 0.875rem;
-  line-height: 18px;
-  color: #272d3b;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding-right: 15px;
-  max-width: 17em;
 `;

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import PageWithTable from '../../components/common/PageWithTable';
+import { NoJobsContainer } from '../Pipelines/styles';
 import { dataFormatterCallback } from './helpers';
 
 export type Pipeline = {
@@ -10,6 +11,26 @@ export type Pipeline = {
   avgCoreHours: string;
   avgWaitingTime: string;
 };
+
+function NoJobsElement() {
+  return (
+    <NoJobsContainer>
+      <h2 style={{ textAlign: 'center' }}>
+        We're not getting any jobs data... 😔
+      </h2>
+      <h3>
+        <a
+          href="https://github.com/montara-io/lucia-web"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Here's
+        </a>{' '}
+        how to get started
+      </h3>
+    </NoJobsContainer>
+  );
+}
 
 const JobsPage = () => {
   const navigate = useNavigate();
@@ -22,6 +43,7 @@ const JobsPage = () => {
       dataFormatterCallback={(responseData: any) =>
         dataFormatterCallback({ navigate, responseData })
       }
+      errorElement={<NoJobsElement />}
     />
   );
 };

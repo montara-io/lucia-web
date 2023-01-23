@@ -1,5 +1,8 @@
 import ExploreButton from '../../components/common/ExploreButton';
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
+import { Routes } from '../../constants/routes';
+import { TABLE_COLUMNS } from '../../constants/table-columns';
+import { HeaderRow } from '../../stories/DataTable/DataTable';
 import { formatDate } from '../../utils/date';
 
 export type PipelineAllResponse = {
@@ -47,31 +50,20 @@ export function dataFormatterCallback(params: {
   navigate: any;
 }): DataFormatterResponse {
   const { responseData, navigate } = params;
-
+  const headerData: HeaderRow[] = [
+    'pipelineId',
+    'totalRuntime',
+    'lastRunDate',
+    'avgCoreHours',
+  ].map((c) => ({
+    field: c,
+    title: TABLE_COLUMNS[c].title,
+    sortable: TABLE_COLUMNS[c].sortable || false,
+    sortType: TABLE_COLUMNS[c].sortType,
+    sortField: c,
+  }));
   return {
-    headerData: [
-      {
-        field: 'name',
-        title: 'Pipeline Name',
-        placeholder: 'Search',
-      },
-      {
-        field: 'totalRuntime',
-        title: 'Total Runtime',
-      },
-      {
-        field: 'lastRunDate',
-        title: 'Last run date',
-      },
-
-      {
-        field: 'avgCoreHours',
-        title: 'Avg. Core Hours',
-      },
-      {
-        field: 'avgWaitingTime',
-        title: 'Avg. Waiting Time',
-      },
+    headerData: headerData.concat([
       {
         field: 'explore',
         title: '',
@@ -81,15 +73,16 @@ export function dataFormatterCallback(params: {
         template: ({ id }) => (
           <ExploreButton
             onClick={() => {
-              navigate(`/pipeline/${id}/runs`);
+              navigate(Routes.PipelineRuns.replace(':pipelineId', id));
             }}
             text={'Explore'}
           />
         ),
       },
-    ],
+    ]),
+
     bodyData: responseData.map((rd) => ({
-      name: rd.pipelineId,
+      pipelineId: rd.pipelineId,
       id: rd.pipelineId,
       lastRunDate: formatDate(rd.date),
       totalRuntime: `${rd.avgRuntime} Hrs.`,

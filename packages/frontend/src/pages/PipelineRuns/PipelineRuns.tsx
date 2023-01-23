@@ -19,10 +19,10 @@ export const PipelineRunsPage = () => {
         dataFormatterCallback({ responseData, navigate, pipelineId })
       }
       id={'pipeline-runs'}
-      pageHeader={'Pipeline Runs'}
+      pageHeader={`Pipeline Runs - ${pipelineId}`}
       tableHeader={'All Runs'}
     >
-      <DivTitle>Monty Python</DivTitle>
+      <DivTitle>Overview</DivTitle>
       <div>
         <Card>
           <Overview items={overview} />

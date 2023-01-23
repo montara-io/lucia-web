@@ -1,5 +1,6 @@
 import ExploreButton from '../../components/common/ExploreButton';
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
+import { TABLE_COLUMNS } from '../../constants/table-columns';
 import { OverviewItem } from '../../stories/Overview/Overview';
 import { arrayAverage } from '../../utils/arrays';
 
@@ -93,11 +94,6 @@ export function dataFormatterCallback(params: {
       {
         field: 'explore',
         title: '',
-        sortType: 'string',
-        sortable: false,
-        headerStyle: {
-          cellWidth: '12rem',
-        },
         template: ({ id }) => {
           return (
             <ExploreButton
@@ -110,7 +106,7 @@ export function dataFormatterCallback(params: {
         },
       },
     ],
-    bodyData: (responseData || responseDataFallback).map((rd) => ({
+    bodyData: responseData.map((rd) => ({
       name: rd.pipelineId,
       id: rd.pipelineId,
       date: rd.date.split('T')[0],
@@ -123,64 +119,15 @@ export function dataFormatterCallback(params: {
   };
 }
 
-const dataToOverview = [
-  {
-    title: 'Total Runtime',
-    field: 'totalRuntime',
-  },
-  {
-    title: 'Avg. Utilization',
-    field: 'avgUtilization',
-  },
-  {
-    title: 'Core Hours',
-    field: 'totalCoreHours',
-  },
-  {
-    title: 'Avg. Waiting Time',
-    field: 'avgWaitingTime',
-  },
-];
+const overviewItems = ['totalRuntime', 'avgUtilization', 'totalCoreHours'];
 
 export function formatOverview(
   pipelineRuns: PipelineRunResponse[],
 ): OverviewItem[] {
-  return dataToOverview.map((data) => ({
-    title: data.title,
-    score: arrayAverage(
-      pipelineRuns.map((pipelineRun) => pipelineRun[data.field] || 0),
-    ),
+  return overviewItems.map((oi) => ({
+    title: TABLE_COLUMNS[oi].title,
+    score: `${arrayAverage(
+      pipelineRuns.map((pipelineRun) => pipelineRun[oi] || 0),
+    )} ${TABLE_COLUMNS[oi].unit}`,
   }));
-  // return [
-  //   {
-  //     title: 'Total Runtime',
-  //     score: arrayAverage(
-  //       pipelineRuns.map((pipelineRun) => pipelineRun.totalRuntime || 0),
-  //     ),
-  //   },
-  //   {
-  //     title: 'Avg. Utilization',
-  //     score: `${arrayAverage(
-  //       pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
-  //     )}%`,
-  //   },
-  //   {
-  //     title: 'Avg. Utilization',
-  //     score: `${arrayAverage(
-  //       pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
-  //     )}%`,
-  //   },
-  //   {
-  //     title: 'Avg. Utilization',
-  //     score: `${arrayAverage(
-  //       pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
-  //     )}%`,
-  //   },
-  //   {
-  //     title: 'Avg. Utilization',
-  //     score: `${arrayAverage(
-  //       pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
-  //     )}%`,
-  //   },
-  // ];
 }
