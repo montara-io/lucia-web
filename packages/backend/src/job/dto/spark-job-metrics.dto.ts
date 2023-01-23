@@ -9,7 +9,4 @@ export class SparkJobMetricsDTO {
   avgNumberOfCores: number
   avgCpuUtilization: number
   avgMemoryUtilization: number
-  created: Date
-  updated: Date
-  deleted: boolean
 }

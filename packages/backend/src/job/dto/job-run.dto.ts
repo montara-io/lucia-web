@@ -1,4 +1,4 @@
-import { SparkJobMetricsDTO } from './spark-job-metrics.dto'
+import { SparkJobRunMetricsDTO } from './spark-job-run-metrics.dto'
 
 export class JobRunDTO {
   id: string
@@ -8,5 +8,5 @@ export class JobRunDTO {
   created: Date
   updated: Date
   deleted: boolean
-  sparkJobMetrics?: SparkJobMetricsDTO
+  sparkJobRunMetrics?: SparkJobRunMetricsDTO
 }
