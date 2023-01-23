@@ -5,6 +5,7 @@ import { GetJobRunsDTO } from './dto/get-job-runs.dto'
 import { InjectPinoLogger, Logger } from 'nestjs-pino'
 import { JobService } from './job.service'
 import { GetJobsDTO } from './dto/get-jobs.dto'
+import { JobDTO } from './dto/job.dto'
 
 @ApiTags('job')
 @Controller('job')
@@ -16,7 +17,7 @@ export class JobController {
   ) {}
 
   @Get('/')
-  async getJob(@Query(ValidationPipe) query: GetJobsDTO): Promise<JobRunDTO> {
+  async getJob(@Query(ValidationPipe) query: GetJobsDTO): Promise<JobDTO> {
     this.logger.debug('getting job by id')
     const response = await this.jobService.getJobById(query)
     this.logger.debug('get job by id: %o', response)
@@ -25,7 +26,7 @@ export class JobController {
   }
 
   @Get('/all')
-  async getJobs(): Promise<JobRunDTO[]> {
+  async getJobs(): Promise<JobDTO[]> {
     this.logger.debug('getting jobs')
     const response = await this.jobService.getJobs()
     this.logger.debug('getting jobs response: %o', response)
