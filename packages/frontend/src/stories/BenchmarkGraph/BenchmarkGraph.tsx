@@ -2,8 +2,6 @@ import classNames from 'classnames';
 import React from 'react';
 import './BenchmarkGraph.scss';
 import { Slider } from 'primereact/slider';
-import { IntlProvider, useIntl } from 'react-intl';
-import lang from '../lang/en.json';
 import { isInValid } from '../utils';
 import { NO_DATA_MESSAGE } from '../utils/consts';
 
@@ -17,8 +15,6 @@ const BenchmarkGraph: React.FunctionComponent<BenchmarkGraphProps> = ({
   upperRange,
   lowerRange,
 }) => {
-  const intl = useIntl();
-
   const HEIGHT = 140;
   const VALUE_PADDING_TOP = 8;
   const VALUE_PADDING_LOWER = 8;
@@ -31,14 +27,7 @@ const BenchmarkGraph: React.FunctionComponent<BenchmarkGraphProps> = ({
     isInValid({ value: upperRange?.score }) ||
     isInValid({ value: lowerRange?.score })
   ) {
-    return (
-      <div data-testid={NO_DATA_MESSAGE}>
-        {intl.formatMessage({
-          id: 'no.data.to.show',
-          defaultMessage: NO_DATA_MESSAGE,
-        })}
-      </div>
-    );
+    return <div data-testid={NO_DATA_MESSAGE}>{NO_DATA_MESSAGE}</div>;
   }
 
   return (
@@ -67,7 +56,7 @@ const BenchmarkGraph: React.FunctionComponent<BenchmarkGraphProps> = ({
           className={classNames(
             'body-slider',
             lowerRange?.hide ? 'hide-lower' : '',
-            upperRange?.hide ? 'hide-upper' : ''
+            upperRange?.hide ? 'hide-upper' : '',
           )}
           orientation="vertical"
           value={[
@@ -119,10 +108,6 @@ const BenchmarkGraph: React.FunctionComponent<BenchmarkGraphProps> = ({
 };
 
 const WrappedBenchmarkGraph = (props) => {
-  return (
-    <IntlProvider locale={locale} messages={lang}>
-      <BenchmarkGraph {...props} />
-    </IntlProvider>
-  );
+  return <BenchmarkGraph {...props} />;
 };
 export default WrappedBenchmarkGraph;

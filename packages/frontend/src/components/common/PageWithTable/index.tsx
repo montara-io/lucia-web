@@ -8,24 +8,29 @@ import Loading from '../../../stories/Loading/Loading';
 
 import { DivTitle, DivTitleContainer } from './styles';
 
+export type DataFormatterResponse = {
+  headerData: HeaderRow[];
+  bodyData: DataRow[];
+};
+
 type PageWithTableProps = {
   fetchUrl: string;
-  fallbackHeaderData: any;
-  fallbackBodyData: any;
   id: string;
   pageHeader: string;
   tableHeader?: string;
   children?: any;
+  dataFormatterCallback: (responseData: any) => DataFormatterResponse;
+  onData?: (data: any) => void;
 };
 
 function PageWithTable({
   fetchUrl,
-  fallbackHeaderData,
-  fallbackBodyData,
   id,
   pageHeader,
   children,
   tableHeader,
+  dataFormatterCallback,
+  onData,
 }: PageWithTableProps) {
   const [headerData, setHeaderData] = useState([] as HeaderRow[]);
   const [bodyData, setBodyData] = useState([] as DataRow[]);
@@ -34,13 +39,14 @@ function PageWithTable({
     async function fetchData() {
       setIsLoading(true);
       try {
-        const { headerData, bodyData } = await get(fetchUrl);
+        const responseData = await get(fetchUrl);
+
+        const { headerData, bodyData } = dataFormatterCallback(responseData);
+        typeof onData === 'function' && onData(responseData);
         setHeaderData(headerData);
         setBodyData(bodyData);
       } catch (error) {
         console.error(error);
-        setHeaderData(fallbackHeaderData);
-        setBodyData(fallbackBodyData);
       } finally {
         setIsLoading(false);
       }

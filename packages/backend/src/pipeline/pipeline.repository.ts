@@ -22,7 +22,7 @@ export class PipelineRepository {
       const pipelineQuery = this.dataSource.manager
         .createQueryBuilder()
         .addSelect('pipeline_id', 'pipeline_id')
-        .addSelect('SUM(total_runtime)::INTEGER', 'total_runtime')
+        .addSelect('AVG(total_runtime)::INTEGER', 'total_runtime')
         .addSelect('SUM(number_of_jobs)::INTEGER', 'number_of_jobs')
         .addSelect('SUM(total_core_hours)::INTEGER', 'total_core_hours')
         .addSelect('AVG(avg_waiting_time)::INTEGER', 'avg_waiting_time')

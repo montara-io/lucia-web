@@ -14,5 +14,6 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["ES2020.Promise", "ES2019.array"]
-  }
+  },
+  "include": ["src", "./.eslintrc.js"]
 }

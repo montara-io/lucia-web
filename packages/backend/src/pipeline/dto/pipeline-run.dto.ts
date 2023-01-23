@@ -13,3 +13,16 @@ export class PipelineRunDTO {
   created: Date
   updated: Date
 }
+
+export class PipelineDTO {
+  id: string
+  pipelineId: string
+  avgRuntime: number
+  numberOfJobs: number
+  totalCoreHours: number
+  avgWaitingTime: number
+  avgUtilization: number
+  avgCpuUtilization: number
+  avgMemoryUtilization: number
+  date: Date
+}

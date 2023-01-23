@@ -186,20 +186,11 @@ describe('get job runs by job id component test', () => {
   it('get jobs runs by job id success test', async () => {
     await createDb(repository, pipelineRunsData, jobRunsData, sparkJobMetricsData)
 
-    const job = await jobService.getJobById({
+    const job = await jobService.getJobRunsById({
       jobId: jobId,
     } as GetJobsDTO)
 
-    expect(job).toBeDefined()
-    expect(job.sparkJobMetrics.coreHours).toBe(7)
-    expect(job.sparkJobMetrics.waitingTime).toBe(7)
-    expect(job.sparkJobMetrics.utilization).toBe(7)
-    expect(job.sparkJobMetrics.cpuUtilization).toBe(7)
-    expect(job.sparkJobMetrics.memoryUtilization).toBe(7)
-    expect(job.sparkJobMetrics.numberOfCores).toBe(7)
-    expect(job.sparkJobMetrics.usedMemory).toBe(7)
-    expect(job.sparkJobMetrics.runtime).toBe(7)
-    expect(job.date.toISOString()).toBe('2022-09-05T08:23:25.960Z')
+    expect(job.length).toEqual(2)
   })
 })
 

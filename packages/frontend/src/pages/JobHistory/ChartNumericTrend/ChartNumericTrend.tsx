@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 
 import { ThemeContext } from 'styled-components';
-import { ZOOM_PADDING } from '../../../consts';
 
 import { ChartContainer, Container, Flex, NumericContainer } from './style';
 
@@ -40,7 +39,7 @@ export const ChartNumericTrend = ({
                 data,
                 range,
               }}
-              zoomPadding={ZOOM_PADDING}
+              zoomPadding={10}
             />
           </ChartContainer>
           <NumericContainer>

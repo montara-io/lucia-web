@@ -10,8 +10,8 @@ import { PipelineRunEntity } from '../src/pipeline/entity/pipeline.entity'
 import { JobRunEntity } from '../src/job/entity/job.entity'
 import { SparkJobMetricsEntity } from '../src/job/entity/spark-job-metrics.entity'
 import { GetJobRunsDTO } from '../src/job/dto/get-job-runs.dto'
-import { JobService } from 'src/job/job.service'
-import { JobRepository } from 'src/job/job.repository'
+import { JobService } from '../src/job/job.service'
+import { JobRepository } from '../src/job/job.repository'
 
 console.info = jest.fn()
 console.error = jest.fn()

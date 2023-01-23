@@ -1,4 +1,3 @@
-import { SEVERITY_KEYS } from './enums';
 import {
   EXTRA_PADDING,
   HIGH_VALUE,
@@ -8,30 +7,12 @@ import {
   MIN_ZOOM_VALUE,
 } from './consts';
 
-/** return severity key by score, and return the translated value **/
-export const getSeverityKey = (score: number) => {
-  let severityKey = SEVERITY_KEYS.LOW;
-  if (score >= 0 && score <= 100) {
-    if (score >= HIGH_VALUE) {
-      severityKey = SEVERITY_KEYS.HIGH;
-    } else if (score >= LOW_VALUE) {
-      severityKey = SEVERITY_KEYS.MID;
-    }
-  }
-  return severityKey;
-};
-
-export const getSeverityByScore = (score: number, intl: any) => {
-  const severityKey = getSeverityKey(score);
-
-  return intl.formatMessage({
-    id: severityKey,
-    defaultMessage: severityKey.toUpperCase(),
-  });
-};
-
 /** return object that represent the min max for zoom in trajectory chart **/
-export const getMinMaxViewForTrajectory = (data?: any, dynamicZoom = false, padding = 10) => {
+export const getMinMaxViewForTrajectory = (
+  data?: any,
+  dynamicZoom = false,
+  padding = 10,
+) => {
   if (dynamicZoom && data) {
     const scoresAndBenchmarks = data?.reduce((acc, { score, benchmark }) => {
       acc.push(score);
@@ -57,7 +38,11 @@ export const getMinMaxViewForTrajectory = (data?: any, dynamicZoom = false, padd
 };
 
 /** return object that represent the min max for zoom in the charts **/
-export const getMinMaxView = (data?: any, dynamicZoom = false, padding = 10) => {
+export const getMinMaxView = (
+  data?: any,
+  dynamicZoom = false,
+  padding = 10,
+) => {
   if (dynamicZoom && data) {
     const scores = data?.map(({ score }) => score);
 
@@ -74,8 +59,10 @@ export const getMinMaxView = (data?: any, dynamicZoom = false, padding = 10) => 
     }
 
     return {
-      min: minZoomValue === LOW_VALUE ? LOW_VALUE - EXTRA_PADDING : minZoomValue,
-      max: maxZoomValue === HIGH_VALUE ? HIGH_VALUE + EXTRA_PADDING : maxZoomValue,
+      min:
+        minZoomValue === LOW_VALUE ? LOW_VALUE - EXTRA_PADDING : minZoomValue,
+      max:
+        maxZoomValue === HIGH_VALUE ? HIGH_VALUE + EXTRA_PADDING : maxZoomValue,
     };
   }
   return {
@@ -86,12 +73,15 @@ export const getMinMaxView = (data?: any, dynamicZoom = false, padding = 10) => 
 
 /** Get min & max and return number of labels [0,50,75,100] that overlap with the values **/
 const calcNumOfLabels = (min: number, max: number) => {
-  return [MIN_ZOOM_VALUE, LOW_VALUE, HIGH_VALUE, MAX_ZOOM_VALUE].reduce((acc, curr) => {
-    if (curr >= min && curr <= max) {
-      acc++;
-    }
-    return acc;
-  }, 0);
+  return [MIN_ZOOM_VALUE, LOW_VALUE, HIGH_VALUE, MAX_ZOOM_VALUE].reduce(
+    (acc, curr) => {
+      if (curr >= min && curr <= max) {
+        acc++;
+      }
+      return acc;
+    },
+    0,
+  );
 };
 
 /** Get min & max in case of one label and adjust zoom to show two labels

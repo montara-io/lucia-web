@@ -1,5 +1,5 @@
 {
-  "name": "data_pipline_service",
+  "name": "backend",
   "version": "1.0.1",
   "description": "Rest API to fetch piplines data",
   "author": "Montara",

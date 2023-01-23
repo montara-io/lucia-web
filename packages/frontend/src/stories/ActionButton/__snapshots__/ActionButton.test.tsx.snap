@@ -6,6 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <button
+        aria-label="click me"
         class="p-button p-component action-button primary-button primary"
         data-testid="action-button"
         id="buttonId"
@@ -20,6 +21,7 @@ Object {
   </body>,
   "container": <div>
     <button
+      aria-label="click me"
       class="p-button p-component action-button primary-button primary"
       data-testid="action-button"
       id="buttonId"

@@ -1,5 +1,4 @@
 export const DEFAULT_AVATAR_IMG = '/assets/defaultAvatar.svg';
-export const DEFAULT_AVATAR_NAME_KEY = 'unknown.name';
 
 export const MAX_VALUE = 100;
 export const HIGH_VALUE = 75;

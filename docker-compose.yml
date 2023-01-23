@@ -38,6 +38,8 @@ services:
     command: -url=jdbc:postgresql://db:5432/data_pipeline -schemas=postgres -user=postgres -password=postgres -connectRetries=60 migrate
     volumes:
       - ./packages/backend/src/utils/migrations:/flyway/sql
+    healthcheck:
+      test: "exit 0"    
     depends_on:
       db:
         condition: service_healthy

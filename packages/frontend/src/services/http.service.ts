@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = window.__RUNTIME_CONFIG__.REACT_APP_BACKEND_URL;
+const baseURL = window?.__RUNTIME_CONFIG__?.REACT_APP_BACKEND_URL || '';
 
 export async function get(url: string) {
   try {

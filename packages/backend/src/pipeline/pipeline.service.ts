@@ -3,7 +3,7 @@ import { InjectPinoLogger, PinoLogger } from 'nestjs-pino'
 import { PipelineRepository } from './pipeline.repository'
 import { ConfigService } from '@nestjs/config'
 import { PipelineRunEntity } from './entity/pipeline.entity'
-import { PipelineRunDTO } from './dto/pipeline-run.dto'
+import { PipelineDTO, PipelineRunDTO } from './dto/pipeline-run.dto'
 import { GetPipelineRunsDTO } from './dto/get-pipeline-runs.dto'
 
 @Injectable()
@@ -15,7 +15,7 @@ export class PipelineService {
     private readonly configService: ConfigService,
   ) {}
 
-  async getPipelines(): Promise<PipelineRunDTO[]> {
+  async getPipelines(): Promise<PipelineDTO[]> {
     const pipelineEntities: PipelineRunEntity[] = await this.repository.findPipelinesSummary()
 
     if (!pipelineEntities || pipelineEntities.length === 0) {
@@ -23,7 +23,7 @@ export class PipelineService {
       return null
     }
 
-    return pipelineEntities.map((pipelineEntity) => this.convertPipelineEntityToDto(pipelineEntity))
+    return pipelineEntities.map((pipelineEntity) => this.convertPipelineEntityToPipelineDto(pipelineEntity))
   }
 
   async getPipelineRuns(dto: GetPipelineRunsDTO): Promise<PipelineRunDTO[]> {
@@ -63,6 +63,21 @@ export class PipelineService {
     pipelineDto.date = entity.date
     pipelineDto.created = entity.created
     pipelineDto.updated = entity.updated
+    return pipelineDto
+  }
+
+  convertPipelineEntityToPipelineDto(entity: PipelineRunEntity): PipelineDTO {
+    const pipelineDto = new PipelineDTO()
+    pipelineDto.id = entity.id
+    pipelineDto.pipelineId = entity.pipeline_id
+    pipelineDto.avgRuntime = entity.total_runtime
+    pipelineDto.numberOfJobs = entity.number_of_jobs
+    pipelineDto.totalCoreHours = entity.total_core_hours
+    pipelineDto.avgWaitingTime = entity.avg_waiting_time
+    pipelineDto.avgUtilization = entity.avg_utilization
+    pipelineDto.avgCpuUtilization = entity.avg_cpu_utilization
+    pipelineDto.avgMemoryUtilization = entity.avg_memory_utilization
+    pipelineDto.date = entity.date
     return pipelineDto
   }
 }

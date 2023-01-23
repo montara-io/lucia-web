@@ -1,7 +1,6 @@
 import { createBrowserHistory } from 'history';
 
 import { useState } from 'react';
-import { useIntl } from 'react-intl';
 import Menu from '../../stories/Menu/Menu';
 import { BreadCrumbs } from '../common/BreadCrumbs/BreadCrumbs';
 import Router from './Router';
@@ -9,8 +8,6 @@ import Router from './Router';
 import { Body, Context, MenuWrapper, Wrapper } from './styles';
 
 export const Main = (props: any): JSX.Element => {
-  const intl = useIntl();
-
   const history = createBrowserHistory();
   const [menuExpand, setMenuExpand] = useState(true);
   const [selected, setSelected] = useState('pipelines');
@@ -36,21 +33,11 @@ export const Main = (props: any): JSX.Element => {
     return menu?.map((menuData) => {
       return {
         ...menuData,
-        label:
-          menuData.label?.length > 0
-            ? intl
-                .formatMessage({
-                  id: menuData.label,
-                  defaultMessage: menuData.label,
-                })
-                .toUpperCase()
-            : '',
+        label: menuData.label?.length > 0 ? menuData.label : '',
         items: menuData?.items?.map((item) => {
           return {
             ...item,
-            label: intl
-              .formatMessage({ id: item.label, defaultMessage: item.label })
-              .toUpperCase(),
+            label: item.label.toUpperCase(),
             command: () => handleMenuClick(item.id),
           };
         }),
