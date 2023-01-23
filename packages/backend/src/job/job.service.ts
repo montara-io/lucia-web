@@ -72,14 +72,14 @@ export class JobService {
     jobDto.created = entity.created
     jobDto.updated = entity.updated
     jobDto.deleted = entity.deleted
-    jobDto.sparkJobMetrics.coreHours = entity['spark_job_metrics.core_hours']
-    jobDto.sparkJobMetrics.waitingTime = entity['spark_job_metrics.waiting_time']
-    jobDto.sparkJobMetrics.utilization = entity['spark_job_metrics.utilization']
-    jobDto.sparkJobMetrics.cpuUtilization = entity['spark_job_metrics.cpu_utilization']
-    jobDto.sparkJobMetrics.memoryUtilization = entity['spark_job_metrics.memory_utilization']
-    jobDto.sparkJobMetrics.numberOfCores = entity['spark_job_metrics.number_of_cores']
-    jobDto.sparkJobMetrics.usedMemory = entity['spark_job_metrics.used_memory']
-    jobDto.sparkJobMetrics.runtime = entity['spark_job_metrics.runtime']
+    jobDto.sparkJobMetrics.avgCoreHours = entity['spark_job_metrics.core_hours']
+    jobDto.sparkJobMetrics.avgWaitingTime = entity['spark_job_metrics.waiting_time']
+    jobDto.sparkJobMetrics.avgUtilization = entity['spark_job_metrics.utilization']
+    jobDto.sparkJobMetrics.avgCpuUtilization = entity['spark_job_metrics.cpu_utilization']
+    jobDto.sparkJobMetrics.avgMemoryUtilization = entity['spark_job_metrics.memory_utilization']
+    jobDto.sparkJobMetrics.avgNumberOfCores = entity['spark_job_metrics.number_of_cores']
+    jobDto.sparkJobMetrics.avgUsedMemory = entity['spark_job_metrics.used_memory']
+    jobDto.sparkJobMetrics.avgRuntime = entity['spark_job_metrics.runtime']
 
     return jobDto
   }
