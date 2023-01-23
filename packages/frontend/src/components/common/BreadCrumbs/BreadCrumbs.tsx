@@ -1,5 +1,6 @@
 import { BrowserHistory } from 'history';
 import { useEffect, useState } from 'react';
+import { ButtonIcon } from '../../../stories/ButtonIcon';
 import { BreadCrumbContainer } from './styles';
 
 const pageTitles = {
@@ -16,10 +17,11 @@ export const BreadCrumbs = ({ history }: { history: BrowserHistory }) => {
   return (
     <BreadCrumbContainer>
       <span>
-        <img src="/assets/icons/breadcrumbs.svg" alt="" />
+        <ButtonIcon iconName="arrow-left" onClick={() => history.back()} />
 
-        <span>{'>'}</span>
-        <span>{pageTitle}</span>
+        {/* <img src="/assets/internal-link-arrow.svg" alt="" /> */}
+        {/* <span>{'>'}</span>
+        <span>{pageTitle}</span> */}
       </span>
     </BreadCrumbContainer>
   );

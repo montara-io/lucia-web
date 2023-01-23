@@ -120,39 +120,64 @@ export function dataFormatterCallback(params: {
   };
 }
 
+const dataToOverview = [
+  {
+    title: 'Total Runtime',
+    field: 'totalRuntime',
+  },
+  {
+    title: 'Avg. Utilization',
+    field: 'avgUtilization',
+  },
+  {
+    title: 'Core Hours',
+    field: 'totalCoreHours',
+  },
+  {
+    title: 'Avg. Waiting Time',
+    field: 'avgWaitingTime',
+  },
+];
+
 export function formatOverview(
   pipelineRuns: PipelineRunResponse[],
 ): OverviewItem[] {
-  return [
-    {
-      title: 'Total Runtime',
-      score: arrayAverage(
-        pipelineRuns.map((pipelineRun) => pipelineRun.totalRuntime || 0),
-      ),
-    },
-    {
-      title: 'Avg. Utilization',
-      score: `${arrayAverage(
-        pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
-      )}%`,
-    },
-    {
-      title: 'Avg. Utilization',
-      score: `${arrayAverage(
-        pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
-      )}%`,
-    },
-    {
-      title: 'Avg. Utilization',
-      score: `${arrayAverage(
-        pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
-      )}%`,
-    },
-    {
-      title: 'Avg. Utilization',
-      score: `${arrayAverage(
-        pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
-      )}%`,
-    },
-  ];
+  return dataToOverview.map((data) => ({
+    title: data.title,
+    score: arrayAverage(
+      pipelineRuns.map((pipelineRun) => pipelineRun[data.field] || 0),
+    ),
+  }));
+  // return [
+  //   {
+  //     title: 'Total Runtime',
+  //     score: arrayAverage(
+  //       pipelineRuns.map((pipelineRun) => pipelineRun.totalRuntime || 0),
+  //     ),
+  //   },
+  //   {
+  //     title: 'Avg. Utilization',
+  //     score: `${arrayAverage(
+  //       pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
+  //     )}%`,
+  //   },
+  //   {
+  //     title: 'Avg. Utilization',
+  //     score: `${arrayAverage(
+  //       pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
+  //     )}%`,
+  //   },
+  //   {
+  //     title: 'Avg. Utilization',
+  //     score: `${arrayAverage(
+  //       pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
+  //     )}%`,
+  //   },
+  //   {
+  //     title: 'Avg. Utilization',
+  //     score: `${arrayAverage(
+  //       pipelineRuns.map((pipelineRun) => pipelineRun.avgUtilization || 0),
+  //     )}%`,
+  //   },
+  // ];
 }

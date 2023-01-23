@@ -60,62 +60,59 @@ export type LineChartData = {
   }[];
 };
 
+const metricsToTexts = [
+  {
+    chartTitle: 'Utilization',
+    scoreField: 'utilization',
+  },
+  {
+    chartTitle: 'Avg. Waiting time',
+    scoreField: 'waitingTime',
+  },
+  {
+    chartTitle: 'Avg. Runtime',
+    scoreField: 'runtime',
+  },
+  {
+    chartTitle: 'Avg. Core Hours',
+    scoreField: 'coreHours',
+  },
+];
+
 export function formatOverview(jobs: JobRun[]): OverviewItem[] {
-  return [
-    {
-      title: 'Average Runtime',
-      score: arrayAverage(jobs.map((job) => job.sparkJobMetrics?.runtime || 0)),
-    },
-    {
-      title: 'Average Utilization',
-      score: arrayAverage(
-        jobs.map((job) => job.sparkJobMetrics?.utilization || 0),
-      ),
-    },
-    {
-      title: 'Average Utilization',
-      score: arrayAverage(
-        jobs.map((job) => job.sparkJobMetrics?.utilization || 0),
-      ),
-    },
-    {
-      title: 'Average Utilization',
-      score: arrayAverage(
-        jobs.map((job) => job.sparkJobMetrics?.utilization || 0),
-      ),
-    },
-    {
-      title: 'Average Utilization',
-      score: arrayAverage(
-        jobs.map((job) => job.sparkJobMetrics?.utilization || 0),
-      ),
-    },
-    {
-      title: 'Average Utilization',
-      score: arrayAverage(
-        jobs.map((job) => job.sparkJobMetrics?.utilization || 0),
-      ),
-    },
-  ];
+  return metricsToTexts.map((curr) => ({
+    title: curr.chartTitle,
+    score: arrayAverage(
+      jobs.map((job) => job.sparkJobMetrics?.[curr.scoreField] || 0),
+    ),
+  }));
 }
 
 export function formatLineChartData(jobs: JobRun[]): LineChartData[] {
-  return [
-    {
-      chartTitle: 'Utilization',
-      scores: jobs.map((job) => ({
-        score: job.sparkJobMetrics?.utilization || 0,
-        label: job.date.split('T')[0],
-        date: job.date.split('T')[0],
-      })),
-    },
-    {
-      chartTitle: 'Avg. Waiting time',
-      scores: jobs.map((job) => ({
-        score: job.sparkJobMetrics?.waitingTime || 0,
-        label: job.date.split('T')[0],
-        date: job.date.split('T')[0],
-      })),
-    },
-  ];
+  return metricsToTexts.map((curr) => ({
+    chartTitle: curr.chartTitle,
+    scores: jobs.map((job) => ({
+      score: job.sparkJobMetrics?.[curr.scoreField] || 0,
+      label: job.date.split('T')[0],
+      date: job.date.split('T')[0],
+    })),
+  }));
+  // return [
+  //   {
+  //     chartTitle: 'Utilization',
+  //     scores: jobs.map((job) => ({
+  //       score: job.sparkJobMetrics?.utilization || 0,
+  //       label: job.date.split('T')[0],
+  //       date: job.date.split('T')[0],
+  //     })),
+  //   },
+  //   {
+  //     chartTitle: 'Avg. Waiting time',
+  //     scores: jobs.map((job) => ({
+  //       score: job.sparkJobMetrics?.waitingTime || 0,
+  //       label: job.date.split('T')[0],
+  //       date: job.date.split('T')[0],
+  //     })),
+  //   },
+  // ];
 }

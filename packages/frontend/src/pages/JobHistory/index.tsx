@@ -11,6 +11,8 @@ export const JobPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [overview, setOverview] = useState([] as OverviewItem[]);
   const [lineChartData, setLineChartData] = useState([] as LineChartData[]);
+  const [jobId, setJobId] = useState('');
+
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
@@ -18,6 +20,7 @@ export const JobPage = () => {
         const responseData = await get('/job/runs/by-job-id?jobId=job1');
         setOverview(formatOverview(responseData));
         setLineChartData(formatLineChartData(responseData));
+        setJobId(responseData[0]?.jobId);
       } catch (error) {
         console.error(error);
       } finally {
@@ -32,7 +35,7 @@ export const JobPage = () => {
     <Loading />
   ) : (
     <div>
-      <DivTitleContainer>{'Cohort'}</DivTitleContainer>
+      <DivTitleContainer>Job: {jobId}</DivTitleContainer>
       <Card>
         <Overview items={overview} />
       </Card>
