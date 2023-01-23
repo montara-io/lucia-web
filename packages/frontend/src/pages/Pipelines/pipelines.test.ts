@@ -31,7 +31,7 @@ describe('data formatting', () => {
       responseData: responseDataFallback,
       navigate: () => {},
     });
-    expect(formatted.headerData[0].field).toBe('name');
-    expect(formatted.bodyData[0].totalRuntime).toBe('20 Hrs.');
+    expect(formatted.headerData[0].field).toBe('pipelineId');
+    expect(formatted.bodyData[0].avgRuntime).toBe('20 Hrs.');
   });
 });

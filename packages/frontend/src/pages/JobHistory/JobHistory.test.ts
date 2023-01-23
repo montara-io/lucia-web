@@ -38,10 +38,10 @@ const jobsMock: JobRun[] = [
 describe('Job History', () => {
   it('should format overview items', () => {
     const result = formatOverview(jobsMock);
-    expect(result[0].score).toBe(20);
+    expect(result[0].score).toBe(2);
   });
   it('should format the line chart data', () => {
     const result = formatLineChartData(jobsMock);
-    expect(result).toHaveLength(2);
+    expect(result).toHaveLength(4);
   });
 });

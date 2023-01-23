@@ -43,7 +43,7 @@ describe('Pipeline Run component', () => {
       responseData: responseDataFallback,
       navigate: () => {},
     });
-    expect(formatted.headerData[0].field).toBe('job');
-    expect(formatted.bodyData[0].coreHours).toBe(5);
+    expect(formatted.headerData[0].field).toBe('jobId');
+    expect(formatted.bodyData[0].coreHours).toBe('5 Hrs.');
   });
 });
