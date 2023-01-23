@@ -13,7 +13,7 @@ export const TABLE_COLUMNS = {
     title: 'Total Runtime',
     sortable: true,
     sortType: 'string',
-    unit: '%',
+    unit: 'Hrs.',
   },
   avgCoreHours: {
     title: 'Avg. Core Hours',
@@ -27,5 +27,12 @@ export const TABLE_COLUMNS = {
   totalCoreHours: {
     title: 'Total Core Hrs.',
     unit: 'Hrs.',
+    sortable: true,
+    sortType: 'string',
+  },
+  date: {
+    title: 'Date',
+    sortable: true,
+    sortType: 'string',
   },
 };

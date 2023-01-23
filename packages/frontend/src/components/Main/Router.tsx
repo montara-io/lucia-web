@@ -6,7 +6,7 @@ import {
 import JobHistory from '../../pages/JobHistory';
 import PipelineRun from '../../pages/PipelineRun/PipelineRun';
 
-import PipelineRuns from '../../pages/PipelineRuns/PipelineRuns';
+import PipelineRuns from '../../pages/PipelineRuns';
 import PipelinesPage from '../../pages/Pipelines';
 import JobsPage from '../../pages/Jobs';
 import { Routes } from '../../constants/routes';

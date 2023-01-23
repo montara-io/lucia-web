@@ -64,7 +64,7 @@ function PageWithTable({
       <DivTitleContainer>{pageHeader}</DivTitleContainer>
 
       {children}
-      {tableHeader && <DivTitle>All Runs</DivTitle>}
+      {tableHeader && <DivTitle>Run Details</DivTitle>}
       {!!bodyData?.length && (
         <DataTable
           id={id}
