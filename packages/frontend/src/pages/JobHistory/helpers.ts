@@ -1,10 +1,11 @@
 import { arrayAverage } from '../../utils/arrays';
+import { formatDate } from '../../utils/date';
 import { OverviewItem } from './../../stories/Overview/Overview';
 export type JobRun = {
   pipelineRunId: string;
   jobId: string;
   date: string;
-  sparkJobMetrics?: {
+  sparkJobRunMetrics?: {
     jobRunId: string;
     utilization: number;
     runtime: number;
@@ -17,40 +18,6 @@ export type JobRun = {
   };
 };
 
-export const jobsFallback: JobRun[] = [
-  {
-    pipelineRunId: 'Monty Python',
-    jobId: 'Cohort',
-    date: '2022-09-05T08:23:25.960Z',
-    sparkJobMetrics: {
-      jobRunId: 'Monty Python',
-      utilization: 20,
-      runtime: 20,
-      waitingTime: 20,
-      coreHours: 20,
-      usedMemory: 20,
-      numberOfCores: 20,
-      cpuUtilization: 20,
-      memoryUtilization: 20,
-    },
-  },
-  {
-    pipelineRunId: 'Monty Python',
-    jobId: 'Cohort',
-    date: '2022-09-05T08:23:25.960Z',
-    sparkJobMetrics: {
-      jobRunId: 'Monty Python',
-      utilization: 80,
-      runtime: 20,
-      waitingTime: 50,
-      coreHours: 20,
-      usedMemory: 20,
-      numberOfCores: 20,
-      cpuUtilization: 20,
-      memoryUtilization: 20,
-    },
-  },
-];
 export type LineChartData = {
   chartTitle: string;
   scores: {
@@ -66,17 +33,18 @@ const metricsToTexts = [
     scoreField: 'utilization',
   },
   {
-    chartTitle: 'Avg. Waiting time',
+    chartTitle: 'Waiting time',
     scoreField: 'waitingTime',
   },
   {
-    chartTitle: 'Avg. Runtime',
+    chartTitle: 'Runtime',
     scoreField: 'runtime',
     unit: 'Hrs.',
   },
   {
-    chartTitle: 'Avg. Core Hours',
+    chartTitle: 'Core Hours',
     scoreField: 'coreHours',
+    unit: 'Hrs.',
   },
 ];
 
@@ -84,7 +52,7 @@ export function formatOverview(jobs: JobRun[]): OverviewItem[] {
   return metricsToTexts.map((curr) => ({
     title: curr.chartTitle,
     score: `${arrayAverage(
-      jobs.map((job) => job.sparkJobMetrics?.[curr.scoreField] || 0),
+      jobs.map((job) => job.sparkJobRunMetrics?.[curr.scoreField] || 0),
     )} ${curr.unit || '%'}`,
   }));
 }
@@ -93,9 +61,9 @@ export function formatLineChartData(jobs: JobRun[]): LineChartData[] {
   return metricsToTexts.map((curr) => ({
     chartTitle: curr.chartTitle,
     scores: jobs.map((job) => ({
-      score: job.sparkJobMetrics?.[curr.scoreField] || 0,
-      label: job.date.split('T')[0],
-      date: job.date.split('T')[0],
+      score: job.sparkJobRunMetrics?.[curr.scoreField] || 0,
+      label: formatDate(job.date),
+      date: formatDate(job.date),
     })),
   }));
 }

@@ -35,7 +35,7 @@ export const JobPage = () => {
     <Loading />
   ) : (
     <div>
-      <DivTitleContainer>Job: {jobId}</DivTitleContainer>
+      <DivTitleContainer>{jobId} - Over Time</DivTitleContainer>
       <Card>
         <Overview items={overview} />
       </Card>
@@ -48,13 +48,6 @@ export const JobPage = () => {
           />
         </>
       ))}
-
-      {/* <DivTitle>Avg. Waiting Time</DivTitle>
-      <ChartNumeric key={'TODO2'} />
-      <DivTitle>Avg. Waiting Time</DivTitle>
-      <ChartNumeric key={'TODO3'} />
-      <DivTitle>Avg. Waiting Time</DivTitle>
-      <ChartNumeric key={'TODO4'} /> */}
     </div>
   );
 };

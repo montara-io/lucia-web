@@ -69,10 +69,10 @@ export function dataFormatterCallback(params: {
         headerStyle: {
           cellWidth: '12rem',
         },
-        template: () => (
+        template: ({ jobId }) => (
           <ExploreButton
-            onClick={() => navigate('/job/123')}
-            text={'Explore'}
+            onClick={() => navigate(`/job/${jobId}`)}
+            text={'Analyze Runs'}
           />
         ),
       },

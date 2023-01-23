@@ -1,13 +1,13 @@
-import moment from 'moment';
 import ExploreButton from '../../components/common/ExploreButton';
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
+import { formatDate } from '../../utils/date';
 
 export type JobByPipelineRunIdResponse = {
   id: string;
   pipelineRunId: string;
   jobId: string;
   date: string;
-  sparkJobMetrics?: {
+  sparkJobRunMetrics?: {
     id: string;
     jobRunId: string;
     utilization: number;
@@ -27,7 +27,7 @@ export const responseDataFallback: JobByPipelineRunIdResponse[] = [
     id: 'Feature Engine',
     jobId: 'Feature Engine',
     pipelineRunId: 'asdasd',
-    sparkJobMetrics: {
+    sparkJobRunMetrics: {
       coreHours: 5,
       cpuUtilization: 50,
       id: 'asdasd',
@@ -45,7 +45,7 @@ export const responseDataFallback: JobByPipelineRunIdResponse[] = [
     id: 'Cohort',
     jobId: 'Cohort',
     pipelineRunId: 'asdasd',
-    sparkJobMetrics: {
+    sparkJobRunMetrics: {
       coreHours: 5,
       cpuUtilization: 50,
       id: 'asdasd',
@@ -133,13 +133,13 @@ export function dataFormatterCallback(params: {
     ],
     bodyData: responseData.map((rd) => ({
       jobId: rd.jobId,
-      date: moment(rd.date).format('MM/DD/YYYY, h:mm A'),
-      ramUtilization: `${rd.sparkJobMetrics?.memoryUtilization}%`,
-      cpuUtilization: `${rd.sparkJobMetrics?.cpuUtilization}%`,
+      date: formatDate(rd.date),
+      ramUtilization: `${rd.sparkJobRunMetrics?.memoryUtilization}%`,
+      cpuUtilization: `${rd.sparkJobRunMetrics?.cpuUtilization}%`,
 
-      runtime: `${rd.sparkJobMetrics?.runtime} hrs.`,
-      coreHours: rd.sparkJobMetrics?.coreHours,
-      waitingTime: rd.sparkJobMetrics?.waitingTime,
+      runtime: `${rd.sparkJobRunMetrics?.runtime} hrs.`,
+      coreHours: rd.sparkJobRunMetrics?.coreHours,
+      waitingTime: rd.sparkJobRunMetrics?.waitingTime,
     })),
   };
 }

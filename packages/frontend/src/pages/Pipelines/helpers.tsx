@@ -1,5 +1,6 @@
 import ExploreButton from '../../components/common/ExploreButton';
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
+import { formatDate } from '../../utils/date';
 
 export type PipelineAllResponse = {
   id: string;
@@ -90,10 +91,10 @@ export function dataFormatterCallback(params: {
     bodyData: responseData.map((rd) => ({
       name: rd.pipelineId,
       id: rd.pipelineId,
-      lastRunDate: rd.date.split('T')[0],
+      lastRunDate: formatDate(rd.date),
       totalRuntime: `${rd.avgRuntime} Hrs.`,
       avgRuntime: rd.avgUtilization,
-      avgCoreHours: rd.avgCpuUtilization,
+      avgCoreHours: `${rd.totalCoreHours} Hrs.`,
       avgWaitingTime: `${rd.avgWaitingTime} Hrs.`,
     })),
   };

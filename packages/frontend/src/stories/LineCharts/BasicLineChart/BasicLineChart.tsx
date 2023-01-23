@@ -266,7 +266,7 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
       formatter: function (params) {
         const data = props.data[params.dataIndex];
         return (
-          "<div style='position:relative;text-align:center;width:80px;'>" +
+          "<div style='position:relative;text-align:center;width:90px;'>" +
           "<div style='transform:rotate(45deg);background-color:#2F4D6F;width:40%;height:40%;position:absolute;top:90%;left:25%;z-index:-1;'></div><span>" +
           '<b>Score: ' +
           data.score +
