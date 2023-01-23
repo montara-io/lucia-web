@@ -16,12 +16,13 @@ export default async function globalSetup() {
   } else {
     runDockerComposeDown()
     console.log('Running docker compose')
-    const child = spawn('docker-compose', ['up'], {
+    const child = spawn('docker-compose', ['up', 'db'], {
       stdio: 'pipe',
     })
     children.push(child)
   }
   await waitForDB()
+  await runMigrations()
 
   await sleep(5000)
   console.log('ready to start testing')
