@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { get } from '../../services/http.service';
 import Card from '../../stories/Card/Card';
+import BasicLineChart from '../../stories/LineCharts/BasicLineChart/BasicLineChart';
 import Loading from '../../stories/Loading/Loading';
 import Overview, { OverviewItem } from '../../stories/Overview/Overview';
-import ChartNumeric from './ChartNumeric/ChartNumeric';
+
 import { formatLineChartData, formatOverview, LineChartData } from './helpers';
-import { DivTitle, DivTitleContainer } from './styles';
+import { Container, DivTitle, DivTitleContainer } from './styles';
 
 export const JobPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,13 +40,22 @@ export const JobPage = () => {
       <Card>
         <Overview items={overview} />
       </Card>
-      {lineChartData.map((currLineChartData) => (
+      {lineChartData.map((currLineChartData, i) => (
         <>
           <DivTitle>{currLineChartData.chartTitle}</DivTitle>
-          <ChartNumeric
-            scores={currLineChartData.scores}
-            key={currLineChartData.chartTitle}
-          />
+
+          <Card>
+            <Container small={true}>
+              <BasicLineChart
+                data={currLineChartData.scores.map((score) => ({
+                  id: score.label,
+                  score: score.score,
+                  label: score.label,
+                  date: score.date,
+                }))}
+              />
+            </Container>
+          </Card>
         </>
       ))}
     </div>

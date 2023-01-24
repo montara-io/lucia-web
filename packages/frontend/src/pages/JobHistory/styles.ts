@@ -26,3 +26,8 @@ export const DivTitle = styled.div`
   opacity: 1;
   text-align: left;
 `;
+
+export const Container = styled.div<{ small: boolean | undefined }>`
+  height: ${({ small }) => (small ? '13.75' : '17.5')}em;
+  padding: 0 18px;
+`;
