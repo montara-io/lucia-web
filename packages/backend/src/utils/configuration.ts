@@ -8,8 +8,8 @@ import { merge } from 'lodash'
 export const defaultConfig = join(process.cwd(), 'src/utils/config', 'default.yml')
 
 function handleYAMLError(error: YAMLException, configFileName: string) {
-  const { message, ...restOfError } = error
-  const { buffer, snippet, ...restOfMark } = (restOfError as any).mark
+  const { ...restOfError } = error
+  const { ...restOfMark } = (restOfError as any).mark
   const errorWithoutPII = {
     ...restOfError,
     mark: restOfMark,
@@ -45,7 +45,7 @@ const loadConfigFileAsync = async (configFileName = process.env.service_config |
 
 let config = null
 let interval = null
-export let loadConfig = (configFileName = process.env.service_config || defaultConfig, withRefresh = false) => {
+export const loadConfig = (configFileName = process.env.service_config || defaultConfig, withRefresh = false) => {
   if (!config) {
     config =
       configFileName === defaultConfig
@@ -61,7 +61,7 @@ export let loadConfig = (configFileName = process.env.service_config || defaultC
     refreshConfig(configFileName)
   }
   const configProxy = new Proxy(config, {
-    get: function (target, prop, receiver) {
+    get: function (target, prop) {
       return config[prop]
     },
   })
@@ -95,7 +95,7 @@ export function clearConfigCache() {
 }
 
 export function getSecretlessConfigString(config) {
-  let safeConfig = JSON.parse(JSON.stringify(config))
+  const safeConfig = JSON.parse(JSON.stringify(config))
   iterateOverConfigAndClean(safeConfig)
   return JSON.stringify(safeConfig)
 }

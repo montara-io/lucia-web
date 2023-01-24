@@ -69,6 +69,7 @@ export async function waitForDB() {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function runMigrations() {
   console.log('running Migrations')
   try {
