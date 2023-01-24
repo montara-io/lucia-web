@@ -3,5 +3,8 @@
     { "path": "packages/frontend" },
     { "path": "packages/backend" }
   ],
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "types": ["node", "jest"]
+  }
 }

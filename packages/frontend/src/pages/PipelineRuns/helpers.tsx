@@ -66,6 +66,7 @@ export function formatOverview(
   return prefix.concat(
     overviewItems.map((oi) => ({
       title: TABLE_COLUMNS[oi].title,
+      tooltip: TABLE_COLUMNS[oi].helpIconText,
       score: formatField({
         fieldName: oi,
         fieldValue: arrayAverage(

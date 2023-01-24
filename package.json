@@ -7,10 +7,16 @@
     "backend-start": "cd packages/backend && npm start",
     "frontend-install": "cd packages/frontend && npm install",
     "backend-install": "cd packages/backend && npm install",
-    "install-all": "npm run frontend-install && npm run backend-install"
+    "install-all": "npm run frontend-install && npm run backend-install",
+    "lint-frontend": "cd packages/frontend && npm run lint",
+    "lint-backend": "cd packages/backend && npm run lint",
+    "lint-all": "npm run lint-frontend && npm run lint-backend"
   },
   "main": "index.js",
   "repository": "git@github.com:montara-io/lucia-web.git",
   "author": "Dadi Atar <dadi@montara.io>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@types/jest": "^29.2.6"
+  }
 }

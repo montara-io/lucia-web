@@ -17,6 +17,7 @@ export function getCommonTableHeaders({
     sortable: TABLE_COLUMNS[c].sortable || false,
     sortType: TABLE_COLUMNS[c].sortType,
     sortField: c,
+    helpIconText: TABLE_COLUMNS[c].helpIconText,
   }));
 
   return headerData.concat([

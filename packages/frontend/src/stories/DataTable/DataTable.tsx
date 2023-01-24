@@ -5,9 +5,10 @@ import {
   DataTableSortOrderType,
 } from 'primereact/datatable';
 import { Ripple } from 'primereact/ripple';
-import React, { FunctionComponent, useEffect, useRef } from 'react';
+import { FunctionComponent, useEffect, useRef } from 'react';
 import { useState } from 'react';
 import EmptyState from '../EmptyState/EmptyState';
+import HelpIcon from '../HelpIcon/HelpIcon';
 import './DataTable.scss';
 
 export type DataRow = { isActive?: boolean } & { [key: string]: any };
@@ -18,7 +19,7 @@ export type HeaderRow = {
   template?: (data: any) => void;
   sortable?: boolean;
   sortField?: string;
-  sortType?: 'string' | 'number'; // 'dropdown' | 'date'
+  sortType?: 'string' | 'number';
   filter?: boolean;
   filterFunction?: (values: any, filter: string) => boolean;
   sortFunction?: () => void;
@@ -26,6 +27,7 @@ export type HeaderRow = {
   disabled?: boolean;
   headerStyle?: object;
   scrollHeight?: string;
+  helpIconText?: string;
 };
 
 export type DataTableProps = {
@@ -35,7 +37,6 @@ export type DataTableProps = {
   paginationRows?: number;
   showExporting?: boolean;
   exportLabel?: string;
-  removeSeparators?: boolean;
   onFilter?: () => void;
   onSort?: (e) => void;
   onValueChange?: (value) => void;
@@ -44,6 +45,21 @@ export type DataTableProps = {
   defaultSortOrder?: DataTableSortOrderType;
 };
 
+function HeaderComponent({
+  title,
+  helpIconText,
+}: {
+  title: string;
+  helpIconText?: string;
+}) {
+  return (
+    <div className="m-header-table" style={{ position: 'relative' }}>
+      <span className="m-table-header">{title.toUpperCase()}</span>
+      <div>{!!helpIconText && <HelpIcon helpLinkTooltip={helpIconText} />}</div>
+    </div>
+  );
+}
+
 const DataTable: FunctionComponent<DataTableProps> = ({
   id,
   bodyData = [],
@@ -51,7 +67,7 @@ const DataTable: FunctionComponent<DataTableProps> = ({
   showExporting,
   exportLabel,
   paginationRows,
-  removeSeparators,
+
   onFilter,
   onSort,
   onValueChange,
@@ -63,7 +79,7 @@ const DataTable: FunctionComponent<DataTableProps> = ({
   const DESC = -1;
   const [sortField, setSortField] = useState(defaultSortField);
   const [sortOrder, setSortOrder] = useState<DataTableSortOrderType>(
-    defaultSortOrder as DataTableSortOrderType
+    defaultSortOrder as DataTableSortOrderType,
   );
 
   useEffect(() => {
@@ -151,9 +167,8 @@ const DataTable: FunctionComponent<DataTableProps> = ({
         ref={dt}
         value={bodyData}
         rowClassName={rowClass}
-        className={removeSeparators ? 'no-separators' : ''}
         dataKey="id"
-        alwaysShowPaginator={false}
+        alwaysShowPaginator={true}
         paginator={true}
         rows={paginationRows || bodyData.length || 1}
         paginatorTemplate={paginatorTemplate as any}
@@ -184,8 +199,9 @@ const DataTable: FunctionComponent<DataTableProps> = ({
               sortFunction,
               disabled,
               headerStyle,
+              helpIconText,
             }: HeaderRow,
-            i
+            i,
           ) => (
             <Column
               key={i}
@@ -194,7 +210,9 @@ const DataTable: FunctionComponent<DataTableProps> = ({
                   ? `${field.toLowerCase()}`
                   : field.toLowerCase()
               }`}
-              header={`${title.toUpperCase()}`}
+              header={(data) => (
+                <HeaderComponent helpIconText={helpIconText} title={title} />
+              )}
               headerStyle={
                 headerStyle ? { ...headerStyle } : { width: '10rem' }
               }
@@ -208,7 +226,7 @@ const DataTable: FunctionComponent<DataTableProps> = ({
               sortableDisabled={disabled}
               sortFunction={sortFunction}
             />
-          )
+          ),
         )}
       </PDataTable>
     </div>
