@@ -1,15 +1,17 @@
 export class SparkJobRunMetricsDTO {
   id: string
   jobRunId: string
-  utilization: number
-  runtime: number
-  waitingTime: number
-  coreHours: number
-  usedMemory: number
-  numberOfCores: number
+  numOfExecutors: number
+  totalMemoryPerExecutor: number
+  totalBytesRead: number
+  totalBytesWritten: number
+  totalShuffleRead: number
+  totalShuffleWrite: number
+  totalCpuTimeUsed: number
+  totalCpuUptime: number
+  peakMemoryUsage: number
+  totalCoresNum: number
   cpuUtilization: number
-  memoryUtilization: number
-  created: Date
-  updated: Date
-  deleted: boolean
+  startDate: Date
+  endDate: Date
 }

@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { DataSource } from 'typeorm'
-import { JobRunEntity } from './entity/job.entity'
-import { SparkJobMetricsEntity } from './entity/spark-job-metrics.entity'
 import { InjectPinoLogger, Logger } from 'nestjs-pino'
 import { InjectDataSource } from '@nestjs/typeorm'
+import { SparkJobRunEntity } from './entity/spark-job-run.entity'
 
 @Injectable()
 export class JobRepository {
@@ -20,31 +19,30 @@ export class JobRepository {
     return this.dataSource.manager
   }
 
-  async findPipelineJobRuns(pipelineRunId: string): Promise<JobRunEntity[]> {
+  async findPipelineJobRuns(pipelineRunId: string): Promise<SparkJobRunEntity[]> {
     try {
       const jobQuery = this.dataSource.manager
         .createQueryBuilder()
-        .addSelect('job_run.id', 'id')
-        .addSelect('job_run.job_id', 'job_id')
-        .addSelect('job_run.pipeline_run_id', 'pipeline_run_id')
-        .addSelect('spark_job_metrics.utilization', 'spark_job_metrics.utilization')
-        .addSelect('spark_job_metrics.runtime', 'spark_job_metrics.runtime')
-        .addSelect('spark_job_metrics.waiting_time', 'spark_job_metrics.waiting_time')
-        .addSelect('spark_job_metrics.core_hours', 'spark_job_metrics.core_hours')
-        .addSelect('spark_job_metrics.used_memory', 'spark_job_metrics.used_memory')
-        .addSelect('spark_job_metrics.number_of_cores', 'spark_job_metrics.number_of_cores')
-        .addSelect('spark_job_metrics.cpu_utilization', 'spark_job_metrics.cpu_utilization')
-        .addSelect('spark_job_metrics.memory_utilization', 'spark_job_metrics.memory_utilization')
-        .addSelect('job_run.date', 'date')
-        .from(JobRunEntity, 'job_run')
-        .leftJoin(
-          SparkJobMetricsEntity,
-          'spark_job_metrics',
-          `spark_job_metrics.job_run_id = job_run.id AND spark_job_metrics.deleted = false`,
-        )
-        .where('job_run.pipeline_run_id = :pipelineRunId', { pipelineRunId })
-        .andWhere('job_run.deleted = false')
-        .addOrderBy('job_run.date', 'DESC')
+        .addSelect('id', 'id')
+        .addSelect('job_id', 'job_id')
+        .addSelect('pipeline_run_id', 'pipeline_run_id')
+        .addSelect('num_of_executors', 'num_of_executors')
+        .addSelect('total_memory_per_executor', 'total_memory_per_executor')
+        .addSelect('total_bytes_read', 'total_bytes_written')
+        .addSelect('total_bytes_written', 'total_bytes_written')
+        .addSelect('total_shuffle_read', 'total_shuffle_read')
+        .addSelect('total_shuffle_write', 'total_shuffle_write')
+        .addSelect('total_cpu_time_used', 'total_cpu_time_used')
+        .addSelect('total_cpu_uptime', 'total_cpu_uptime')
+        .addSelect('peak_memory_usage', 'peak_memory_usage')
+        .addSelect('total_cores_num', 'total_cores_num')
+        .addSelect('cpu_utilization', 'cpu_utilization')
+        .addSelect('start_time', 'start_time')
+        .addSelect('end_time', 'end_time')
+        .from(SparkJobRunEntity, 'spark_job_run')
+        .where('pipeline_run_id = :pipelineRunId', { pipelineRunId })
+        .andWhere('deleted = false')
+        .addOrderBy('end_date', 'DESC')
       this.logger.debug('find pipeline job runs query %s', jobQuery.getQuery())
       return await jobQuery.getRawMany()
     } catch (e) {
@@ -53,31 +51,30 @@ export class JobRepository {
     }
   }
 
-  async findJobRunsByJobId(jobId: string): Promise<JobRunEntity[]> {
+  async findJobRunsByJobId(jobId: string): Promise<SparkJobRunEntity[]> {
     try {
       const jobQuery = this.dataSource.manager
         .createQueryBuilder()
-        .addSelect('job_run.id', 'id')
-        .addSelect('job_run.job_id', 'job_id')
-        .addSelect('job_run.pipeline_run_id', 'pipeline_run_id')
-        .addSelect('spark_job_metrics.utilization', 'spark_job_metrics.utilization')
-        .addSelect('spark_job_metrics.runtime', 'spark_job_metrics.runtime')
-        .addSelect('spark_job_metrics.waiting_time', 'spark_job_metrics.waiting_time')
-        .addSelect('spark_job_metrics.core_hours', 'spark_job_metrics.core_hours')
-        .addSelect('spark_job_metrics.used_memory', 'spark_job_metrics.used_memory')
-        .addSelect('spark_job_metrics.number_of_cores', 'spark_job_metrics.number_of_cores')
-        .addSelect('spark_job_metrics.cpu_utilization', 'spark_job_metrics.cpu_utilization')
-        .addSelect('spark_job_metrics.memory_utilization', 'spark_job_metrics.memory_utilization')
-        .addSelect('job_run.date', 'date')
-        .from(JobRunEntity, 'job_run')
-        .leftJoin(
-          SparkJobMetricsEntity,
-          'spark_job_metrics',
-          `spark_job_metrics.job_run_id = job_run.id AND spark_job_metrics.deleted = false`,
-        )
-        .where('job_run.job_id = :jobId', { jobId })
-        .andWhere('job_run.deleted = false')
-        .addOrderBy('job_run.date', 'DESC')
+        .addSelect('id', 'id')
+        .addSelect('job_id', 'job_id')
+        .addSelect('pipeline_run_id', 'pipeline_run_id')
+        .addSelect('num_of_executors', 'num_of_executors')
+        .addSelect('total_memory_per_executor', 'total_memory_per_executor')
+        .addSelect('total_bytes_read', 'total_bytes_written')
+        .addSelect('total_bytes_written', 'total_bytes_written')
+        .addSelect('total_shuffle_read', 'total_shuffle_read')
+        .addSelect('total_shuffle_write', 'total_shuffle_write')
+        .addSelect('total_cpu_time_used', 'total_cpu_time_used')
+        .addSelect('total_cpu_uptime', 'total_cpu_uptime')
+        .addSelect('peak_memory_usage', 'peak_memory_usage')
+        .addSelect('total_cores_num', 'total_cores_num')
+        .addSelect('cpu_utilization', 'cpu_utilization')
+        .addSelect('start_time', 'start_time')
+        .addSelect('end_time', 'end_time')
+        .from(SparkJobRunEntity, 'sparkjob_run')
+        .where('job_id = :jobId', { jobId })
+        .andWhere('deleted = false')
+        .addOrderBy('end_date', 'DESC')
       this.logger.debug('find jobs run by job id query %s', jobQuery.getQuery())
       return await jobQuery.getRawMany()
     } catch (e) {
@@ -86,28 +83,25 @@ export class JobRepository {
     }
   }
 
-  async findJob(jobId: string): Promise<JobRunEntity> {
+  async findJob(jobId: string): Promise<SparkJobRunEntity> {
     try {
       const jobQuery = this.dataSource.manager
         .createQueryBuilder()
-        .addSelect('job_run.job_id', 'job_id')
-        .addSelect('AVG(spark_job_metrics.utilization)::INTEGER', 'spark_job_metrics.utilization')
-        .addSelect('AVG(spark_job_metrics.runtime)::INTEGER', 'spark_job_metrics.runtime')
-        .addSelect('AVG(spark_job_metrics.waiting_time)::INTEGER', 'spark_job_metrics.waiting_time')
-        .addSelect('AVG(spark_job_metrics.core_hours)::INTEGER', 'spark_job_metrics.core_hours')
-        .addSelect('AVG(spark_job_metrics.used_memory)::INTEGER', 'spark_job_metrics.used_memory')
-        .addSelect('AVG(spark_job_metrics.number_of_cores)::INTEGER', 'spark_job_metrics.number_of_cores')
-        .addSelect('AVG(spark_job_metrics.cpu_utilization)::INTEGER', 'spark_job_metrics.cpu_utilization')
-        .addSelect('AVG(spark_job_metrics.memory_utilization)::INTEGER', 'spark_job_metrics.memory_utilization')
-        .addSelect('max(date)', 'date')
-        .from(JobRunEntity, 'job_run')
-        .leftJoin(
-          SparkJobMetricsEntity,
-          'spark_job_metrics',
-          `spark_job_metrics.job_run_id = job_run.id AND spark_job_metrics.deleted = false`,
-        )
+        .addSelect('job_id', 'job_id')
+        .addSelect('AVG(num_of_executors)', 'num_of_executors')
+        .addSelect('AVG(total_memory_per_executor)', 'total_memory_per_executor')
+        .addSelect('AVG(total_bytes_read)', 'total_bytes_written')
+        .addSelect('AVG(total_bytes_written)', 'total_bytes_written')
+        .addSelect('AVG(total_shuffle_read)', 'total_shuffle_read')
+        .addSelect('AVG(total_shuffle_write)', 'total_shuffle_write')
+        .addSelect('AVG(total_cpu_time_used)', 'total_cpu_time_used')
+        .addSelect('AVG(total_cpu_uptime)', 'total_cpu_uptime')
+        .addSelect('AVG(peak_memory_usage)', 'peak_memory_usage')
+        .addSelect('AVG(total_cores_num)', 'total_cores_num')
+        .addSelect('AVG(cpu_utilization)', 'cpu_utilization')
+        .from(SparkJobRunEntity, 'sparkjob_run')
         .where('job_id = :jobId', { jobId })
-        .where('job_run.deleted = false')
+        .where('deleted = false')
         .groupBy('job_id')
       this.logger.debug('find job by job id query %s', jobQuery.getQuery())
       return await jobQuery.getRawOne()
@@ -117,29 +111,26 @@ export class JobRepository {
     }
   }
 
-  async findJobs(): Promise<JobRunEntity[]> {
+  async findJobs(): Promise<SparkJobRunEntity[]> {
     try {
       const jobQuery = this.dataSource.manager
         .createQueryBuilder()
-        .addSelect('job_run.job_id', 'job_id')
-        .addSelect('AVG(spark_job_metrics.utilization)::INTEGER', 'spark_job_metrics.utilization')
-        .addSelect('AVG(spark_job_metrics.waiting_time)::INTEGER', 'spark_job_metrics.waiting_time')
-        .addSelect('AVG(spark_job_metrics.core_hours)::INTEGER', 'spark_job_metrics.core_hours')
-        .addSelect('AVG(spark_job_metrics.runtime)::INTEGER', 'spark_job_metrics.runtime')
-        .addSelect('AVG(spark_job_metrics.used_memory)::INTEGER', 'spark_job_metrics.used_memory')
-        .addSelect('AVG(spark_job_metrics.number_of_cores)::INTEGER', 'spark_job_metrics.number_of_cores')
-        .addSelect('AVG(spark_job_metrics.cpu_utilization)::INTEGER', 'spark_job_metrics.cpu_utilization')
-        .addSelect('AVG(spark_job_metrics.memory_utilization)::INTEGER', 'spark_job_metrics.memory_utilization')
-        .addSelect('max(date)', 'date')
-        .from(JobRunEntity, 'job_run')
-        .leftJoin(
-          SparkJobMetricsEntity,
-          'spark_job_metrics',
-          `spark_job_metrics.job_run_id = job_run.id AND spark_job_metrics.deleted = false`,
-        )
-        .where('job_run.deleted = false')
+        .addSelect('job_id', 'job_id')
+        .addSelect('AVG(num_of_executors)', 'num_of_executors')
+        .addSelect('AVG(total_memory_per_executor)', 'total_memory_per_executor')
+        .addSelect('AVG(total_bytes_read)', 'total_bytes_written')
+        .addSelect('AVG(total_bytes_written)', 'total_bytes_written')
+        .addSelect('AVG(total_shuffle_read)', 'total_shuffle_read')
+        .addSelect('AVG(total_shuffle_write)', 'total_shuffle_write')
+        .addSelect('AVG(total_cpu_time_used)', 'total_cpu_time_used')
+        .addSelect('AVG(total_cpu_uptime)', 'total_cpu_uptime')
+        .addSelect('AVG(peak_memory_usage)', 'peak_memory_usage')
+        .addSelect('AVG(total_cores_num)', 'total_cores_num')
+        .addSelect('AVG(cpu_utilization)', 'cpu_utilization')
+        .addSelect('max(start_time)', 'start_time')
+        .where('deleted = false')
         .groupBy('job_id')
-        .addOrderBy('date', 'DESC')
+        .addOrderBy('end_date', 'DESC')
       this.logger.debug('find jobs query %s', jobQuery.getQuery())
       return await jobQuery.getRawMany()
     } catch (e) {

@@ -9,6 +9,7 @@ import { JobRepository } from './job.repository'
 import { GetJobsDTO as GetJobRunsDTO } from './dto/get-jobs.dto'
 import { JobDTO } from './dto/job.dto'
 import { SparkJobMetricsDTO } from './dto/spark-job-metrics.dto'
+import { SparkJobRunEntity } from './entity/spark-job-run.entity'
 
 @Injectable()
 export class JobService {
@@ -20,7 +21,7 @@ export class JobService {
   ) {}
 
   async getPipelineJobRuns(dto: GetPipelineJobRunsDTO): Promise<JobRunDTO[]> {
-    const jobEntities: JobRunEntity[] = await this.repository.findPipelineJobRuns(dto.pipelineRunId)
+    const jobEntities: SparkJobRunEntity[] = await this.repository.findPipelineJobRuns(dto.pipelineRunId)
 
     if (!jobEntities || jobEntities.length === 0) {
       this.logger.info('cannot find job runs entities for pipeline runs')
@@ -62,7 +63,7 @@ export class JobService {
     return jobEntities.map((jobEntity) => this.onvertJobEntityToJobDto(jobEntity))
   }
 
-  convertJobEntityToJobRunDto(entity: JobRunEntity): JobRunDTO {
+  convertJobEntityToJobRunDto(entity: SparkJobRunEntity): JobRunDTO {
     const jobDto = new JobRunDTO()
     const sparkJobMetricsDto = new SparkJobRunMetricsDTO()
     jobDto.sparkJobRunMetrics = sparkJobMetricsDto
@@ -70,12 +71,12 @@ export class JobService {
     jobDto.id = entity.id
     jobDto.pipelineRunId = entity.pipeline_run_id
     jobDto.jobId = entity.job_id
-    jobDto.date = entity.date
+    jobDto.date = entity.start_time
     jobDto.created = entity.created
     jobDto.updated = entity.updated
     jobDto.deleted = entity.deleted
-    jobDto.sparkJobRunMetrics.coreHours = entity['spark_job_metrics.core_hours']
-    jobDto.sparkJobRunMetrics.waitingTime = entity['spark_job_metrics.waiting_time']
+    jobDto.sparkJobRunMetrics.numOfExecutors = entity.num_of_executors
+    jobDto.sparkJobRunMetrics.cpuUtilization = entity.cpu_utilization
     jobDto.sparkJobRunMetrics.utilization = entity['spark_job_metrics.utilization']
     jobDto.sparkJobRunMetrics.cpuUtilization = entity['spark_job_metrics.cpu_utilization']
     jobDto.sparkJobRunMetrics.memoryUtilization = entity['spark_job_metrics.memory_utilization']
