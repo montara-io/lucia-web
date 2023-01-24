@@ -3,11 +3,9 @@ import retry from 'async-retry'
 import { createConnection } from 'typeorm'
 import { join } from 'path'
 import { resolve } from 'path'
-import { PipelineRunEntity } from '../src/pipeline/entity/pipeline.entity'
-import { JobRunEntity } from '../src/job/entity/job.entity'
-import { SparkJobMetricsEntity } from '../src/job/entity/spark-job-metrics.entity'
 import { loadConfig } from '../src/utils/configuration'
 import { flyway } from '../src/utils/flyway'
+import { SparkJobRunEntity } from '../src/entity/spark-job-run.entity'
 
 export const children: ChildProcess[] = []
 export default async function globalSetup() {
@@ -49,12 +47,7 @@ export async function waitForDB() {
       console.log(`db with settings: ${JSON.stringify(config.db)}`)
       const connection = await createConnection({
         ...config.db,
-        entities: [
-          join(resolve(__dirname, '../src'), '**', '*.entity.{ts,js}'),
-          PipelineRunEntity,
-          JobRunEntity,
-          SparkJobMetricsEntity,
-        ],
+        entities: [join(resolve(__dirname, '../src'), '**', '*.entity.{ts,js}'), SparkJobRunEntity],
         synchronize: false,
       })
       if (connection) {
