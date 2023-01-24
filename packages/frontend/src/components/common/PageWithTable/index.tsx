@@ -21,6 +21,7 @@ type PageWithTableProps = {
   children?: any;
   dataFormatterCallback: (responseData: any) => DataFormatterResponse;
   onData?: (data: any) => void;
+  errorElement?: React.ReactElement;
 };
 
 function PageWithTable({
@@ -31,6 +32,7 @@ function PageWithTable({
   tableHeader,
   dataFormatterCallback,
   onData,
+  errorElement,
 }: PageWithTableProps) {
   const [headerData, setHeaderData] = useState([] as HeaderRow[]);
   const [bodyData, setBodyData] = useState([] as DataRow[]);
@@ -62,13 +64,16 @@ function PageWithTable({
       <DivTitleContainer>{pageHeader}</DivTitleContainer>
 
       {children}
-      {tableHeader && <DivTitle>All Runs</DivTitle>}
-      <DataTable
-        id={id}
-        headerData={headerData}
-        bodyData={bodyData}
-        defaultSortField={'name'}
-      />
+      {tableHeader && <DivTitle>Run Details</DivTitle>}
+      {!!bodyData?.length && (
+        <DataTable
+          id={id}
+          headerData={headerData}
+          bodyData={bodyData}
+          defaultSortField={'name'}
+        />
+      )}
+      {!bodyData?.length && errorElement && errorElement}
     </>
   );
 }

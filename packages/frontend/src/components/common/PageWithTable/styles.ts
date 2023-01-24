@@ -11,12 +11,6 @@ export const DivTitleContainer = styled.div`
   text-align: left;
 `;
 
-export const GroupContainer = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-`;
-
 export const TableTitle = styled.div`
   font-weight: 600;
   font-size: 1rem;

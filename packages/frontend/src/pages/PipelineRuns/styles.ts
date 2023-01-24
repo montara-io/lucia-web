@@ -1,22 +1,5 @@
 import styled from 'styled-components';
 
-export const GroupContainer = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-`;
-
-export const PipelineTitle = styled.div`
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 19px;
-  color: #272d3b;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 15em;
-`;
-
 export const DivTitleContainer = styled.div`
   padding: 22px 0px 21px;
   font-weight: bold;
@@ -47,15 +30,4 @@ export const SubTitleContainer = styled.div`
   opacity: 1;
   text-align: left;
   padding-bottom: 21px;
-`;
-
-export const PipelineDateTitle = styled.div`
-  font-size: 0.875rem;
-  line-height: 18px;
-  color: #272d3b;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding-right: 15px;
-  max-width: 17em;
 `;

@@ -27,10 +27,7 @@ const Overview: React.FunctionComponent<OverviewProps> = ({ items = [] }) => {
           <div
             key={`${item?.title}-overview`}
             data-testid="overview-item"
-            className={classNames(
-              'overview-item',
-              index === items?.length - 1 ? 'no-border' : 'item-border',
-            )}
+            className={classNames('overview-item')}
           >
             <div
               data-testid="overview-item-data"

@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import PageWithTable from '../../components/common/PageWithTable';
+import { ApiUrls } from '../../constants/api-urls';
+import { Routes } from '../../constants/routes';
 import { dataFormatterCallback } from './helpers';
 
 export type Pipeline = {
@@ -31,9 +33,14 @@ const PipelinesPage = () => {
       pageHeader="Pipelines"
       id="pipelines"
       dataFormatterCallback={(responseData) =>
-        dataFormatterCallback({ responseData, navigate } as any)
+        dataFormatterCallback({ responseData, navigate })
       }
-      fetchUrl={'/pipeline/all'}
+      onData={(responseData) => {
+        if (!responseData || !responseData?.length) {
+          navigate(Routes.Jobs);
+        }
+      }}
+      fetchUrl={ApiUrls.GetAllPipelines}
     />
   );
 };

@@ -49,12 +49,17 @@ const metricsToTexts = [
 ];
 
 export function formatOverview(jobs: JobRun[]): OverviewItem[] {
-  return metricsToTexts.map((curr) => ({
-    title: curr.chartTitle,
-    score: `${arrayAverage(
-      jobs.map((job) => job.sparkJobRunMetrics?.[curr.scoreField] || 0),
-    )} ${curr.unit || '%'}`,
-  }));
+  const prefix: OverviewItem[] = [
+    { title: 'Num. of Runs', score: jobs.length },
+  ];
+  return prefix.concat(
+    metricsToTexts.map((curr) => ({
+      title: curr.chartTitle,
+      score: `${arrayAverage(
+        jobs.map((job) => job.sparkJobRunMetrics?.[curr.scoreField] || 0),
+      )} ${curr.unit || '%'}`,
+    })),
+  );
 }
 
 export function formatLineChartData(jobs: JobRun[]): LineChartData[] {
