@@ -1,12 +1,15 @@
 export class SparkJobMetricsDTO {
   id: string
   jobRunId: string
-  avgUtilization: number
-  avgRuntime: number
-  avgWaitingTime: number
-  avgCoreHours: number
-  avgUsedMemory: number
-  avgNumberOfCores: number
+  avgNumOfExecutors: number
+  avgTotalMemoryPerExecutor: number
+  avgTotalBytesRead: number
+  avgTotalBytesWritten: number
+  avgTotalShuffleRead: number
+  avgTotalShuffleWrite: number
+  avgTotalCpuTimeUsed: number
+  avgTotalCpuUptime: number
+  avgPeakMemoryUsage: number
+  avgTotalCoresNum: number
   avgCpuUtilization: number
-  avgMemoryUtilization: number
 }

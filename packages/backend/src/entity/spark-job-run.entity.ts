@@ -62,4 +62,6 @@ export class SparkJobRunEntity {
 
   @Column({ type: 'boolean', default: false })
   deleted: boolean
+
+  number_of_jobs?: number
 }

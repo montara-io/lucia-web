@@ -2,7 +2,7 @@ import { Controller, Get, Query, ValidationPipe } from '@nestjs/common'
 import { PipelineService } from './pipeline.service'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { GetPipelineRunsDTO } from './dto/get-pipeline-runs.dto'
-import { PipelineDTO, PipelineRunDTO } from './dto/pipeline-run.dto'
+import { PipelineRunDTO } from './dto/pipeline-run.dto'
 import { InjectPinoLogger, Logger } from 'nestjs-pino'
 import { GetByIdDTO } from './dto/get-by-id.dto'
 
@@ -30,7 +30,7 @@ export class PipelineController {
     description: 'Get latest piplines data',
   })
   @Get('/all')
-  async getPipelines(): Promise<PipelineDTO[]> {
+  async getPipelines(): Promise<PipelineRunDTO[]> {
     this.logger.debug('getting pipelines')
 
     const response = await this.pipelineService.getPipelines()

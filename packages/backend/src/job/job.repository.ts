@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 import { InjectPinoLogger, Logger } from 'nestjs-pino'
 import { InjectDataSource } from '@nestjs/typeorm'
-import { SparkJobRunEntity } from './entity/spark-job-run.entity'
+import { SparkJobRunEntity } from '../entity/spark-job-run.entity'
 
 @Injectable()
 export class JobRepository {

@@ -12,6 +12,4 @@ export class SparkJobRunMetricsDTO {
   peakMemoryUsage: number
   totalCoresNum: number
   cpuUtilization: number
-  startDate: Date
-  endDate: Date
 }
