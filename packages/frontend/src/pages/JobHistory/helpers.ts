@@ -1,3 +1,4 @@
+import { TABLE_COLUMNS } from '../../constants/table-columns';
 import { arrayAverage } from '../../utils/arrays';
 import { formatDate } from '../../utils/date';
 import { OverviewItem } from './../../stories/Overview/Overview';
@@ -33,10 +34,6 @@ const metricsToTexts = [
     scoreField: 'utilization',
   },
   {
-    chartTitle: 'Waiting time',
-    scoreField: 'waitingTime',
-  },
-  {
     chartTitle: 'Runtime',
     scoreField: 'runtime',
     unit: 'Hrs.',
@@ -50,7 +47,11 @@ const metricsToTexts = [
 
 export function formatOverview(jobs: JobRun[]): OverviewItem[] {
   const prefix: OverviewItem[] = [
-    { title: 'Num. of Runs', score: jobs.length },
+    {
+      title: 'Num. of Runs',
+      score: jobs.length,
+      tooltip: 'How many times the pipeline was triggered',
+    },
   ];
   return prefix.concat(
     metricsToTexts.map((curr) => ({
@@ -58,6 +59,7 @@ export function formatOverview(jobs: JobRun[]): OverviewItem[] {
       score: `${arrayAverage(
         jobs.map((job) => job.sparkJobRunMetrics?.[curr.scoreField] || 0),
       )} ${curr.unit || '%'}`,
+      tooltip: TABLE_COLUMNS[curr.scoreField].helpIconText,
     })),
   );
 }

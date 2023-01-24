@@ -58,11 +58,11 @@ export function dataFormatterCallback(params: {
         fieldValue: rd.sparkJobMetrics?.avgUtilization,
       }),
       avgRuntime: formatField({
-        fieldName: 'avgRuntime',
+        fieldName: 'avgJobRuntime',
         fieldValue: rd.sparkJobMetrics?.avgRuntime,
       }),
       avgCoreHours: formatField({
-        fieldName: 'avgCoreHours',
+        fieldName: 'avgJobCoreHours',
         fieldValue: rd.sparkJobMetrics?.avgCoreHours,
       }),
     })),

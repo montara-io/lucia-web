@@ -2,8 +2,7 @@ import ReactECharts from 'echarts-for-react';
 import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import * as echarts from 'echarts';
 
-import { gray230, noSeverity, primary } from '../../../styles/colors';
-import { getMinMaxView } from '../../utils/common';
+import { blue, gray230, noSeverity, primary } from '../../../styles/colors';
 
 export type BasicLineChartProps = {
   data: {
@@ -11,43 +10,25 @@ export type BasicLineChartProps = {
     score: number;
     label: string;
     date: string;
-    marker?: boolean;
     focused?: boolean;
   }[];
-  range: number[];
   focusedId?: string;
   // eslint-disable-next-line no-unused-vars
   onClick?: (...args) => void;
-  gridData?: {
-    top: string;
-    right: string;
-    left: string;
-    bottom: string;
-  };
   dynamicZoom?: boolean;
   zoomPadding?: number;
-  hideTooltips?: boolean;
-  howManyLabelsToDisplay?: number;
 };
 
 const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
   props,
 ) => {
-  const howManyLabelsToDisplay = props.howManyLabelsToDisplay || 3;
   const [chartOptions, setChartOptions] = React.useState<any>({});
   const chart = useRef(null);
-  const gridData = {
-    top: props?.gridData?.top ?? '20%',
-    right: props?.gridData?.right ?? '30px',
-    left: props?.gridData?.left ?? '30px',
-    bottom: props?.gridData?.bottom ?? '18%',
-  };
 
   let chartInstance: any = null; // TODO: Fix any
   let options: any = {};
 
-  const TOOLTIP_CIRCLE_SIZE = 5;
-  const CIRCLE_SIZE = 5;
+  const TOOLTIP_CIRCLE_SIZE = 15;
   const MARKERS_SERIES_POSITION = 1;
   const RING_SIZE = 10;
   let chartRef: any = null;
@@ -68,7 +49,7 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
       // eslint-disable-next-line react-hooks/exhaustive-deps
       options = getOption;
       setChartOptions(options);
-      handleMarkers();
+
       chartInstance.setOption(options);
     } catch (e) {
       console.error(e);
@@ -90,7 +71,6 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
     const itemIndex = id && copyData.findIndex((item) => item?.id === id);
     const copyOptions =
       Object.keys(options).length > 0 ? options : chartOptions;
-    if (!item || !item.marker) return;
     if (e?.data) {
       const {
         data: { name },
@@ -190,52 +170,6 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
     return arr;
   };
 
-  const handleMarkers = () => {
-    const { data } = props;
-
-    if (data) {
-      data?.map((item, i) => {
-        if (item.marker === true) {
-          options.series[MARKERS_SERIES_POSITION].markPoint.data.push(
-            {
-              symbol: 'image://./assets/icons/lightning.svg',
-              symbolSize: 18,
-              // @ts-ignore
-              name: { index: i, id: item.id },
-              // @ts-ignore
-              symbolOffset: [0, item.focused ? -22 : -18],
-              xAxis: i,
-              yAxis: item.score,
-            },
-            {
-              symbol: 'circle',
-              symbolSize: CIRCLE_SIZE,
-              name: `${item.id}`,
-              xAxis: i,
-              yAxis: item.score,
-              itemStyle: { color: noSeverity },
-            },
-          );
-          item.focused &&
-            options.series[MARKERS_SERIES_POSITION].markPoint.data.push({
-              symbol: 'circle',
-              symbolSize: RING_SIZE,
-              xAxis: i,
-              yAxis: item.score,
-              name: `${item.id}`,
-              itemStyle: {
-                color: 'transparent',
-                // @ts-ignore
-                borderColor: noSeverity,
-              },
-            });
-        }
-        setChartOptions(options);
-        return true;
-      });
-    }
-  };
-
   const renderChart = () => {
     const renderInstance = chartRef?.getEchartsInstance();
     if (renderInstance) {
@@ -251,13 +185,21 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
   };
 
   const getOption = {
+    colorBy: 'series',
+    color: [blue],
     textStyle: {
       fontFamily: 'Montserrat',
       color: primary,
     },
-    grid: gridData,
+    grid: {
+      top: '15%',
+      right: '1rem',
+      left: '1rem',
+      bottom: '15%',
+      containLabel: false,
+    },
     tooltip: {
-      show: !props?.hideTooltips,
+      show: true,
       trigger: 'item',
       borderColor: '#2F4D6F',
       position: function (pt) {
@@ -285,24 +227,11 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
         boundaryGap: false,
         show: true,
         axisLabel: {
-          interval: (index: number, value: string) => {
-            const internal = Math.round(
-              props.data.length / (howManyLabelsToDisplay - 1),
-            );
-            return (
-              index === 0 ||
-              index === props.data.length - 1 ||
-              index % internal === 0
-            );
-          },
           color: '#646464',
           fontSize: 10,
         },
-        axisTick: {
-          show: false,
-        },
         axisLine: {
-          onZero: false,
+          onZero: true,
           lineStyle: {
             color: gray230,
           },
@@ -310,23 +239,23 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
       },
     ],
     yAxis: {
+      type: 'value',
       axisLabel: { show: false },
       axisTick: {
         show: false,
       },
       splitLine: { show: false },
       axisLine: {
+        show: 'auto',
         lineStyle: {
           color: gray230,
+          width: 1,
         },
       },
-      ...getMinMaxView(props?.data, props?.dynamicZoom, props?.zoomPadding),
     },
     visualMap: {
       show: false,
       dimension: 1,
-      min: 0,
-      max: 100,
     },
     title: {
       show: !isPropsValid(),
@@ -355,31 +284,6 @@ const BasicLineChart: React.FunctionComponent<BasicLineChartProps> = (
         data: props?.data?.map(({ score }) => score) || [],
 
         lineStyle: { width: 3 },
-      },
-      {
-        name: 'markers',
-        type: 'line',
-        symbolSize: 6,
-        lineStyle: {
-          opacity: 0,
-        },
-        markPoint: {
-          data: [
-            {
-              xAxis: props?.data?.findIndex((i) => i.score === undefined) - 1,
-              yAxis: props?.data
-                ? props?.data[
-                    props?.data?.findIndex(({ score }) => score === undefined) -
-                      1 || props?.data?.length - 1
-                  ]?.score || 0
-                : 0,
-              itemStyle: noSeverity,
-              symbol: 'circle',
-              symbolSize: CIRCLE_SIZE,
-              cursor: 'auto',
-            },
-          ],
-        },
       },
     ],
     animationEasing: 'elasticOut',

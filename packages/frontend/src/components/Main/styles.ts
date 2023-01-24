@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../styles/Theme';
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -34,35 +33,4 @@ export const Body = styled.div`
   border-top-left-radius: 25px;
   padding: 2rem;
   overflow: auto;
-`;
-
-export const SafeZoneBadge = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 40px;
-  font-size: 0.875em;
-  z-index: 1100;
-  position: absolute;
-  transform: translateX(35%);
-  width: 365px;
-  color: ${theme.blue};
-  height: 40px;
-  text-align: center;
-  font-weight: 600;
-  background: ${theme.paleBlue} 0% 0% no-repeat padding-box;
-  border-radius: 0px 0px 20px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  img {
-    margin: 0 8px;
-  }
-`;
-
-export const Shield = styled.img`
-  height: 24px;
-  width: 21px;
 `;

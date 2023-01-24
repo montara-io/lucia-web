@@ -1,18 +1,14 @@
 import React from 'react';
 import './Overview.scss';
 import classNames from 'classnames';
-import { Tooltip } from 'primereact/tooltip';
-import { TooltipPositionType } from 'primereact/tooltip/tooltipoptions';
 import { primary } from '../../styles/colors';
-import { NO_DATA_MESSAGE } from '../utils/consts';
+import HelpIcon from '../HelpIcon/HelpIcon';
 
 export interface OverviewItem {
   imgUrl?: string;
   title: string;
   score?: string | number;
-  exploreOnClick?: () => void;
   tooltip?: string;
-  tooltipPosition?: TooltipPositionType;
 }
 
 export type OverviewProps = {
@@ -44,46 +40,17 @@ const Overview: React.FunctionComponent<OverviewProps> = ({ items = [] }) => {
                 data-testid="overview-item-title"
                 className="overview-item-title"
               >
-                {item?.title}
+                {item?.title}{' '}
+                {!!item?.tooltip && (
+                  <HelpIcon helpLinkTooltip={item?.tooltip} />
+                )}
               </div>
-              {item?.score ? (
-                <>
-                  <div
-                    data-testid="overview-item-score"
-                    className="overview-item-score"
-                  >
-                    {item?.score}
-                  </div>
-                  {item?.exploreOnClick && (
-                    <span
-                      onClick={() =>
-                        item && item.exploreOnClick && item?.exploreOnClick()
-                      }
-                      data-testid="overview-item-explore"
-                      className="overview-item-explore"
-                    >
-                      {'Explore'}
-                    </span>
-                  )}
-                </>
-              ) : (
-                <>
-                  {item?.tooltip && (
-                    <Tooltip
-                      content={item?.tooltip}
-                      target={`.no-data-${index}`}
-                      position={item?.tooltipPosition ?? 'top'}
-                    />
-                  )}
-                  <div
-                    data-testid="no-score"
-                    className={classNames('no-data', `no-data-${index}`)}
-                    style={{ color: primary }}
-                  >
-                    {NO_DATA_MESSAGE}
-                  </div>
-                </>
-              )}
+              <div
+                data-testid="overview-item-score"
+                className="overview-item-score"
+              >
+                {item?.score}
+              </div>
             </div>
           </div>
         );

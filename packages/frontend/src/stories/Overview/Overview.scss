@@ -110,5 +110,16 @@
         }
       }
     }
+    .m-help-tooltip-icon {
+      transform: none;
+      box-shadow: none;
+      float: none;
+      padding: 0;
+      margin-left: 0.5rem;
+    }
+    .m-help-tooltip-icon:hover {
+      transform: none;
+      box-shadow: none;
+    }
   }
 }
