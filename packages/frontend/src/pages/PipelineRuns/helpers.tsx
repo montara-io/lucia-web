@@ -61,7 +61,11 @@ export function formatOverview(
   pipelineRuns: PipelineRunResponse[],
 ): OverviewItem[] {
   const prefix: OverviewItem[] = [
-    { title: 'Num. of Runs', score: pipelineRuns.length },
+    {
+      title: 'Num. of Runs',
+      score: pipelineRuns.length,
+      tooltip: 'How many times the job was triggered',
+    },
   ];
   return prefix.concat(
     overviewItems.map((oi) => ({

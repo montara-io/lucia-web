@@ -168,7 +168,6 @@ const DataTable: FunctionComponent<DataTableProps> = ({
         value={bodyData}
         rowClassName={rowClass}
         dataKey="id"
-        alwaysShowPaginator={true}
         paginator={true}
         rows={paginationRows || bodyData.length || 1}
         paginatorTemplate={paginatorTemplate as any}

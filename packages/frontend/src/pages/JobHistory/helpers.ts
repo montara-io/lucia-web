@@ -47,7 +47,11 @@ const metricsToTexts = [
 
 export function formatOverview(jobs: JobRun[]): OverviewItem[] {
   const prefix: OverviewItem[] = [
-    { title: 'Num. of Runs', score: jobs.length },
+    {
+      title: 'Num. of Runs',
+      score: jobs.length,
+      tooltip: 'How many times the pipeline was triggered',
+    },
   ];
   return prefix.concat(
     metricsToTexts.map((curr) => ({
