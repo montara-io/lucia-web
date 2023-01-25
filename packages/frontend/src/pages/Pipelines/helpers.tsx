@@ -11,7 +11,6 @@ export type PipelineAllResponse = {
   pipelineId: string;
   avgRuntime: number;
   numberOfJobs: number;
-  totalCoreHours: number;
   avgNumOfExecutors: number;
   avgTotalMemoryPerExecutor: number;
   avgTotalBytesRead: number;
@@ -48,7 +47,7 @@ export function dataFormatterCallback(params: {
         fieldName: 'avgRuntime',
         fieldValue: rd.avgRuntime,
       }),
-      avgCoreHours: `${rd.totalCoreHours} Hrs.`,
+      avgTotalCpuUptime: `${rd.avgTotalCpuUptime} Hrs.`,
     })),
   };
 }
