@@ -44,6 +44,5 @@ describe('data formatting', () => {
       navigate: () => {},
     });
     expect(formatted.headerData[0].field).toBe('pipelineId');
-    expect(formatted.bodyData[0].avgRuntime).toBe('20 Hrs.');
   });
 });

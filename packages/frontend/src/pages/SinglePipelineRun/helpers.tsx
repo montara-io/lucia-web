@@ -1,5 +1,6 @@
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { Routes } from '../../constants/routes';
+import { ColumnName } from '../../constants/table-columns';
 import {
   formatField,
   getCommonTableHeaders,
@@ -13,14 +14,16 @@ export type JobByPipelineRunIdResponse = {
   sparkJobRunMetrics?: {
     id: string;
     jobRunId: string;
-    utilization: number;
-    runtime: number;
-    waitingTime: number;
-    coreHours: number;
-    usedMemory: number;
-    numberOfCores: number;
-    cpuUtilization: number;
-    memoryUtilization: number;
+    numOfExecutors: number;
+    totalMemoryPerExecutor: number;
+    totalBytesRead: number;
+    totalBytesWritten: number;
+    totalShuffleRead: number;
+    totalShuffleWrite: number;
+    totalCpuTimeUsed: number;
+    totalCpuUptime: number;
+    peakMemoryUsage: number;
+    totalCoresNum: number;
   };
 };
 
@@ -33,11 +36,10 @@ export function dataFormatterCallback(params: {
   return {
     headerData: getCommonTableHeaders({
       fields: [
-        'jobId',
-        'ramUtilization',
-        'cpuUtilization',
-        'runtime',
-        'coreHours',
+        ColumnName.jobId,
+        ColumnName.avgTotalCpuUptime,
+        ColumnName.avgTotalBytesRead,
+        ColumnName.avgTotalBytesWritten,
       ],
       ctaText: 'Job History',
       onCtaClick: (data) => {
@@ -46,22 +48,13 @@ export function dataFormatterCallback(params: {
     }),
     bodyData: responseData.map((rd) => ({
       jobId: rd.jobId,
-      ramUtilization: formatField({
-        fieldName: 'ramUtilization',
-        fieldValue: rd.sparkJobRunMetrics?.memoryUtilization,
+      totalBytesRead: formatField({
+        fieldName: ColumnName.TotalBytesRead,
+        fieldValue: rd.sparkJobRunMetrics?.totalBytesRead,
       }),
-      cpuUtilization: formatField({
-        fieldName: 'cpuUtilization',
-        fieldValue: rd.sparkJobRunMetrics?.cpuUtilization,
-      }),
-      runtime: formatField({
-        fieldName: 'runtime',
-        fieldValue: rd.sparkJobRunMetrics?.runtime,
-      }),
-
-      coreHours: formatField({
-        fieldName: 'coreHours',
-        fieldValue: rd.sparkJobRunMetrics?.coreHours,
+      totalBytesWritten: formatField({
+        fieldName: ColumnName.TotalBytesWritten,
+        fieldValue: rd.sparkJobRunMetrics?.totalBytesRead,
       }),
     })),
   };
