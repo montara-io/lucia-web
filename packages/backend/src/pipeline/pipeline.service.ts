@@ -63,7 +63,6 @@ export class PipelineService {
     pipelineDto.avgTotalMemoryPerExecutor = entity.total_memory_per_executor
     pipelineDto.avgTotalShuffleRead = entity.total_shuffle_read
     pipelineDto.avgTotalShuffleWrite = entity.total_shuffle_write
-    pipelineDto.totalCoreHours = entity.total_cores_num
     pipelineDto.numberOfJobs = entity.number_of_jobs
     pipelineDto.date = entity.end_time
     return pipelineDto

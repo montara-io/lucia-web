@@ -2,7 +2,6 @@ export class PipelineRunDTO {
   id: string
   pipelineId: string
   numberOfJobs: number
-  totalCoreHours: number
   avgNumOfExecutors: number
   avgTotalMemoryPerExecutor: number
   avgTotalBytesRead: number
