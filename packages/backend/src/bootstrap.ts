@@ -9,7 +9,7 @@ import { Logger } from 'nestjs-pino'
 import { loadConfig } from './utils/configuration'
 import helmet from 'helmet'
 import cors from 'cors'
-import { createPipelineBulk, createPipelineJobRunBulk, createSparkJobRunMetricsBulk } from '../test/db-helper'
+import { createSparkJobRunBulk } from '../test/db-helper'
 import { PipelineRepository } from './pipeline/pipeline.repository'
 import { jobRunsData, pipelineRunsData, sparkJobMetricsData } from './seed/seed'
 
@@ -37,9 +37,7 @@ export async function bootstrap() {
   app.use(helmet(), cors())
 
   const pipelineRepository: PipelineRepository = app.get(PipelineRepository)
-  await createPipelineBulk(pipelineRepository.manager().connection, pipelineRunsData)
-  await createPipelineJobRunBulk(pipelineRepository.manager().connection, jobRunsData)
-  await createSparkJobRunMetricsBulk(pipelineRepository.manager().connection, sparkJobMetricsData)
+  await createSparkJobRunBulk(pipelineRepository.manager().connection, pipelineRunsData)
 
   logger.log(`Server running on port ${config.http.port}`)
   logger.log('Server commit %s, mem: %o', process.env.GIT_COMMIT, process.memoryUsage())

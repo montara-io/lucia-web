@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino'
 import { ConfigService } from '@nestjs/config'
-import { JobRunEntity } from './entity/job.entity'
 import { JobRunDTO } from './dto/job-run.dto'
 import { GetJobRunsDTO as GetPipelineJobRunsDTO } from './dto/get-job-runs.dto'
 import { SparkJobRunMetricsDTO } from './dto/spark-job-run-metrics.dto'
@@ -9,6 +8,7 @@ import { JobRepository } from './job.repository'
 import { GetJobsDTO as GetJobRunsDTO } from './dto/get-jobs.dto'
 import { JobDTO } from './dto/job.dto'
 import { SparkJobMetricsDTO } from './dto/spark-job-metrics.dto'
+import { SparkJobRunEntity } from '../entity/spark-job-run.entity'
 
 @Injectable()
 export class JobService {
@@ -20,7 +20,7 @@ export class JobService {
   ) {}
 
   async getPipelineJobRuns(dto: GetPipelineJobRunsDTO): Promise<JobRunDTO[]> {
-    const jobEntities: JobRunEntity[] = await this.repository.findPipelineJobRuns(dto.pipelineRunId)
+    const jobEntities: SparkJobRunEntity[] = await this.repository.findPipelineJobRuns(dto.pipelineRunId)
 
     if (!jobEntities || jobEntities.length === 0) {
       this.logger.info('cannot find job runs entities for pipeline runs')
@@ -31,7 +31,7 @@ export class JobService {
   }
 
   async getJobRunsById(dto: GetJobRunsDTO): Promise<JobRunDTO[]> {
-    const jobEntities: JobRunEntity[] = await this.repository.findJobRunsByJobId(dto.jobId)
+    const jobEntities: SparkJobRunEntity[] = await this.repository.findJobRunsByJobId(dto.jobId)
 
     if (!jobEntities || jobEntities.length === 0) {
       this.logger.info('cannot find job runs entities for name %s', dto.jobId)
@@ -42,7 +42,7 @@ export class JobService {
   }
 
   async getJobById(dto: GetJobRunsDTO): Promise<JobDTO> {
-    const jobEntity: JobRunEntity = await this.repository.findJob(dto.jobId)
+    const jobEntity: SparkJobRunEntity = await this.repository.findJob(dto.jobId)
 
     if (!jobEntity) {
       this.logger.info('cannot find job entities for job id %s', dto.jobId)
@@ -52,7 +52,7 @@ export class JobService {
   }
 
   async getJobs(): Promise<JobDTO[]> {
-    const jobEntities: JobRunEntity[] = await this.repository.findJobs()
+    const jobEntities: SparkJobRunEntity[] = await this.repository.findJobs()
 
     if (!jobEntities || jobEntities.length === 0) {
       this.logger.info('cannot find jobs entities')
@@ -62,7 +62,7 @@ export class JobService {
     return jobEntities.map((jobEntity) => this.onvertJobEntityToJobDto(jobEntity))
   }
 
-  convertJobEntityToJobRunDto(entity: JobRunEntity): JobRunDTO {
+  convertJobEntityToJobRunDto(entity: SparkJobRunEntity): JobRunDTO {
     const jobDto = new JobRunDTO()
     const sparkJobMetricsDto = new SparkJobRunMetricsDTO()
     jobDto.sparkJobRunMetrics = sparkJobMetricsDto
@@ -70,23 +70,26 @@ export class JobService {
     jobDto.id = entity.id
     jobDto.pipelineRunId = entity.pipeline_run_id
     jobDto.jobId = entity.job_id
-    jobDto.date = entity.date
+    jobDto.date = entity.end_time
     jobDto.created = entity.created
     jobDto.updated = entity.updated
     jobDto.deleted = entity.deleted
-    jobDto.sparkJobRunMetrics.coreHours = entity['spark_job_metrics.core_hours']
-    jobDto.sparkJobRunMetrics.waitingTime = entity['spark_job_metrics.waiting_time']
-    jobDto.sparkJobRunMetrics.utilization = entity['spark_job_metrics.utilization']
-    jobDto.sparkJobRunMetrics.cpuUtilization = entity['spark_job_metrics.cpu_utilization']
-    jobDto.sparkJobRunMetrics.memoryUtilization = entity['spark_job_metrics.memory_utilization']
-    jobDto.sparkJobRunMetrics.numberOfCores = entity['spark_job_metrics.number_of_cores']
-    jobDto.sparkJobRunMetrics.usedMemory = entity['spark_job_metrics.used_memory']
-    jobDto.sparkJobRunMetrics.runtime = entity['spark_job_metrics.runtime']
+    jobDto.sparkJobRunMetrics.numOfExecutors = entity.num_of_executors
+    jobDto.sparkJobRunMetrics.cpuUtilization = entity.cpu_utilization
+    jobDto.sparkJobRunMetrics.peakMemoryUsage = entity.peak_memory_usage
+    jobDto.sparkJobRunMetrics.totalBytesRead = entity.total_bytes_read
+    jobDto.sparkJobRunMetrics.totalBytesWritten = entity.total_bytes_written
+    jobDto.sparkJobRunMetrics.totalCoresNum = entity.total_cores_num
+    jobDto.sparkJobRunMetrics.totalCpuTimeUsed = entity.total_cpu_time_used
+    jobDto.sparkJobRunMetrics.totalCpuUptime = entity.total_cpu_uptime
+    jobDto.sparkJobRunMetrics.totalMemoryPerExecutor = entity.total_memory_per_executor
+    jobDto.sparkJobRunMetrics.totalShuffleRead = entity.total_shuffle_read
+    jobDto.sparkJobRunMetrics.totalShuffleWrite = entity.total_shuffle_write
 
     return jobDto
   }
 
-  onvertJobEntityToJobDto(entity: JobRunEntity): JobDTO {
+  onvertJobEntityToJobDto(entity: SparkJobRunEntity): JobDTO {
     const jobDto = new JobDTO()
     const sparkJobMetricsDto = new SparkJobMetricsDTO()
     jobDto.sparkJobMetrics = sparkJobMetricsDto
@@ -94,18 +97,22 @@ export class JobService {
     jobDto.id = entity.id
     jobDto.pipelineRunId = entity.pipeline_run_id
     jobDto.jobId = entity.job_id
-    jobDto.date = entity.date
+    jobDto.date = entity.end_time
     jobDto.created = entity.created
     jobDto.updated = entity.updated
     jobDto.deleted = entity.deleted
-    jobDto.sparkJobMetrics.avgCoreHours = entity['spark_job_metrics.core_hours']
-    jobDto.sparkJobMetrics.avgWaitingTime = entity['spark_job_metrics.waiting_time']
-    jobDto.sparkJobMetrics.avgUtilization = entity['spark_job_metrics.utilization']
-    jobDto.sparkJobMetrics.avgCpuUtilization = entity['spark_job_metrics.cpu_utilization']
-    jobDto.sparkJobMetrics.avgMemoryUtilization = entity['spark_job_metrics.memory_utilization']
-    jobDto.sparkJobMetrics.avgNumberOfCores = entity['spark_job_metrics.number_of_cores']
-    jobDto.sparkJobMetrics.avgUsedMemory = entity['spark_job_metrics.used_memory']
-    jobDto.sparkJobMetrics.avgRuntime = entity['spark_job_metrics.runtime']
+
+    jobDto.sparkJobMetrics.avgNumOfExecutors = entity.num_of_executors
+    jobDto.sparkJobMetrics.avgCpuUtilization = entity.cpu_utilization
+    jobDto.sparkJobMetrics.avgPeakMemoryUsage = entity.peak_memory_usage
+    jobDto.sparkJobMetrics.avgTotalBytesRead = entity.total_bytes_read
+    jobDto.sparkJobMetrics.avgTotalBytesWritten = entity.total_bytes_written
+    jobDto.sparkJobMetrics.avgTotalCoresNum = entity.total_cores_num
+    jobDto.sparkJobMetrics.avgTotalCpuTimeUsed = entity.total_cpu_time_used
+    jobDto.sparkJobMetrics.avgTotalCpuUptime = entity.total_cpu_uptime
+    jobDto.sparkJobMetrics.avgTotalMemoryPerExecutor = entity.total_memory_per_executor
+    jobDto.sparkJobMetrics.avgTotalShuffleRead = entity.total_shuffle_read
+    jobDto.sparkJobMetrics.avgTotalShuffleWrite = entity.total_shuffle_write
 
     return jobDto
   }

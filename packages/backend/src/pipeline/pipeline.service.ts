@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common'
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino'
 import { PipelineRepository } from './pipeline.repository'
 import { ConfigService } from '@nestjs/config'
-import { PipelineRunEntity } from './entity/pipeline.entity'
-import { PipelineDTO, PipelineRunDTO } from './dto/pipeline-run.dto'
 import { GetPipelineRunsDTO } from './dto/get-pipeline-runs.dto'
+import { SparkJobRunEntity } from '../entity/spark-job-run.entity'
+import { PipelineRunDTO } from './dto/pipeline-run.dto'
 
 @Injectable()
 export class PipelineService {
@@ -15,8 +15,8 @@ export class PipelineService {
     private readonly configService: ConfigService,
   ) {}
 
-  async getPipelines(): Promise<PipelineDTO[]> {
-    const pipelineEntities: PipelineRunEntity[] = await this.repository.findPipelinesSummary()
+  async getPipelines(): Promise<PipelineRunDTO[]> {
+    const pipelineEntities: SparkJobRunEntity[] = await this.repository.findPipelinesSummary()
 
     if (!pipelineEntities || pipelineEntities.length === 0) {
       this.logger.info('cannot find pipeline entities for pipelines summary')
@@ -27,57 +27,45 @@ export class PipelineService {
   }
 
   async getPipelineRuns(dto: GetPipelineRunsDTO): Promise<PipelineRunDTO[]> {
-    const pipelineEntities: PipelineRunEntity[] = await this.repository.findPipelineRuns(dto.pipelineId)
+    const pipelineEntities: SparkJobRunEntity[] = await this.repository.findPipelineRuns(dto.pipelineId)
 
     if (!pipelineEntities || pipelineEntities.length === 0) {
       this.logger.info('cannot find pipeline entities for pipeline runs')
       return null
     }
 
-    return pipelineEntities.map((pipelineEntity) => this.convertPipelineEntityToDto(pipelineEntity))
+    return pipelineEntities.map((pipelineEntity) => this.convertPipelineEntityToPipelineDto(pipelineEntity))
   }
 
   async getPipelineById(pipelineId: string): Promise<PipelineRunDTO> {
-    const pipelineEntity: PipelineRunEntity = await this.repository.findPipelineById(pipelineId)
+    const pipelineEntity: SparkJobRunEntity = await this.repository.findPipelineById(pipelineId)
 
     if (!pipelineEntity) {
       this.logger.info('cannot find pipeline entity for pipeline id: %s', pipelineId)
       return null
     }
 
-    return this.convertPipelineEntityToDto(pipelineEntity)
+    return this.convertPipelineEntityToPipelineDto(pipelineEntity)
   }
 
-  convertPipelineEntityToDto(entity: PipelineRunEntity): PipelineRunDTO {
+  convertPipelineEntityToPipelineDto(entity: SparkJobRunEntity): PipelineRunDTO {
     const pipelineDto = new PipelineRunDTO()
     pipelineDto.id = entity.id
     pipelineDto.pipelineId = entity.pipeline_id
-    pipelineDto.totalRuntime = entity.total_runtime
+    pipelineDto.avgNumOfExecutors = entity.num_of_executors
+    pipelineDto.avgCpuUtilization = entity.cpu_utilization
+    pipelineDto.avgPeakMemoryUsage = entity.peak_memory_usage
+    pipelineDto.avgTotalBytesRead = entity.total_bytes_read
+    pipelineDto.avgTotalBytesWritten = entity.total_bytes_written
+    pipelineDto.avgTotalCoresNum = entity.total_cores_num
+    pipelineDto.avgTotalCpuTimeUsed = entity.total_cpu_time_used
+    pipelineDto.avgTotalCpuUptime = entity.total_cpu_uptime
+    pipelineDto.avgTotalMemoryPerExecutor = entity.total_memory_per_executor
+    pipelineDto.avgTotalShuffleRead = entity.total_shuffle_read
+    pipelineDto.avgTotalShuffleWrite = entity.total_shuffle_write
+    pipelineDto.totalCoreHours = entity.total_cores_num
     pipelineDto.numberOfJobs = entity.number_of_jobs
-    pipelineDto.totalCoreHours = entity.total_core_hours
-    pipelineDto.avgWaitingTime = entity.avg_waiting_time
-    pipelineDto.avgUtilization = entity.avg_utilization
-    pipelineDto.avgCpuUtilization = entity.avg_cpu_utilization
-    pipelineDto.avgMemoryUtilization = entity.avg_memory_utilization
-    pipelineDto.deleted = entity.deleted
-    pipelineDto.date = entity.date
-    pipelineDto.created = entity.created
-    pipelineDto.updated = entity.updated
-    return pipelineDto
-  }
-
-  convertPipelineEntityToPipelineDto(entity: PipelineRunEntity): PipelineDTO {
-    const pipelineDto = new PipelineDTO()
-    pipelineDto.id = entity.id
-    pipelineDto.pipelineId = entity.pipeline_id
-    pipelineDto.avgRuntime = entity.total_runtime
-    pipelineDto.numberOfJobs = entity.number_of_jobs
-    pipelineDto.totalCoreHours = entity.total_core_hours
-    pipelineDto.avgWaitingTime = entity.avg_waiting_time
-    pipelineDto.avgUtilization = entity.avg_utilization
-    pipelineDto.avgCpuUtilization = entity.avg_cpu_utilization
-    pipelineDto.avgMemoryUtilization = entity.avg_memory_utilization
-    pipelineDto.date = entity.date
+    pipelineDto.date = entity.end_time
     return pipelineDto
   }
 }
