@@ -12,11 +12,18 @@ export type PipelineAllResponse = {
   avgRuntime: number;
   numberOfJobs: number;
   totalCoreHours: number;
-  avgWaitingTime: number;
-  avgUtilization: number;
+  avgNumOfExecutors: number;
+  avgTotalMemoryPerExecutor: number;
+  avgTotalBytesRead: number;
+  avgTotalBytesWritten: number;
+  avgTotalShuffleRead: number;
+  avgTotalShuffleWrite: number;
+  avgTotalCpuTimeUsed: number;
+  avgTotalCpuUptime: number;
+  avgPeakMemoryUsage: number;
+  avgTotalCoresNum: number;
   avgCpuUtilization: number;
-  avgMemoryUtilization: number;
-  date: string;
+  date: string; // ISO date string
 };
 
 export function dataFormatterCallback(params: {
@@ -42,7 +49,6 @@ export function dataFormatterCallback(params: {
         fieldValue: rd.avgRuntime,
       }),
       avgCoreHours: `${rd.totalCoreHours} Hrs.`,
-      avgWaitingTime: `${rd.avgWaitingTime} Hrs.`,
     })),
   };
 }

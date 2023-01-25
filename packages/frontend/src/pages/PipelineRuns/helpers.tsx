@@ -1,5 +1,6 @@
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
-import { TABLE_COLUMNS } from '../../constants/table-columns';
+import { getTableColumnDefinition } from '../../constants/table-columns';
+
 import {
   formatField,
   getCommonTableHeaders,
@@ -69,8 +70,8 @@ export function formatOverview(
   ];
   return prefix.concat(
     overviewItems.map((oi) => ({
-      title: TABLE_COLUMNS[oi].title,
-      tooltip: TABLE_COLUMNS[oi].helpIconText,
+      title: getTableColumnDefinition(oi).title,
+      tooltip: getTableColumnDefinition(oi).helpIconText,
       score: formatField({
         fieldName: oi,
         fieldValue: arrayAverage(

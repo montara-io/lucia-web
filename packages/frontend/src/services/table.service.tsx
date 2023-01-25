@@ -1,5 +1,5 @@
 import ExploreButton from '../components/common/ExploreButton';
-import { TABLE_COLUMNS } from '../constants/table-columns';
+import { getTableColumnDefinition } from '../constants/table-columns';
 import { HeaderRow } from '../stories/DataTable/DataTable';
 
 export function getCommonTableHeaders({
@@ -13,11 +13,11 @@ export function getCommonTableHeaders({
 }): HeaderRow[] {
   const headerData: HeaderRow[] = fields.map((c) => ({
     field: c,
-    title: TABLE_COLUMNS[c].title,
-    sortable: TABLE_COLUMNS[c].sortable || false,
-    sortType: TABLE_COLUMNS[c].sortType,
+    title: getTableColumnDefinition(c).title,
+    sortable: getTableColumnDefinition(c).sortable || false,
+    sortType: getTableColumnDefinition(c).sortType,
     sortField: c,
-    helpIconText: TABLE_COLUMNS[c].helpIconText,
+    helpIconText: getTableColumnDefinition(c).helpIconText,
   }));
 
   return headerData.concat([
@@ -36,9 +36,9 @@ export function getCommonTableHeaders({
 
 export function formatField({ fieldName, fieldValue }) {
   const unit =
-    TABLE_COLUMNS[fieldName].unit === 'Hrs.' && fieldValue === 1
+    getTableColumnDefinition(fieldName).unit === 'Hrs.' && fieldValue === 1
       ? 'Hr.'
-      : TABLE_COLUMNS[fieldName].unit;
+      : getTableColumnDefinition(fieldName).unit;
 
   return `${fieldValue}${unit !== '%' ? ' ' : ''}${unit}`;
 }

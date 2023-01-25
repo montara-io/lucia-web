@@ -1,4 +1,4 @@
-import { TABLE_COLUMNS } from '../../constants/table-columns';
+import { getTableColumnDefinition } from '../../constants/table-columns';
 import { arrayAverage } from '../../utils/arrays';
 import { formatDate } from '../../utils/date';
 import { OverviewItem } from './../../stories/Overview/Overview';
@@ -59,7 +59,7 @@ export function formatOverview(jobs: JobRun[]): OverviewItem[] {
       score: `${arrayAverage(
         jobs.map((job) => job.sparkJobRunMetrics?.[curr.scoreField] || 0),
       )} ${curr.unit || '%'}`,
-      tooltip: TABLE_COLUMNS[curr.scoreField].helpIconText,
+      tooltip: getTableColumnDefinition(curr.scoreField).helpIconText,
     })),
   );
 }
