@@ -11,7 +11,7 @@ import helmet from 'helmet'
 import cors from 'cors'
 import { createSparkJobRunBulk } from '../test/db-helper'
 import { PipelineRepository } from './pipeline/pipeline.repository'
-import { jobRunsData, pipelineRunsData, sparkJobMetricsData } from './seed/seed'
+import { pipelineRunsData } from './seed/seed'
 
 export async function bootstrap() {
   const config = loadConfig()
