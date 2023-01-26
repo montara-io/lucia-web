@@ -28,10 +28,10 @@ export class SparkJobRunEntity {
   total_bytes_written: number
 
   @Column({ type: 'int' })
-  total_shuffle_read: number
+  total_shuffle_bytes_read: number
 
   @Column({ type: 'int' })
-  total_shuffle_write: number
+  total_shuffle_bytes_written: number
 
   @Column({ type: 'float' })
   total_cpu_time_used: number
