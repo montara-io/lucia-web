@@ -37,9 +37,9 @@ export function dataFormatterCallback(params: {
     headerData: getCommonTableHeaders({
       fields: [
         ColumnName.jobId,
-        ColumnName.avgTotalCpuUptime,
-        ColumnName.avgTotalBytesRead,
-        ColumnName.avgTotalBytesWritten,
+        ColumnName.TotalCpuUptime,
+        ColumnName.TotalBytesRead,
+        ColumnName.TotalBytesWritten,
       ],
       ctaText: 'Job History',
       onCtaClick: (data) => {
@@ -48,6 +48,10 @@ export function dataFormatterCallback(params: {
     }),
     bodyData: responseData.map((rd) => ({
       jobId: rd.jobId,
+      totalCpuUptime: formatField({
+        fieldName: ColumnName.TotalCpuUptime,
+        fieldValue: rd.sparkJobRunMetrics?.totalCpuUptime,
+      }),
       totalBytesRead: formatField({
         fieldName: ColumnName.TotalBytesRead,
         fieldValue: rd.sparkJobRunMetrics?.totalBytesRead,

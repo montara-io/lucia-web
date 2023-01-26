@@ -11,7 +11,7 @@ import { arrayAverage } from '../../utils/arrays';
 import { formatDate } from '../../utils/date';
 
 export type PipelineRunResponse = {
-  id: string;
+  pipelineRunId: string;
   pipelineId: string;
   numberOfJobs: number;
   avgNumOfExecutors: number;
@@ -44,12 +44,11 @@ export function dataFormatterCallback(params: {
         ColumnName.avgTotalBytesWritten,
       ],
       ctaText: 'Explore',
-      onCtaClick: ({ id }) =>
-        navigate(`/pipeline/${pipelineId}/runs/${id}/jobs`),
+      onCtaClick: ({ pipelineRunId }) =>
+        navigate(`/pipeline/${pipelineId}/runs/${pipelineRunId}/jobs`),
     }),
     bodyData: responseData.map((rd) => ({
-      name: rd.pipelineId,
-      id: rd.pipelineId,
+      pipelineRunId: rd.pipelineRunId,
       date: formatDate(rd.date),
       avgTotalCpuUptime: formatField({
         fieldName: 'avgTotalCpuUptime',

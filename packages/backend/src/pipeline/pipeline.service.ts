@@ -50,7 +50,7 @@ export class PipelineService {
 
   convertPipelineEntityToPipelineDto(entity: SparkJobRunEntity): PipelineRunDTO {
     const pipelineDto = new PipelineRunDTO()
-    pipelineDto.id = entity.id
+    pipelineDto.pipelineRunId = entity.pipeline_run_id
     pipelineDto.pipelineId = entity.pipeline_id
     pipelineDto.avgNumOfExecutors = entity.num_of_executors
     pipelineDto.avgCpuUtilization = entity.cpu_utilization

@@ -1,5 +1,5 @@
 export class PipelineRunDTO {
-  id: string
+  pipelineRunId: string
   pipelineId: string
   numberOfJobs: number
   avgNumOfExecutors: number

@@ -50,7 +50,7 @@ export class PipelineRepository {
     try {
       const pipelineQuery = this.dataSource.manager
         .createQueryBuilder()
-        .addSelect('id', 'id')
+        .addSelect('pipeline_run_id', 'pipeline_run_id')
         .addSelect('COUNT(id)::INTEGER', 'number_of_jobs')
         .addSelect('AVG(num_of_executors)::INTEGER', 'num_of_executors')
         .addSelect('AVG(total_memory_per_executor)::INTEGER', 'total_memory_per_executor')
