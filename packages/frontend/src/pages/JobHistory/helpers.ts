@@ -1,21 +1,28 @@
-import { getTableColumnDefinition } from '../../constants/table-columns';
+import { ColumnName } from '../../constants/table-columns';
+import { getTableColumnDefinition } from '../../services/table.service';
 import { arrayAverage } from '../../utils/arrays';
 import { formatDate } from '../../utils/date';
 import { OverviewItem } from './../../stories/Overview/Overview';
 export type JobRun = {
+  id: string;
   pipelineRunId: string;
   jobId: string;
   date: string;
-  sparkJobRunMetrics?: {
+
+  sparkJobRunMetrics: {
+    id: string;
     jobRunId: string;
-    utilization: number;
-    runtime: number;
-    waitingTime: number;
-    coreHours: number;
-    usedMemory: number;
-    numberOfCores: number;
+    numOfExecutors: number;
+    totalMemoryPerExecutor: number;
+    totalBytesRead: number;
+    totalBytesWritten: number;
+    totalShuffleRead: number;
+    totalShuffleWrite: number;
+    totalCpuTimeUsed: number;
+    totalCpuUptime: number;
+    peakMemoryUsage: number;
+    totalCoresNum: number;
     cpuUtilization: number;
-    memoryUtilization: number;
   };
 };
 
@@ -30,18 +37,16 @@ export type LineChartData = {
 
 const metricsToTexts = [
   {
-    chartTitle: 'Utilization',
-    scoreField: 'utilization',
+    chartTitle: 'CPU Uptime',
+    scoreField: ColumnName.TotalCpuUptime,
   },
   {
-    chartTitle: 'Runtime',
-    scoreField: 'runtime',
-    unit: 'Hrs.',
+    chartTitle: 'Bytes Read',
+    scoreField: ColumnName.TotalBytesRead,
   },
   {
-    chartTitle: 'Core Hours',
-    scoreField: 'coreHours',
-    unit: 'Hrs.',
+    chartTitle: 'Bytes Written',
+    scoreField: ColumnName.TotalBytesWritten,
   },
 ];
 
@@ -58,7 +63,7 @@ export function formatOverview(jobs: JobRun[]): OverviewItem[] {
       title: curr.chartTitle,
       score: `${arrayAverage(
         jobs.map((job) => job.sparkJobRunMetrics?.[curr.scoreField] || 0),
-      )} ${curr.unit || '%'}`,
+      )} ${getTableColumnDefinition(curr.scoreField).unit || '%'}`,
       tooltip: getTableColumnDefinition(curr.scoreField).helpIconText,
     })),
   );

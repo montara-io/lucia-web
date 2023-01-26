@@ -4,7 +4,7 @@ import PageWithTable from '../../components/common/PageWithTable';
 import { ApiUrls } from '../../constants/api-urls';
 import { dataFormatterCallback } from './helpers';
 
-const PipelineRunPage = () => {
+const SinglePipelineRunPage = () => {
   const navigate = useNavigate();
   const { pipelineRunId = '', pipelineId } = useParams();
   const [pageHeader, setPageHeader] = useState('');
@@ -24,4 +24,4 @@ const PipelineRunPage = () => {
   );
 };
 
-export default PipelineRunPage;
+export default SinglePipelineRunPage;

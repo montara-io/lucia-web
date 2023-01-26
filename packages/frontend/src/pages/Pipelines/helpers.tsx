@@ -1,5 +1,6 @@
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { Routes } from '../../constants/routes';
+import { ColumnName } from '../../constants/table-columns';
 import {
   formatField,
   getCommonTableHeaders,
@@ -11,7 +12,6 @@ export type PipelineAllResponse = {
   pipelineId: string;
   avgRuntime: number;
   numberOfJobs: number;
-  totalCoreHours: number;
   avgNumOfExecutors: number;
   avgTotalMemoryPerExecutor: number;
   avgTotalBytesRead: number;
@@ -34,7 +34,13 @@ export function dataFormatterCallback(params: {
 
   return {
     headerData: getCommonTableHeaders({
-      fields: ['pipelineId', 'avgRuntime', 'lastRunDate', 'avgCoreHours'],
+      fields: [
+        ColumnName.pipelineId,
+        ColumnName.lastRunDate,
+        ColumnName.avgTotalCpuUptime,
+        ColumnName.avgTotalBytesRead,
+        ColumnName.avgTotalBytesWritten,
+      ],
       ctaText: 'Explore',
       onCtaClick: ({ pipelineId }) =>
         navigate(Routes.PipelineRuns.replace(':pipelineId', pipelineId)),
@@ -43,12 +49,16 @@ export function dataFormatterCallback(params: {
       pipelineId: rd.pipelineId,
       id: rd.pipelineId,
       lastRunDate: formatDate(rd.date),
-
-      avgRuntime: formatField({
-        fieldName: 'avgRuntime',
-        fieldValue: rd.avgRuntime,
+      avgTotalBytesRead: formatField({
+        fieldName: 'avgTotalBytesRead',
+        fieldValue: rd.avgTotalBytesRead,
       }),
-      avgCoreHours: `${rd.totalCoreHours} Hrs.`,
+      avgTotalBytesWritten: formatField({
+        fieldName: 'avgTotalBytesWritten',
+        fieldValue: rd.avgTotalBytesWritten,
+      }),
+
+      avgTotalCpuUptime: `${rd.avgTotalCpuUptime} Hrs.`,
     })),
   };
 }

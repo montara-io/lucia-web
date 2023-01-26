@@ -1,9 +1,10 @@
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
-import { getTableColumnDefinition } from '../../constants/table-columns';
+import { ColumnName } from '../../constants/table-columns';
 
 import {
   formatField,
   getCommonTableHeaders,
+  getTableColumnDefinition,
 } from '../../services/table.service';
 import { OverviewItem } from '../../stories/Overview/Overview';
 import { arrayAverage } from '../../utils/arrays';
@@ -12,13 +13,18 @@ import { formatDate } from '../../utils/date';
 export type PipelineRunResponse = {
   id: string;
   pipelineId: string;
-  totalRuntime: number;
   numberOfJobs: number;
-  totalCoreHours: number;
-  avgWaitingTime: number;
-  avgUtilization: number;
+  avgNumOfExecutors: number;
+  avgTotalMemoryPerExecutor: number;
+  avgTotalBytesRead: number;
+  avgTotalBytesWritten: number;
+  avgTotalShuffleRead: number;
+  avgTotalShuffleWrite: number;
+  avgTotalCpuTimeUsed: number;
+  avgTotalCpuUptime: number;
+  avgPeakMemoryUsage: number;
+  avgTotalCoresNum: number;
   avgCpuUtilization: number;
-  avgMemoryUtilization: number;
   date: string;
 };
 
@@ -31,7 +37,12 @@ export function dataFormatterCallback(params: {
 
   return {
     headerData: getCommonTableHeaders({
-      fields: ['date', 'totalRuntime', 'totalCoreHours', 'avgUtilization'],
+      fields: [
+        ColumnName.date,
+        ColumnName.avgTotalCpuUptime,
+        ColumnName.avgTotalBytesRead,
+        ColumnName.avgTotalBytesWritten,
+      ],
       ctaText: 'Explore',
       onCtaClick: ({ id }) =>
         navigate(`/pipeline/${pipelineId}/runs/${id}/jobs`),
@@ -40,23 +51,28 @@ export function dataFormatterCallback(params: {
       name: rd.pipelineId,
       id: rd.pipelineId,
       date: formatDate(rd.date),
-      totalRuntime: formatField({
-        fieldName: 'totalRuntime',
-        fieldValue: rd.totalRuntime,
+      avgTotalCpuUptime: formatField({
+        fieldName: 'avgTotalCpuUptime',
+        fieldValue: rd.avgTotalCpuUptime,
       }),
-      totalCoreHours: formatField({
-        fieldName: 'totalCoreHours',
-        fieldValue: rd.totalCoreHours,
+      avgTotalBytesRead: formatField({
+        fieldName: 'avgTotalBytesRead',
+        fieldValue: rd.avgTotalBytesRead,
       }),
-      avgUtilization: formatField({
-        fieldName: 'avgUtilization',
-        fieldValue: rd.avgUtilization,
+      avgTotalBytesWritten: formatField({
+        fieldName: 'avgTotalBytesWritten',
+        fieldValue: rd.avgTotalBytesWritten,
       }),
     })),
   };
 }
 
-const overviewItems = ['totalRuntime', 'avgUtilization', 'totalCoreHours'];
+const overviewItems = [
+  ColumnName.numberOfJobs,
+  ColumnName.avgTotalCpuUptime,
+  ColumnName.avgTotalBytesRead,
+  ColumnName.avgTotalBytesWritten,
+];
 
 export function formatOverview(
   pipelineRuns: PipelineRunResponse[],

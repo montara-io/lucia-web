@@ -1,5 +1,5 @@
 import ExploreButton from '../components/common/ExploreButton';
-import { getTableColumnDefinition } from '../constants/table-columns';
+import { TABLE_COLUMNS } from '../constants/table-columns';
 import { HeaderRow } from '../stories/DataTable/DataTable';
 
 export function getCommonTableHeaders({
@@ -35,10 +35,24 @@ export function getCommonTableHeaders({
 }
 
 export function formatField({ fieldName, fieldValue }) {
+  const configuredUnit = getTableColumnDefinition(fieldName).unit;
+  if (!configuredUnit) return fieldValue;
   const unit =
     getTableColumnDefinition(fieldName).unit === 'Hrs.' && fieldValue === 1
       ? 'Hr.'
       : getTableColumnDefinition(fieldName).unit;
 
   return `${fieldValue}${unit !== '%' ? ' ' : ''}${unit}`;
+}
+
+export function getTableColumnDefinition(columnId) {
+  try {
+    if (!TABLE_COLUMNS[columnId]) {
+      throw new Error(`Column not found: ${columnId}`);
+    }
+    return TABLE_COLUMNS[columnId];
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }

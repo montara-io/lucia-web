@@ -9,7 +9,7 @@ export type Pipeline = {
   name: string;
   date: string;
   avgRuntime: string;
-  avgCoreHours: string;
+  avgTotalCpuUptime: string;
   avgWaitingTime: string;
 };
 
