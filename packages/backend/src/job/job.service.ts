@@ -83,8 +83,8 @@ export class JobService {
     jobDto.sparkJobRunMetrics.totalCpuTimeUsed = entity.total_cpu_time_used
     jobDto.sparkJobRunMetrics.totalCpuUptime = entity.total_cpu_uptime
     jobDto.sparkJobRunMetrics.totalMemoryPerExecutor = entity.total_memory_per_executor
-    jobDto.sparkJobRunMetrics.totalShuffleRead = entity.total_shuffle_read
-    jobDto.sparkJobRunMetrics.totalShuffleWrite = entity.total_shuffle_write
+    jobDto.sparkJobRunMetrics.totalShuffleRead = entity.total_shuffle_bytes_read
+    jobDto.sparkJobRunMetrics.totalShuffleWrite = entity.total_shuffle_bytes_written
 
     return jobDto
   }
@@ -111,8 +111,8 @@ export class JobService {
     jobDto.sparkJobMetrics.avgTotalCpuTimeUsed = entity.total_cpu_time_used
     jobDto.sparkJobMetrics.avgTotalCpuUptime = entity.total_cpu_uptime
     jobDto.sparkJobMetrics.avgTotalMemoryPerExecutor = entity.total_memory_per_executor
-    jobDto.sparkJobMetrics.avgTotalShuffleRead = entity.total_shuffle_read
-    jobDto.sparkJobMetrics.avgTotalShuffleWrite = entity.total_shuffle_write
+    jobDto.sparkJobMetrics.avgTotalShuffleRead = entity.total_shuffle_bytes_read
+    jobDto.sparkJobMetrics.avgTotalShuffleWrite = entity.total_shuffle_bytes_written
 
     return jobDto
   }

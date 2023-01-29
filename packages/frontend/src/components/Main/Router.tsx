@@ -4,7 +4,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import JobHistory from '../../pages/JobHistory';
-import PipelineRun from '../../pages/PipelineRun';
+import SinglePipelineRun from '../../pages/SinglePipelineRun';
 
 import PipelineRuns from '../../pages/PipelineRuns';
 import PipelinesPage from '../../pages/Pipelines';
@@ -27,8 +27,8 @@ const Router = () => {
       element: <JobsPage />,
     },
     {
-      path: Routes.PipelineRun,
-      element: <PipelineRun />,
+      path: Routes.SinglePipelineRun,
+      element: <SinglePipelineRun />,
       errorElement: <div>Something went wrong</div>,
     },
     {

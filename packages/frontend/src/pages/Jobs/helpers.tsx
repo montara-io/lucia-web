@@ -1,40 +1,31 @@
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { Routes } from '../../constants/routes';
+import { ColumnName } from '../../constants/table-columns';
 import {
   formatField,
   getCommonTableHeaders,
 } from '../../services/table.service';
 
 export type JobAllResponse = {
+  id: string;
+  pipelineRunId: string;
   jobId: string;
-  sparkJobMetrics?: {
-    avgUtilization: number;
-    avgRuntime: number;
-    avgWaitingTime: number;
-    avgCoreHours: number;
+  date: string;
+  sparkJobMetrics: {
+    jobRunId: string;
+    avgNumOfExecutors: number;
+    avgTotalMemoryPerExecutor: number;
+    avgTotalBytesRead: number;
+    avgTotalBytesWritten: number;
+    avgTotalShuffleRead: number;
+    avgTotalShuffleWrite: number;
+    avgTotalCpuTimeUsed: number;
+    avgTotalCpuUptime: number;
+    avgPeakMemoryUsage: number;
+    avgTotalCoresNum: number;
+    avgCpuUtilization: number;
   };
 };
-
-export const responseDataFallback: JobAllResponse[] = [
-  {
-    jobId: 'Cohort',
-    sparkJobMetrics: {
-      avgCoreHours: 5,
-      avgRuntime: 5,
-      avgUtilization: 50,
-      avgWaitingTime: 5,
-    },
-  },
-  {
-    jobId: 'Feature Engine',
-    sparkJobMetrics: {
-      avgCoreHours: 5,
-      avgRuntime: 5,
-      avgUtilization: 50,
-      avgWaitingTime: 5,
-    },
-  },
-];
 
 export function dataFormatterCallback(params: {
   responseData: JobAllResponse[];
@@ -44,7 +35,12 @@ export function dataFormatterCallback(params: {
 
   return {
     headerData: getCommonTableHeaders({
-      fields: ['jobId', 'avgUtilization', 'avgRuntime', 'avgCoreHours'],
+      fields: [
+        ColumnName.jobId,
+        ColumnName.avgTotalCpuUptime,
+        ColumnName.avgTotalBytesRead,
+        ColumnName.avgTotalBytesWritten,
+      ],
       ctaText: 'Job History',
       onCtaClick: (data) => {
         navigate(Routes.JobHistory.replace(':jobId', data.jobId));
@@ -53,17 +49,21 @@ export function dataFormatterCallback(params: {
 
     bodyData: responseData.map((rd) => ({
       jobId: rd.jobId,
-      avgUtilization: formatField({
-        fieldName: 'avgUtilization',
-        fieldValue: rd.sparkJobMetrics?.avgUtilization,
+      avgNumOfExecutors: formatField({
+        fieldName: ColumnName.avgNumOfExecutors,
+        fieldValue: rd.sparkJobMetrics.avgNumOfExecutors,
       }),
-      avgRuntime: formatField({
-        fieldName: 'avgJobRuntime',
-        fieldValue: rd.sparkJobMetrics?.avgRuntime,
+      avgTotalBytesRead: formatField({
+        fieldName: ColumnName.avgTotalBytesRead,
+        fieldValue: rd.sparkJobMetrics.avgTotalBytesRead,
       }),
-      avgCoreHours: formatField({
-        fieldName: 'avgJobCoreHours',
-        fieldValue: rd.sparkJobMetrics?.avgCoreHours,
+      avgTotalBytesWritten: formatField({
+        fieldName: ColumnName.avgTotalBytesWritten,
+        fieldValue: rd.sparkJobMetrics.avgTotalBytesWritten,
+      }),
+      avgTotalCpuUptime: formatField({
+        fieldName: ColumnName.avgTotalCpuUptime,
+        fieldValue: rd.sparkJobMetrics.avgTotalCpuUptime,
       }),
     })),
   };

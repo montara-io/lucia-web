@@ -13,11 +13,11 @@ export function getCommonTableHeaders({
 }): HeaderRow[] {
   const headerData: HeaderRow[] = fields.map((c) => ({
     field: c,
-    title: TABLE_COLUMNS[c].title,
-    sortable: TABLE_COLUMNS[c].sortable || false,
-    sortType: TABLE_COLUMNS[c].sortType,
+    title: getTableColumnDefinition(c).title,
+    sortable: getTableColumnDefinition(c).sortable || false,
+    sortType: getTableColumnDefinition(c).sortType,
     sortField: c,
-    helpIconText: TABLE_COLUMNS[c].helpIconText,
+    helpIconText: getTableColumnDefinition(c).helpIconText,
   }));
 
   return headerData.concat([
@@ -35,10 +35,24 @@ export function getCommonTableHeaders({
 }
 
 export function formatField({ fieldName, fieldValue }) {
+  const configuredUnit = getTableColumnDefinition(fieldName).unit;
+  if (!configuredUnit) return fieldValue;
   const unit =
-    TABLE_COLUMNS[fieldName].unit === 'Hrs.' && fieldValue === 1
+    getTableColumnDefinition(fieldName).unit === 'Hrs.' && fieldValue === 1
       ? 'Hr.'
-      : TABLE_COLUMNS[fieldName].unit;
+      : getTableColumnDefinition(fieldName).unit;
 
   return `${fieldValue}${unit !== '%' ? ' ' : ''}${unit}`;
+}
+
+export function getTableColumnDefinition(columnId) {
+  try {
+    if (!TABLE_COLUMNS[columnId]) {
+      throw new Error(`Column not found: ${columnId}`);
+    }
+    return TABLE_COLUMNS[columnId];
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }

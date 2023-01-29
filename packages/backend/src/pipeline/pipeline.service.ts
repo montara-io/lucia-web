@@ -50,7 +50,7 @@ export class PipelineService {
 
   convertPipelineEntityToPipelineDto(entity: SparkJobRunEntity): PipelineRunDTO {
     const pipelineDto = new PipelineRunDTO()
-    pipelineDto.id = entity.id
+    pipelineDto.pipelineRunId = entity.pipeline_run_id
     pipelineDto.pipelineId = entity.pipeline_id
     pipelineDto.avgNumOfExecutors = entity.num_of_executors
     pipelineDto.avgCpuUtilization = entity.cpu_utilization
@@ -61,9 +61,8 @@ export class PipelineService {
     pipelineDto.avgTotalCpuTimeUsed = entity.total_cpu_time_used
     pipelineDto.avgTotalCpuUptime = entity.total_cpu_uptime
     pipelineDto.avgTotalMemoryPerExecutor = entity.total_memory_per_executor
-    pipelineDto.avgTotalShuffleRead = entity.total_shuffle_read
-    pipelineDto.avgTotalShuffleWrite = entity.total_shuffle_write
-    pipelineDto.totalCoreHours = entity.total_cores_num
+    pipelineDto.avgTotalShuffleRead = entity.total_shuffle_bytes_read
+    pipelineDto.avgTotalShuffleWrite = entity.total_shuffle_bytes_written
     pipelineDto.numberOfJobs = entity.number_of_jobs
     pipelineDto.date = entity.end_time
     return pipelineDto
