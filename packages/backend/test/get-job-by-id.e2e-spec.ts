@@ -100,7 +100,7 @@ describe('get job by id component test', () => {
     expect(job.sparkJobMetrics?.avgTotalCoresNum).toBe(750)
     expect(job.sparkJobMetrics?.avgTotalCpuTimeUsed).toBe(750)
     expect(job.sparkJobMetrics?.avgTotalMemoryPerExecutor).toBe(750)
-    expect(job.date.toISOString()).toBe('2022-09-05T08:23:25.960Z')
+    expect(job.endDate.toISOString()).toBe('2022-09-05T08:23:25.960Z')
   })
 })
 

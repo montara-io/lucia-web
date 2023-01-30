@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config'
 import { GetPipelineRunsDTO } from './dto/get-pipeline-runs.dto'
 import { SparkJobRunEntity } from '../entity/spark-job-run.entity'
 import { PipelineRunDTO } from './dto/pipeline-run.dto'
+import { dateDiffInMinuts } from '../utils/date'
 
 @Injectable()
 export class PipelineService {
@@ -66,16 +67,7 @@ export class PipelineService {
     pipelineDto.numberOfJobs = entity.number_of_jobs
     pipelineDto.startDate = entity.start_time
     pipelineDto.endDate = entity.end_time
-    pipelineDto.duration = this.dateDiffInDays(entity.start_time, entity.end_time)
+    pipelineDto.duration = dateDiffInMinuts(entity.start_time, entity.end_time)
     return pipelineDto
-  }
-
-  dateDiffInDays(startDate: Date, endDate: Date) {
-    const msPerDay = 1000 * 60 * 60 * 24
-
-    const utc1 = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
-    const utc2 = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())
-
-    return Math.floor((utc2 - utc1) / msPerDay)
   }
 }

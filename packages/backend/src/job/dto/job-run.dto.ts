@@ -4,9 +4,8 @@ export class JobRunDTO {
   id: string
   pipelineRunId: string
   jobId: string
-  date: Date
-  created: Date
-  updated: Date
-  deleted: boolean
+  startDate: Date
+  endDate: Date
+  duration: number
   sparkJobRunMetrics?: SparkJobRunMetricsDTO
 }
