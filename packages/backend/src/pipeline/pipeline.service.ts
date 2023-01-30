@@ -64,7 +64,18 @@ export class PipelineService {
     pipelineDto.avgTotalShuffleRead = entity.total_shuffle_bytes_read
     pipelineDto.avgTotalShuffleWrite = entity.total_shuffle_bytes_written
     pipelineDto.numberOfJobs = entity.number_of_jobs
-    pipelineDto.date = entity.end_time
+    pipelineDto.startDate = entity.start_time
+    pipelineDto.endDate = entity.end_time
+    pipelineDto.duration = this.dateDiffInDays(entity.start_time, entity.end_time)
     return pipelineDto
+  }
+
+  dateDiffInDays(startDate: Date, endDate: Date) {
+    const msPerDay = 1000 * 60 * 60 * 24
+
+    const utc1 = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
+    const utc2 = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())
+
+    return Math.floor((utc2 - utc1) / msPerDay)
   }
 }

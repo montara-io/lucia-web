@@ -64,6 +64,7 @@ export class PipelineRepository {
         .addSelect('AVG(total_cores_num)::INTEGER', 'total_cores_num')
         .addSelect('AVG(cpu_utilization)::INTEGER', 'cpu_utilization')
         .addSelect('max(end_time)', 'end_time')
+        .addSelect('min(start_time)', 'start_time')
         .from(SparkJobRunEntity, 'spark_job_run')
         .where('pipeline_id = :pipelineId', { pipelineId })
         .andWhere('deleted = false')
