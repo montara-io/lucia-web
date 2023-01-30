@@ -17,7 +17,7 @@ const SinglePipelineRunPage = () => {
       dataFormatterCallback={(responseData) =>
         dataFormatterCallback({ navigate, responseData })
       }
-      onData={() => setPageHeader(`${pipelineId}`)}
+      onData={() => setPageHeader(`${pipelineId} - Jobs`)}
       id={'pipelineRun'}
       pageHeader={pageHeader}
     />

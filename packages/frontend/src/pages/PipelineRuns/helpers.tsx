@@ -42,6 +42,9 @@ export function dataFormatterCallback(params: {
         ColumnName.avgTotalCpuUptime,
         ColumnName.avgTotalBytesRead,
         ColumnName.avgTotalBytesWritten,
+
+        // Only Start date, duration (Hrs), nubmer of jobs, \
+        // Overview: number of runs,
       ],
       ctaText: 'Explore',
       onCtaClick: ({ pipelineRunId }) =>

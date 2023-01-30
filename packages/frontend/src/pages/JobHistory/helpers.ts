@@ -48,6 +48,8 @@ const metricsToTexts = [
     chartTitle: 'Bytes Written',
     scoreField: ColumnName.TotalBytesWritten,
   },
+
+  // TODO: Take all metrics
 ];
 
 export function formatOverview(jobs: JobRun[]): OverviewItem[] {
