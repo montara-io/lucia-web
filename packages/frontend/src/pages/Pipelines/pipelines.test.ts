@@ -3,7 +3,7 @@ const responseDataFallback: PipelineAllResponse[] = [
   {
     id: 'Monty Grail',
     pipelineId: 'Monty Grail',
-    date: '2022-09-05T08:23:25.960Z',
+
     avgRuntime: 20,
     avgCpuUtilization: 50,
     avgPeakMemoryUsage: 50,
@@ -17,11 +17,14 @@ const responseDataFallback: PipelineAllResponse[] = [
     avgTotalShuffleWrite: 50,
     avgNumOfExecutors: 50,
     numberOfJobs: 3,
+    startDate: '2022-09-05T08:23:25.960Z',
+    endDate: '2022-09-05T08:23:25.960Z',
+    duration: 2,
   },
   {
     id: 'Monty Python',
     pipelineId: 'Monty Python',
-    date: '2022-09-05T08:23:25.960Z',
+
     avgRuntime: 20,
     avgCpuUtilization: 50,
     avgPeakMemoryUsage: 50,
@@ -35,6 +38,9 @@ const responseDataFallback: PipelineAllResponse[] = [
     avgTotalShuffleWrite: 50,
     avgNumOfExecutors: 50,
     numberOfJobs: 3,
+    startDate: '2022-09-05T08:23:25.960Z',
+    endDate: '2022-09-05T08:23:25.960Z',
+    duration: 2,
   },
 ];
 describe('data formatting', () => {

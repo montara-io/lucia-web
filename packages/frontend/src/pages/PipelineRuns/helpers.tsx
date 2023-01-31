@@ -2,10 +2,10 @@ import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { ColumnName } from '../../constants/table-columns';
 
 import {
-  formatField,
+  formatColumn,
   getCommonTableHeaders,
   getTableColumnDefinition,
-} from '../../services/table.service';
+} from '../../services/table';
 import { OverviewItem } from '../../stories/Overview/Overview';
 import { arrayAverage } from '../../utils/arrays';
 import { formatDate } from '../../utils/date';
@@ -53,17 +53,17 @@ export function dataFormatterCallback(params: {
     bodyData: responseData.map((rd) => ({
       pipelineRunId: rd.pipelineRunId,
       date: formatDate(rd.date),
-      avgTotalCpuUptime: formatField({
-        fieldName: 'avgTotalCpuUptime',
-        fieldValue: rd.avgTotalCpuUptime,
+      avgTotalCpuUptime: formatColumn({
+        columnName: ColumnName.avgTotalCpuUptime,
+        dataObject: rd,
       }),
-      avgTotalBytesRead: formatField({
-        fieldName: 'avgTotalBytesRead',
-        fieldValue: rd.avgTotalBytesRead,
+      avgTotalBytesRead: formatColumn({
+        columnName: ColumnName.avgTotalBytesRead,
+        dataObject: rd,
       }),
-      avgTotalBytesWritten: formatField({
-        fieldName: 'avgTotalBytesWritten',
-        fieldValue: rd.avgTotalBytesWritten,
+      avgTotalBytesWritten: formatColumn({
+        columnName: ColumnName.avgTotalBytesWritten,
+        dataObject: rd,
       }),
     })),
   };
@@ -90,9 +90,9 @@ export function formatOverview(
     overviewItems.map((oi) => ({
       title: getTableColumnDefinition(oi).title,
       tooltip: getTableColumnDefinition(oi).helpIconText,
-      score: formatField({
-        fieldName: oi,
-        fieldValue: arrayAverage(
+      score: formatColumn({
+        columnName: oi,
+        columnValue: arrayAverage(
           pipelineRuns.map((pipelineRun) => pipelineRun[oi] || 0),
         ),
       }),

@@ -1,5 +1,5 @@
 import { ColumnName } from '../../constants/table-columns';
-import { getTableColumnDefinition } from '../../services/table.service';
+import { getTableColumnDefinition } from '../../services/table';
 import { arrayAverage } from '../../utils/arrays';
 import { formatDate } from '../../utils/date';
 import { OverviewItem } from './../../stories/Overview/Overview';

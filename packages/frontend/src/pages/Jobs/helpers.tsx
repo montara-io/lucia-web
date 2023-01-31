@@ -1,10 +1,7 @@
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { Routes } from '../../constants/routes';
 import { ColumnName } from '../../constants/table-columns';
-import {
-  formatField,
-  getCommonTableHeaders,
-} from '../../services/table.service';
+import { formatColumn, getCommonTableHeaders } from '../../services/table';
 
 export type JobAllResponse = {
   id: string;
@@ -49,21 +46,21 @@ export function dataFormatterCallback(params: {
 
     bodyData: responseData.map((rd) => ({
       jobId: rd.jobId,
-      avgNumOfExecutors: formatField({
-        fieldName: ColumnName.avgNumOfExecutors,
-        fieldValue: rd.sparkJobMetrics.avgNumOfExecutors,
+      avgNumOfExecutors: formatColumn({
+        columnName: ColumnName.avgNumOfExecutors,
+        dataObject: rd.sparkJobMetrics,
       }),
-      avgTotalBytesRead: formatField({
-        fieldName: ColumnName.avgTotalBytesRead,
-        fieldValue: rd.sparkJobMetrics.avgTotalBytesRead,
+      avgTotalBytesRead: formatColumn({
+        columnName: ColumnName.avgTotalBytesRead,
+        dataObject: rd.sparkJobMetrics,
       }),
-      avgTotalBytesWritten: formatField({
-        fieldName: ColumnName.avgTotalBytesWritten,
-        fieldValue: rd.sparkJobMetrics.avgTotalBytesWritten,
+      avgTotalBytesWritten: formatColumn({
+        columnName: ColumnName.avgTotalBytesWritten,
+        dataObject: rd.sparkJobMetrics,
       }),
-      avgTotalCpuUptime: formatField({
-        fieldName: ColumnName.avgTotalCpuUptime,
-        fieldValue: rd.sparkJobMetrics.avgTotalCpuUptime,
+      avgTotalCpuUptime: formatColumn({
+        columnName: ColumnName.avgTotalCpuUptime,
+        dataObject: rd.sparkJobMetrics,
       }),
     })),
   };

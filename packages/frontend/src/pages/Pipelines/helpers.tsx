@@ -1,10 +1,7 @@
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { Routes } from '../../constants/routes';
 import { ColumnName } from '../../constants/table-columns';
-import {
-  formatField,
-  getCommonTableHeaders,
-} from '../../services/table.service';
+import { formatColumn, getCommonTableHeaders } from '../../services/table';
 import { formatDate } from '../../utils/date';
 
 export type PipelineAllResponse = {
@@ -23,7 +20,9 @@ export type PipelineAllResponse = {
   avgPeakMemoryUsage: number;
   avgTotalCoresNum: number;
   avgCpuUtilization: number;
-  date: string; // ISO date string
+  startDate: string;
+  endDate: string;
+  duration: number;
 };
 
 export function dataFormatterCallback(params: {
@@ -37,9 +36,8 @@ export function dataFormatterCallback(params: {
       fields: [
         ColumnName.pipelineId,
         ColumnName.lastRunDate,
-        ColumnName.avgTotalCpuUptime,
-        ColumnName.avgTotalBytesRead,
-        ColumnName.avgTotalBytesWritten,
+
+        // Last run date, last run duration, avg duration, number of jobs,
       ],
       ctaText: 'Explore',
       onCtaClick: ({ pipelineId }) =>
@@ -48,16 +46,15 @@ export function dataFormatterCallback(params: {
     bodyData: responseData.map((rd) => ({
       pipelineId: rd.pipelineId,
       id: rd.pipelineId,
-      lastRunDate: formatDate(rd.date),
-      avgTotalBytesRead: formatField({
-        fieldName: 'avgTotalBytesRead',
-        fieldValue: rd.avgTotalBytesRead,
+      lastRunDate: formatDate(rd.startDate),
+      avgTotalBytesRead: formatColumn({
+        columnName: ColumnName.avgTotalBytesRead,
+        dataObject: rd,
       }),
-      avgTotalBytesWritten: formatField({
-        fieldName: 'avgTotalBytesWritten',
-        fieldValue: rd.avgTotalBytesWritten,
+      avgTotalBytesWritten: formatColumn({
+        columnName: ColumnName.avgTotalBytesWritten,
+        dataObject: rd,
       }),
-
       avgTotalCpuUptime: `${rd.avgTotalCpuUptime} Hrs.`,
     })),
   };

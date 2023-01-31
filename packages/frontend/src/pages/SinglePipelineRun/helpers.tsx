@@ -1,10 +1,7 @@
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { Routes } from '../../constants/routes';
 import { ColumnName } from '../../constants/table-columns';
-import {
-  formatField,
-  getCommonTableHeaders,
-} from '../../services/table.service';
+import { formatColumn, getCommonTableHeaders } from '../../services/table';
 
 export type JobByPipelineRunIdResponse = {
   id: string;
@@ -80,17 +77,17 @@ export function dataFormatterCallback(params: {
     }),
     bodyData: responseData.map((rd) => ({
       jobId: rd.jobId,
-      totalCpuUptime: formatField({
-        fieldName: ColumnName.TotalCpuUptime,
-        fieldValue: rd.sparkJobRunMetrics?.totalCpuUptime,
+      totalCpuUptime: formatColumn({
+        columnName: ColumnName.TotalCpuUptime,
+        dataObject: rd.sparkJobRunMetrics,
       }),
-      totalBytesRead: formatField({
-        fieldName: ColumnName.TotalBytesRead,
-        fieldValue: rd.sparkJobRunMetrics?.totalBytesRead,
+      totalBytesRead: formatColumn({
+        columnName: ColumnName.TotalBytesRead,
+        dataObject: rd.sparkJobRunMetrics,
       }),
-      totalBytesWritten: formatField({
-        fieldName: ColumnName.TotalBytesWritten,
-        fieldValue: rd.sparkJobRunMetrics?.totalBytesRead,
+      totalBytesWritten: formatColumn({
+        columnName: ColumnName.TotalBytesWritten,
+        dataObject: rd.sparkJobRunMetrics,
       }),
     })),
   };
