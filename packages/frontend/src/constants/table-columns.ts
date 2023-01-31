@@ -1,12 +1,13 @@
 export enum ColumnName {
   pipelineId = 'pipelineId',
-  AvgRuntime = 'avgRuntime',
-  lastRunRuntime = 'lastRunRuntime',
-  lastRunDate = 'lastRunDate',
-  avgTotalCpuUptime = 'avgTotalCpuUptime',
+  AvgDuration = 'avgDuration',
+  lastRunDuration = 'lastRunDuration',
+  LastRunDate = 'lastRunDate',
+  Duration = 'duration',
+  AvgTotalCpuUptime = 'avgTotalCpuUptime',
   TotalCpuUptime = 'totalCpuUptime',
   numberOfJobs = 'numberOfJobs',
-  date = 'date',
+  Date = 'date',
   avgTotalBytesRead = 'avgTotalBytesRead',
   avgTotalBytesWritten = 'avgTotalBytesWritten',
   TotalBytesRead = 'totalBytesRead',
@@ -34,20 +35,27 @@ export const TABLE_COLUMNS = {
     sortable: true,
     sortType: 'string',
   },
-  [ColumnName.AvgRuntime]: {
-    title: 'Avg. Runtime',
+  [ColumnName.AvgDuration]: {
+    title: 'Avg. Duration',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Duration,
     helpIconText: 'The average time for all pipeline runs',
   },
-  [ColumnName.lastRunDate]: {
+  [ColumnName.Duration]: {
+    title: 'Duration',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Duration,
+    helpIconText: 'The time it took for the entire pipeline to run',
+  },
+  [ColumnName.LastRunDate]: {
     title: 'Last run date',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Date,
   },
-  [ColumnName.avgTotalCpuUptime]: {
+  [ColumnName.AvgTotalCpuUptime]: {
     title: 'Avg. CPU Uptime',
     sortable: true,
     sortType: 'string',
@@ -67,8 +75,9 @@ export const TABLE_COLUMNS = {
     title: 'Number of Jobs',
     sortable: true,
     sortType: 'number',
+    helpIconText: 'The number of jobs in the last pipeline run',
   },
-  [ColumnName.date]: {
+  [ColumnName.Date]: {
     title: 'Date',
     sortable: true,
     sortType: 'string',
@@ -113,8 +122,8 @@ export const TABLE_COLUMNS = {
     sortType: 'number',
     helpIconText: 'The average number of executors used across jobs',
   },
-  [ColumnName.lastRunRuntime]: {
-    title: 'Last Run Runtime',
+  [ColumnName.lastRunDuration]: {
+    title: 'Last Run Duration',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Duration,

@@ -7,8 +7,8 @@ export type PipelineAllResponse = {
   pipelineId: string;
   lastRunDate: string;
   numberOfJobs: number;
-  avgRuntime: number;
-  lastRunRuntime: number;
+  avgDuration: number;
+  lastRunDuration: number;
 };
 
 export function dataFormatterCallback(params: {
@@ -22,9 +22,9 @@ export function dataFormatterCallback(params: {
       fields: [
         ColumnName.pipelineId,
         ColumnName.numberOfJobs,
-        ColumnName.AvgRuntime,
-        ColumnName.lastRunRuntime,
-        ColumnName.lastRunDate,
+        ColumnName.AvgDuration,
+        ColumnName.lastRunDuration,
+        ColumnName.LastRunDate,
 
         // Last run date, last run duration, avg duration, number of jobs,
       ],
@@ -35,16 +35,16 @@ export function dataFormatterCallback(params: {
     bodyData: responseData.map((rd) => ({
       pipelineId: rd.pipelineId,
       lastRunDate: formatColumn({
-        columnName: ColumnName.lastRunDate,
+        columnName: ColumnName.LastRunDate,
         dataObject: rd,
       }),
       numberOfJobs: rd.numberOfJobs,
       avgDuration: formatColumn({
-        columnName: ColumnName.AvgRuntime,
+        columnName: ColumnName.AvgDuration,
         dataObject: rd,
       }),
       lastRunDuration: formatColumn({
-        columnName: ColumnName.lastRunRuntime,
+        columnName: ColumnName.lastRunDuration,
         dataObject: rd,
       }),
     })),

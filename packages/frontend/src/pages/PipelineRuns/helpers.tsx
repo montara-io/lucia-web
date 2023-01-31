@@ -12,7 +12,6 @@ import { formatDate } from '../../utils/date';
 
 export type PipelineRunResponse = {
   pipelineRunId: string;
-  pipelineId: string;
   numberOfJobs: number;
   avgNumOfExecutors: number;
   avgTotalMemoryPerExecutor: number;
@@ -25,7 +24,9 @@ export type PipelineRunResponse = {
   avgPeakMemoryUsage: number;
   avgTotalCoresNum: number;
   avgCpuUtilization: number;
-  date: string;
+  startDate: string;
+  endDate: string;
+  duration: number;
 };
 
 export function dataFormatterCallback(params: {
@@ -37,51 +38,35 @@ export function dataFormatterCallback(params: {
 
   return {
     headerData: getCommonTableHeaders({
-      fields: [
-        ColumnName.date,
-        ColumnName.avgTotalCpuUptime,
-        ColumnName.avgTotalBytesRead,
-        ColumnName.avgTotalBytesWritten,
-
-        // Only Start date, duration (Hrs), nubmer of jobs, \
-        // Overview: number of runs,
-      ],
+      fields: [ColumnName.Date, ColumnName.Duration, ColumnName.numberOfJobs],
       ctaText: 'Explore',
       onCtaClick: ({ pipelineRunId }) =>
         navigate(`/pipeline/${pipelineId}/runs/${pipelineRunId}/jobs`),
     }),
     bodyData: responseData.map((rd) => ({
       pipelineRunId: rd.pipelineRunId,
-      date: formatDate(rd.date),
-      avgTotalCpuUptime: formatColumn({
-        columnName: ColumnName.avgTotalCpuUptime,
+      date: formatDate(rd.startDate),
+      runtime: formatColumn({
+        columnName: ColumnName.Duration,
         dataObject: rd,
       }),
-      avgTotalBytesRead: formatColumn({
-        columnName: ColumnName.avgTotalBytesRead,
+      duration: formatColumn({
+        columnName: ColumnName.Duration,
         dataObject: rd,
       }),
-      avgTotalBytesWritten: formatColumn({
-        columnName: ColumnName.avgTotalBytesWritten,
-        dataObject: rd,
-      }),
+      numberOfJobs: rd.numberOfJobs,
     })),
   };
 }
 
-const overviewItems = [
-  ColumnName.numberOfJobs,
-  ColumnName.avgTotalCpuUptime,
-  ColumnName.avgTotalBytesRead,
-  ColumnName.avgTotalBytesWritten,
-];
+const overviewItems = [ColumnName.numberOfJobs, ColumnName.AvgDuration];
 
 export function formatOverview(
   pipelineRuns: PipelineRunResponse[],
 ): OverviewItem[] {
   const prefix: OverviewItem[] = [
     {
-      title: 'Num. of Runs',
+      title: 'Number of Runs',
       score: pipelineRuns.length,
       tooltip: 'How many times the job was triggered',
     },
@@ -94,6 +79,7 @@ export function formatOverview(
         columnName: oi,
         columnValue: arrayAverage(
           pipelineRuns.map((pipelineRun) => pipelineRun[oi] || 0),
+          5,
         ),
       }),
     })),

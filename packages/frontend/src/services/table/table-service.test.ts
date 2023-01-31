@@ -1,4 +1,4 @@
-import { formatColumn } from '.';
+import { formatColumn, formatDuration } from '.';
 import { ColumnName } from './../../constants/table-columns';
 
 describe('Table Service', () => {
@@ -10,16 +10,20 @@ describe('Table Service', () => {
   });
 
   it('should format field data - date', () => {
-    const columnName = ColumnName.lastRunDate;
-    const dataObject = { [ColumnName.lastRunDate]: '2022-09-05 08:23:25.960' };
+    const columnName = ColumnName.LastRunDate;
+    const dataObject = { [ColumnName.LastRunDate]: '2022-09-05 08:23:25.960' };
     const formatted = formatColumn({ columnName, dataObject });
     expect(formatted).toEqual('09/05/22, 8:23 AM');
   });
 
   it('should format field data - duration', () => {
-    const columnName = ColumnName.AvgRuntime;
-    const dataObject = { [ColumnName.AvgRuntime]: 0.5 };
+    const columnName = ColumnName.AvgDuration;
+    const dataObject = { [ColumnName.AvgDuration]: 0.5 };
     const formatted = formatColumn({ columnName, dataObject });
     expect(formatted).toEqual('30 Mins.');
+  });
+
+  it('should format field data - duration seconds', () => {
+    expect(formatDuration(0.07)).toBe('4 Mins.');
   });
 });

@@ -34,7 +34,7 @@ export function dataFormatterCallback(params: {
     headerData: getCommonTableHeaders({
       fields: [
         ColumnName.jobId,
-        ColumnName.avgTotalCpuUptime,
+        ColumnName.AvgTotalCpuUptime,
         ColumnName.avgTotalBytesRead,
         ColumnName.avgTotalBytesWritten,
       ],
@@ -59,7 +59,7 @@ export function dataFormatterCallback(params: {
         dataObject: rd.sparkJobMetrics,
       }),
       avgTotalCpuUptime: formatColumn({
-        columnName: ColumnName.avgTotalCpuUptime,
+        columnName: ColumnName.AvgTotalCpuUptime,
         dataObject: rd.sparkJobMetrics,
       }),
     })),

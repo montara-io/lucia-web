@@ -45,7 +45,7 @@ type formatColumnParams = {
   columnValue?: any;
 };
 
-function formatDuration(duration: number) {
+export function formatDuration(duration: number) {
   if (duration < 1) {
     return `${Math.round(duration * 60)} Mins.`;
   } else {
@@ -62,10 +62,11 @@ export function formatColumn({
 
   const fieldValue = columnValue ?? dataObject[columnName];
 
-  if (!columnDefinition?.unit) return dataObject[columnName];
+  if (!columnDefinition?.unit) return columnValue ?? dataObject?.[columnName];
 
   switch (columnDefinition?.unit) {
     case UnitType.Duration:
+      console.log(fieldValue);
       return formatDuration(fieldValue as number);
     case UnitType.Date:
       return formatDate(fieldValue);
