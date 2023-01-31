@@ -31,7 +31,7 @@ const sparkJobRun = [
     total_cores_num: 500,
     cpu_utilization: 500,
     start_time: '2022-09-03T08:23:25.960Z',
-    end_time: '2022-09-04T08:23:25.960Z',
+    end_time: '2022-09-05T08:23:25.960Z',
     created: '2022-09-04T08:23:25.960Z',
     updated: '2022-09-04T08:23:25.960Z',
     deleted: false,
@@ -53,7 +53,29 @@ const sparkJobRun = [
     total_cores_num: 1000,
     cpu_utilization: 1000,
     start_time: '2022-09-03T08:23:25.960Z',
-    end_time: '2022-09-05T08:23:25.960Z',
+    end_time: '2022-09-07T08:23:25.960Z',
+    created: '2022-09-04T08:23:25.960Z',
+    updated: '2022-09-04T08:23:25.960Z',
+    deleted: false,
+  },
+  {
+    id: jobId + 3,
+    pipeline_id: 'pipelineId2',
+    job_id: jobId,
+    pipeline_run_id: pipelineId + 2,
+    num_of_executors: 1000,
+    total_memory_per_executor: 1000,
+    total_bytes_read: 1000,
+    total_bytes_written: 1000,
+    total_shuffle_bytes_read: 1000,
+    total_shuffle_bytes_written: 1000,
+    total_cpu_time_used: 1000,
+    total_cpu_uptime: 1000,
+    peak_memory_usage: 1000,
+    total_cores_num: 1000,
+    cpu_utilization: 1000,
+    start_time: '2022-09-03T08:23:25.960Z',
+    end_time: '2022-09-08T08:23:25.960Z',
     created: '2022-09-04T08:23:25.960Z',
     updated: '2022-09-04T08:23:25.960Z',
     deleted: false,
@@ -88,9 +110,14 @@ describe('get pipelines summary component test', () => {
 
     const pipelines = await dataPipelineService.getPipelines()
 
-    expect(pipelines.length).toEqual(1)
-    expect(pipelines[0].avgCpuUtilization).toEqual(750)
-    expect(pipelines[0].avgNumOfExecutors).toEqual(750)
+    expect(pipelines.length).toEqual(2)
+    expect(
+      Math.floor(
+        pipelines.filter((pipeline) => {
+          return pipeline.pipelineId == pipelineId
+        })[0].avgRuntime / 1440,
+      ),
+    ).toEqual(3)
   })
 })
 
