@@ -17,8 +17,8 @@ describe('Table Service', () => {
   });
 
   it('should format field data - duration', () => {
-    const columnName = ColumnName.avgRuntime;
-    const dataObject = { [ColumnName.avgRuntime]: 0.5 };
+    const columnName = ColumnName.AvgRuntime;
+    const dataObject = { [ColumnName.AvgRuntime]: 0.5 };
     const formatted = formatColumn({ columnName, dataObject });
     expect(formatted).toEqual('30 Mins.');
   });

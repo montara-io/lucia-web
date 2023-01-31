@@ -37,38 +37,6 @@ export function dataFormatterCallback(params: {
         ColumnName.TotalCpuUptime,
         ColumnName.TotalBytesRead,
         ColumnName.TotalBytesWritten,
-
-        //         cpuUtilization
-        // :
-        // 2.0350069735006975
-        // numOfExecutors
-        // :
-        // 1
-        // peakMemoryUsage
-        // :
-        // 0
-        // totalBytesRead
-        // :
-        // "1979173"
-        // totalBytesWritten
-        // :
-        // "0"
-        // totalCoresNum
-        // :
-        // 1
-        // totalCpuTimeUsed
-        // :
-        // 0.072955
-        // totalCpuUptime
-        // :
-        // 3.585
-
-        // totalShuffleRead
-        // :
-        // "0"
-        // totalShuffleWrite
-        // :
-        // "0"
       ],
       ctaText: 'Job History',
       onCtaClick: (data) => {

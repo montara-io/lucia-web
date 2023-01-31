@@ -1,6 +1,7 @@
 export enum ColumnName {
   pipelineId = 'pipelineId',
-  avgRuntime = 'avgRuntime',
+  AvgRuntime = 'avgRuntime',
+  lastRunRuntime = 'lastRunRuntime',
   lastRunDate = 'lastRunDate',
   avgTotalCpuUptime = 'avgTotalCpuUptime',
   TotalCpuUptime = 'totalCpuUptime',
@@ -33,7 +34,7 @@ export const TABLE_COLUMNS = {
     sortable: true,
     sortType: 'string',
   },
-  [ColumnName.avgRuntime]: {
+  [ColumnName.AvgRuntime]: {
     title: 'Avg. Runtime',
     sortable: true,
     sortType: 'string',
@@ -111,5 +112,12 @@ export const TABLE_COLUMNS = {
     sortable: true,
     sortType: 'number',
     helpIconText: 'The average number of executors used across jobs',
+  },
+  [ColumnName.lastRunRuntime]: {
+    title: 'Last Run Runtime',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Duration,
+    helpIconText: 'The duration of the last pipeline run',
   },
 };

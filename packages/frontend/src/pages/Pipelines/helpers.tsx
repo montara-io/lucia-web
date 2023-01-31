@@ -2,27 +2,13 @@ import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { Routes } from '../../constants/routes';
 import { ColumnName } from '../../constants/table-columns';
 import { formatColumn, getCommonTableHeaders } from '../../services/table';
-import { formatDate } from '../../utils/date';
 
 export type PipelineAllResponse = {
-  id: string;
   pipelineId: string;
-  avgRuntime: number;
+  lastRunDate: string;
   numberOfJobs: number;
-  avgNumOfExecutors: number;
-  avgTotalMemoryPerExecutor: number;
-  avgTotalBytesRead: number;
-  avgTotalBytesWritten: number;
-  avgTotalShuffleRead: number;
-  avgTotalShuffleWrite: number;
-  avgTotalCpuTimeUsed: number;
-  avgTotalCpuUptime: number;
-  avgPeakMemoryUsage: number;
-  avgTotalCoresNum: number;
-  avgCpuUtilization: number;
-  startDate: string;
-  endDate: string;
-  duration: number;
+  avgRuntime: number;
+  lastRunRuntime: number;
 };
 
 export function dataFormatterCallback(params: {
@@ -35,6 +21,9 @@ export function dataFormatterCallback(params: {
     headerData: getCommonTableHeaders({
       fields: [
         ColumnName.pipelineId,
+        ColumnName.numberOfJobs,
+        ColumnName.AvgRuntime,
+        ColumnName.lastRunRuntime,
         ColumnName.lastRunDate,
 
         // Last run date, last run duration, avg duration, number of jobs,
@@ -45,17 +34,19 @@ export function dataFormatterCallback(params: {
     }),
     bodyData: responseData.map((rd) => ({
       pipelineId: rd.pipelineId,
-      id: rd.pipelineId,
-      lastRunDate: formatDate(rd.startDate),
-      avgTotalBytesRead: formatColumn({
-        columnName: ColumnName.avgTotalBytesRead,
+      lastRunDate: formatColumn({
+        columnName: ColumnName.lastRunDate,
         dataObject: rd,
       }),
-      avgTotalBytesWritten: formatColumn({
-        columnName: ColumnName.avgTotalBytesWritten,
+      numberOfJobs: rd.numberOfJobs,
+      avgDuration: formatColumn({
+        columnName: ColumnName.AvgRuntime,
         dataObject: rd,
       }),
-      avgTotalCpuUptime: `${rd.avgTotalCpuUptime} Hrs.`,
+      lastRunDuration: formatColumn({
+        columnName: ColumnName.lastRunRuntime,
+        dataObject: rd,
+      }),
     })),
   };
 }

@@ -20,7 +20,7 @@ export function getCommonTableHeaders({
     field: c,
     title: getTableColumnDefinition(c).title,
     sortable: getTableColumnDefinition(c).sortable || false,
-    sortType: getTableColumnDefinition(c).sortType,
+    sortType: getTableColumnDefinition(c).sortType as any,
     sortField: c,
     helpIconText: getTableColumnDefinition(c).helpIconText,
   }));
