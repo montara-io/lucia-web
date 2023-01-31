@@ -47,9 +47,9 @@ export class PipelineRepository {
     }
   }
 
-  public async findPipelineRuns(pipelineId: string): Promise<SparkJobRunEntity[]> {
+  public async findPipelineRuns(pipelineId?: string): Promise<SparkJobRunEntity[]> {
     try {
-      const pipelineQuery = this.dataSource.manager
+      let pipelineQuery = this.dataSource.manager
         .createQueryBuilder()
         .addSelect('pipeline_run_id', 'pipeline_run_id')
         .addSelect('COUNT(id)::INTEGER', 'number_of_jobs')
@@ -67,10 +67,12 @@ export class PipelineRepository {
         .addSelect('max(end_time)', 'end_time')
         .addSelect('min(start_time)', 'start_time')
         .from(SparkJobRunEntity, 'spark_job_run')
-        .where('pipeline_id = :pipelineId', { pipelineId })
-        .andWhere('deleted = false')
-        .addGroupBy('pipeline_run_id')
-        .addOrderBy('end_time', 'ASC')
+
+      if (pipelineId) {
+        pipelineQuery = pipelineQuery.where('pipeline_id = :pipelineId', { pipelineId })
+      }
+
+      pipelineQuery.andWhere('deleted = false').addGroupBy('pipeline_run_id').addOrderBy('end_time', 'ASC')
       this.logger.debug('find pipeline runs query %s', pipelineQuery.getQuery())
       return await pipelineQuery.getRawMany()
     } catch (e) {

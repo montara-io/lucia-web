@@ -6,6 +6,7 @@ import { GetPipelineRunsDTO } from './dto/get-pipeline-runs.dto'
 import { SparkJobRunEntity } from '../entity/spark-job-run.entity'
 import { PipelineRunDTO } from './dto/pipeline-run.dto'
 import { dateDiffInMinuts } from '../utils/date'
+import { PipelineSummaryDTO } from './dto/pipeline-summary.dto'
 
 @Injectable()
 export class PipelineService {
@@ -16,7 +17,7 @@ export class PipelineService {
     private readonly configService: ConfigService,
   ) {}
 
-  async getPipelines(): Promise<PipelineRunDTO[]> {
+  async getPipelines(): Promise<PipelineSummaryDTO[]> {
     const pipelineEntities: SparkJobRunEntity[] = await this.repository.findPipelinesSummary()
 
     if (!pipelineEntities || pipelineEntities.length === 0) {
@@ -24,7 +25,20 @@ export class PipelineService {
       return null
     }
 
-    return pipelineEntities.map((pipelineEntity) => this.convertPipelineEntityToPipelineDto(pipelineEntity))
+    let totalDuration = 0
+
+    for (const pipeline of pipelineEntities) {
+      const pipelineRuns = await this.repository.findPipelineRuns(pipeline.pipeline_id)
+      for (const pipelineRun of pipelineRuns) {
+        totalDuration += dateDiffInMinuts(pipelineRun.start_time, pipelineRun.end_time)
+      }
+
+      pipeline['avg_duration'] = totalDuration / pipelineRuns.length
+      pipeline.number_of_jobs = pipelineRuns.length
+      totalDuration = 0
+    }
+
+    return pipelineEntities.map((pipelineEntity) => this.convertPipelineEntityToPipelineSummaryDto(pipelineEntity))
   }
 
   async getPipelineRuns(dto: GetPipelineRunsDTO): Promise<PipelineRunDTO[]> {
@@ -47,6 +61,17 @@ export class PipelineService {
     }
 
     return this.convertPipelineEntityToPipelineDto(pipelineEntity)
+  }
+
+  convertPipelineEntityToPipelineSummaryDto(entity: SparkJobRunEntity): PipelineSummaryDTO {
+    const pipelineSummaryDto = new PipelineSummaryDTO()
+    pipelineSummaryDto.pipelineId = entity.pipeline_id
+    pipelineSummaryDto.avgRuntime = entity['avg_duration']
+    pipelineSummaryDto.lastRunDate = entity.end_time
+    pipelineSummaryDto.numberOfJobs = entity.number_of_jobs
+    pipelineSummaryDto.lastRunRuntime = dateDiffInMinuts(entity.start_time, entity.end_time)
+
+    return pipelineSummaryDto
   }
 
   convertPipelineEntityToPipelineDto(entity: SparkJobRunEntity): PipelineRunDTO {
