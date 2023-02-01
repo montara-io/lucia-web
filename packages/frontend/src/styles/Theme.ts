@@ -6,7 +6,7 @@ export const theme = {
   none: '#E6E6E6',
   lowSeverity: '#505F79',
   noSeverity: '#505F79',
-  midSeverity: '#FFC965',
+  // midSeverity: '#FFC965',
   highSeverity: '#F25B2A',
   hoverBlue: '#27425A',
   gray240: '#F0F0F0',
