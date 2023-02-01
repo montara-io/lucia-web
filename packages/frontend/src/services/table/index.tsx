@@ -58,12 +58,15 @@ export function formatDuration(duration: number) {
 }
 
 export function formatStorage(storage: number) {
+  if (storage < 1024 * 1024) {
+    return `${numberWithCommas(Math.round(storage))} Bytes`;
+  }
   const storageInMb = storage / 1024 / 1024;
 
   if (storageInMb < 1024) {
     return `${numberWithCommas(Math.round(storageInMb))} MB`;
   } else {
-    return `${numberWithCommas(Math.round(storageInMb / 1024))} GB`;
+    return `${numberWithCommas((storageInMb / 1024).toFixed(2))} GB`;
   }
 }
 

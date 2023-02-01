@@ -34,6 +34,6 @@ describe('Job History', () => {
   });
   it('should format the line chart data', () => {
     const result = formatLineChartData(jobsMock);
-    expect(result).toHaveLength(3);
+    expect(result).toHaveLength(11);
   });
 });

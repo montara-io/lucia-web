@@ -25,7 +25,7 @@ function createColumnsFromTableFields(
   const result = {};
   tableFields.forEach((field) => {
     result[field] = formatColumn({
-      columnName: ColumnName.NumOfExecutors,
+      columnName: field as ColumnName,
       dataObject: responseData.sparkJobRunMetrics,
     });
   });

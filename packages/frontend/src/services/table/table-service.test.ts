@@ -6,7 +6,7 @@ describe('Table Service', () => {
     const columnName = ColumnName.TotalBytesRead;
     const dataObject = { [ColumnName.TotalBytesRead]: 1234567890 };
     const formatted = formatColumn({ columnName, dataObject });
-    expect(formatted).toEqual('1234567890 Bytes');
+    expect(formatted).toEqual('1.15 GB');
   });
 
   it('should format field data - date', () => {

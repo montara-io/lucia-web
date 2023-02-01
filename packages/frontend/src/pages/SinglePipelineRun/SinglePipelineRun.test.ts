@@ -54,6 +54,7 @@ describe('Pipeline Run component', () => {
       responseData: responseDataFallback,
       navigate: () => {},
     });
+
     expect(formatted.headerData[0].field).toBe('jobId');
     expect(formatted.bodyData[0].totalBytesWritten).toBe('5 Bytes');
   });
