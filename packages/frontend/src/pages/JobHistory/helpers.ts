@@ -1,30 +1,9 @@
 import { ColumnName } from '../../constants/table-columns';
-import { getTableColumnDefinition } from '../../services/table.service';
+import { formatColumn, getTableColumnDefinition } from '../../services/table';
+import { JobRun } from '../../types/JobRun';
 import { arrayAverage } from '../../utils/arrays';
 import { formatDate } from '../../utils/date';
 import { OverviewItem } from './../../stories/Overview/Overview';
-export type JobRun = {
-  id: string;
-  pipelineRunId: string;
-  jobId: string;
-  date: string;
-
-  sparkJobRunMetrics: {
-    id: string;
-    jobRunId: string;
-    numOfExecutors: number;
-    totalMemoryPerExecutor: number;
-    totalBytesRead: number;
-    totalBytesWritten: number;
-    totalShuffleRead: number;
-    totalShuffleWrite: number;
-    totalCpuTimeUsed: number;
-    totalCpuUptime: number;
-    peakMemoryUsage: number;
-    totalCoresNum: number;
-    cpuUtilization: number;
-  };
-};
 
 export type LineChartData = {
   chartTitle: string;
@@ -35,21 +14,19 @@ export type LineChartData = {
   }[];
 };
 
-const metricsToTexts = [
-  {
-    chartTitle: 'CPU Uptime',
-    scoreField: ColumnName.TotalCpuUptime,
-  },
-  {
-    chartTitle: 'Bytes Read',
-    scoreField: ColumnName.TotalBytesRead,
-  },
-  {
-    chartTitle: 'Bytes Written',
-    scoreField: ColumnName.TotalBytesWritten,
-  },
+const PageMetrics = [
+  ColumnName.NumOfExecutors,
+  ColumnName.TotalMemoryPerExecutor,
+  ColumnName.TotalBytesRead,
+  ColumnName.TotalBytesWritten,
+  ColumnName.TotalShuffleRead,
+  ColumnName.TotalShuffleWrite,
+  ColumnName.TotalCpuTimeUsed,
+  ColumnName.TotalCpuUptime,
+  ColumnName.PeakMemoryUsage,
+  ColumnName.TotalCoresNum,
+  ColumnName.CpuUtilization,
 ];
-
 export function formatOverview(jobs: JobRun[]): OverviewItem[] {
   const prefix: OverviewItem[] = [
     {
@@ -59,23 +36,27 @@ export function formatOverview(jobs: JobRun[]): OverviewItem[] {
     },
   ];
   return prefix.concat(
-    metricsToTexts.map((curr) => ({
-      title: curr.chartTitle,
-      score: `${arrayAverage(
-        jobs.map((job) => job.sparkJobRunMetrics?.[curr.scoreField] || 0),
-      )} ${getTableColumnDefinition(curr.scoreField).unit || '%'}`,
-      tooltip: getTableColumnDefinition(curr.scoreField).helpIconText,
+    PageMetrics.map((currMetric) => ({
+      title: getTableColumnDefinition(currMetric).title,
+      score: formatColumn({
+        columnName: currMetric,
+        columnValue: arrayAverage(
+          jobs.map((job) => job.sparkJobRunMetrics?.[currMetric] || 0),
+        ),
+      }),
+
+      tooltip: getTableColumnDefinition(currMetric).helpIconText,
     })),
   );
 }
 
 export function formatLineChartData(jobs: JobRun[]): LineChartData[] {
-  return metricsToTexts.map((curr) => ({
-    chartTitle: curr.chartTitle,
+  return PageMetrics.map((currMetric) => ({
+    chartTitle: getTableColumnDefinition(currMetric).title,
     scores: jobs.map((job) => ({
-      score: job.sparkJobRunMetrics?.[curr.scoreField] || 0,
-      label: formatDate(job.date),
-      date: formatDate(job.date),
+      score: job.sparkJobRunMetrics?.[currMetric] || 0,
+      label: formatDate(job.startDate),
+      date: formatDate(job.startDate),
     })),
   }));
 }

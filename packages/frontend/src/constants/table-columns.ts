@@ -1,19 +1,41 @@
 export enum ColumnName {
   pipelineId = 'pipelineId',
-  avgRuntime = 'avgRuntime',
-  lastRunDate = 'lastRunDate',
-  avgTotalCpuUptime = 'avgTotalCpuUptime',
+  AvgDuration = 'avgDuration',
+  lastRunDuration = 'lastRunDuration',
+  LastRunDate = 'lastRunDate',
+  Duration = 'duration',
+  AvgTotalCpuUptime = 'avgTotalCpuUptime',
   TotalCpuUptime = 'totalCpuUptime',
   numberOfJobs = 'numberOfJobs',
-  date = 'date',
+  Date = 'date',
   avgTotalBytesRead = 'avgTotalBytesRead',
   avgTotalBytesWritten = 'avgTotalBytesWritten',
   TotalBytesRead = 'totalBytesRead',
   TotalBytesWritten = 'totalBytesWritten',
 
-  avgUtilization = 'avgUtilization',
   jobId = 'jobId',
-  avgNumOfExecutors = 'avgNumOfExecutors',
+  AvgNumOfExecutors = 'avgNumOfExecutors',
+  NumOfExecutors = 'numOfExecutors',
+  TotalMemoryPerExecutor = 'totalMemoryPerExecutor',
+  TotalShuffleRead = 'totalShuffleRead',
+  TotalShuffleWrite = 'totalShuffleWrite',
+  TotalCpuTimeUsed = 'totalCpuTimeUsed',
+  PeakMemoryUsage = 'peakMemoryUsage',
+  TotalCoresNum = 'totalCoresNum',
+  CpuUtilization = 'cpuUtilization',
+}
+
+export enum ColumnType {
+  String,
+  Date,
+  Number,
+}
+
+export enum UnitType {
+  Storage = 'storage',
+  Duration = 'duration',
+  Date = 'date',
+  Percentage = 'percentage',
 }
 
 export const TABLE_COLUMNS = {
@@ -22,31 +44,39 @@ export const TABLE_COLUMNS = {
     sortable: true,
     sortType: 'string',
   },
-  [ColumnName.avgRuntime]: {
-    title: 'Avg. Runtime',
+  [ColumnName.AvgDuration]: {
+    title: 'Avg. Duration',
     sortable: true,
     sortType: 'string',
-    unit: 'Hrs.',
+    unit: UnitType.Duration,
     helpIconText: 'The average time for all pipeline runs',
   },
-  [ColumnName.lastRunDate]: {
+  [ColumnName.Duration]: {
+    title: 'Duration',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Duration,
+    helpIconText: 'The time it took for the entire pipeline to run',
+  },
+  [ColumnName.LastRunDate]: {
     title: 'Last run date',
     sortable: true,
     sortType: 'string',
+    unit: UnitType.Date,
   },
-  [ColumnName.avgTotalCpuUptime]: {
+  [ColumnName.AvgTotalCpuUptime]: {
     title: 'Avg. CPU Uptime',
     sortable: true,
     sortType: 'string',
-    unit: 'Hrs.',
+    unit: UnitType.Duration,
     helpIconText:
       'The sum of the duration of each job executor CPU multiplied by the number of CPUs per job.',
   },
   [ColumnName.TotalCpuUptime]: {
-    title: 'Total CPU Uptime',
+    title: 'CPU Uptime',
     sortable: true,
     sortType: 'string',
-    unit: 'Hrs.',
+    unit: UnitType.Duration,
     helpIconText:
       'The sum of the duration of each job executor CPU multiplied by the number of CPUs per job.',
   },
@@ -54,8 +84,9 @@ export const TABLE_COLUMNS = {
     title: 'Number of Jobs',
     sortable: true,
     sortType: 'number',
+    helpIconText: 'The number of jobs in the last pipeline run',
   },
-  [ColumnName.date]: {
+  [ColumnName.Date]: {
     title: 'Date',
     sortable: true,
     sortType: 'string',
@@ -64,36 +95,29 @@ export const TABLE_COLUMNS = {
     title: 'Data Read',
     sortable: true,
     sortType: 'string',
-    unit: 'Bytes',
+    unit: UnitType.Storage,
     helpIconText: 'The total number of bytes read across jobs',
   },
   [ColumnName.avgTotalBytesWritten]: {
     title: 'Data Written',
     sortable: true,
     sortType: 'string',
-    unit: 'Bytes',
+    unit: UnitType.Storage,
     helpIconText: 'The total number of bytes written across jobs',
   },
   [ColumnName.TotalBytesRead]: {
     title: 'Data Read',
     sortable: true,
     sortType: 'string',
-    unit: 'Bytes',
+    unit: UnitType.Storage,
     helpIconText: 'The total number of bytes read',
   },
   [ColumnName.TotalBytesWritten]: {
     title: 'Data Written',
     sortable: true,
     sortType: 'string',
-    unit: 'Bytes',
+    unit: UnitType.Storage,
     helpIconText: 'The total number of bytes written',
-  },
-  [ColumnName.avgUtilization]: {
-    title: 'Avg. Utilization',
-    sortable: true,
-    sortType: 'string',
-    unit: '%',
-    helpIconText: 'Simple average of the CPU and Peak RAM utilization',
   },
   [ColumnName.jobId]: {
     title: 'Job',
@@ -101,10 +125,71 @@ export const TABLE_COLUMNS = {
     sortType: 'string',
   },
 
-  [ColumnName.avgNumOfExecutors]: {
+  [ColumnName.AvgNumOfExecutors]: {
     title: 'Avg. Number of Executors',
     sortable: true,
     sortType: 'number',
     helpIconText: 'The average number of executors used across jobs',
+  },
+  [ColumnName.NumOfExecutors]: {
+    title: 'Number of Executors',
+    sortable: true,
+    sortType: 'number',
+    helpIconText: 'The number of executors used',
+  },
+  [ColumnName.lastRunDuration]: {
+    title: 'Last Run Duration',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Duration,
+    helpIconText: 'The duration of the last pipeline run',
+  },
+  [ColumnName.TotalMemoryPerExecutor]: {
+    title: 'Memory Per Executor',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Storage,
+    helpIconText: 'The total memory per executor',
+  },
+  [ColumnName.TotalShuffleRead]: {
+    title: 'Shuffle Read',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Storage,
+    helpIconText: 'The total shuffle read',
+  },
+  [ColumnName.TotalShuffleWrite]: {
+    title: 'Shuffle Write',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Storage,
+    helpIconText: 'The total shuffle write',
+  },
+  [ColumnName.TotalCpuTimeUsed]: {
+    title: 'CPU Time Used',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Duration,
+    helpIconText: 'The total CPU time used',
+  },
+  [ColumnName.PeakMemoryUsage]: {
+    title: 'Peak Memory Usage',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Storage,
+    helpIconText: 'The peak memory usage',
+  },
+  [ColumnName.TotalCoresNum]: {
+    title: 'Number of Cores',
+    sortable: true,
+    sortType: 'number',
+    helpIconText: 'Number of cores available in all the executors.',
+  },
+  [ColumnName.CpuUtilization]: {
+    title: 'CPU Utilization',
+    sortable: true,
+    sortType: 'number',
+    helpIconText: 'The CPU utilization',
+    unit: UnitType.Percentage,
   },
 };

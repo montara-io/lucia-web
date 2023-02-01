@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { get } from '../../services/http.service';
 import Card from '../../stories/Card/Card';
@@ -41,7 +41,7 @@ export const JobPage = () => {
         <Overview items={overview} />
       </Card>
       {lineChartData.map((currLineChartData, i) => (
-        <>
+        <Fragment key={currLineChartData.chartTitle}>
           <DivTitle>{currLineChartData.chartTitle}</DivTitle>
 
           <Card>
@@ -56,7 +56,7 @@ export const JobPage = () => {
               />
             </Container>
           </Card>
-        </>
+        </Fragment>
       ))}
     </div>
   );

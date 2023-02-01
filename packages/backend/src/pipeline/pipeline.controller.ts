@@ -5,6 +5,7 @@ import { GetPipelineRunsDTO } from './dto/get-pipeline-runs.dto'
 import { PipelineRunDTO } from './dto/pipeline-run.dto'
 import { InjectPinoLogger, Logger } from 'nestjs-pino'
 import { GetByIdDTO } from './dto/get-by-id.dto'
+import { PipelineSummaryDTO } from './dto/pipeline-summary.dto'
 
 @ApiTags('pipeline')
 @Controller('pipeline')
@@ -30,7 +31,7 @@ export class PipelineController {
     description: 'Get latest piplines data',
   })
   @Get('/all')
-  async getPipelines(): Promise<PipelineRunDTO[]> {
+  async getPipelines(): Promise<PipelineSummaryDTO[]> {
     this.logger.debug('getting pipelines')
 
     const response = await this.pipelineService.getPipelines()

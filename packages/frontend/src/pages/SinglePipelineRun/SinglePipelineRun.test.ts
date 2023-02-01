@@ -1,7 +1,10 @@
-import { dataFormatterCallback, JobByPipelineRunIdResponse } from './helpers';
-export const responseDataFallback: JobByPipelineRunIdResponse[] = [
+import { JobRun } from '../../types/JobRun';
+import { dataFormatterCallback } from './helpers';
+export const responseDataFallback: JobRun[] = [
   {
-    date: '2022-09-05T08:23:25.960Z',
+    startDate: '2022-09-05T08:23:25.960Z',
+    endDate: '2022-09-05T08:23:25.960Z',
+    duration: 5,
     id: 'Feature Engine',
     jobId: 'Feature Engine',
     pipelineRunId: 'asdasd',
@@ -18,10 +21,13 @@ export const responseDataFallback: JobByPipelineRunIdResponse[] = [
       totalMemoryPerExecutor: 5,
       totalShuffleRead: 5,
       totalShuffleWrite: 5,
+      cpuUtilization: 5,
     },
   },
   {
-    date: '2022-09-05T08:23:25.960Z',
+    startDate: '2022-09-05T08:23:25.960Z',
+    endDate: '2022-09-05T08:23:25.960Z',
+    duration: 5,
     id: 'Feature Engine',
     jobId: 'Feature Engine',
     pipelineRunId: 'asdasd',
@@ -38,6 +44,7 @@ export const responseDataFallback: JobByPipelineRunIdResponse[] = [
       totalMemoryPerExecutor: 5,
       totalShuffleRead: 5,
       totalShuffleWrite: 5,
+      cpuUtilization: 5,
     },
   },
 ];
@@ -47,6 +54,7 @@ describe('Pipeline Run component', () => {
       responseData: responseDataFallback,
       navigate: () => {},
     });
+
     expect(formatted.headerData[0].field).toBe('jobId');
     expect(formatted.bodyData[0].totalBytesWritten).toBe('5 Bytes');
   });

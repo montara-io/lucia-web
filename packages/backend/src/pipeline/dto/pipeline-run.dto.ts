@@ -13,5 +13,7 @@ export class PipelineRunDTO {
   avgPeakMemoryUsage: number
   avgTotalCoresNum: number
   avgCpuUtilization: number
-  date: Date
+  startDate: Date
+  endDate: Date
+  duration: number
 }

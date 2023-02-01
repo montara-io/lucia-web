@@ -17,7 +17,10 @@ export type OverviewProps = {
 
 const Overview: React.FunctionComponent<OverviewProps> = ({ items = [] }) => {
   return (
-    <div className="overview-container">
+    <div
+      className="overview-container"
+      style={{ height: `${(Math.max(items.length, 4) / 4) * 7}rem` }}
+    >
       {items?.map((item, index) => {
         return (
           <div

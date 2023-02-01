@@ -9,6 +9,7 @@ import { GetJobsDTO as GetJobRunsDTO } from './dto/get-jobs.dto'
 import { JobDTO } from './dto/job.dto'
 import { SparkJobMetricsDTO } from './dto/spark-job-metrics.dto'
 import { SparkJobRunEntity } from '../entity/spark-job-run.entity'
+import { dateDiffInMinuts } from '../utils/date'
 
 @Injectable()
 export class JobService {
@@ -70,10 +71,10 @@ export class JobService {
     jobDto.id = entity.id
     jobDto.pipelineRunId = entity.pipeline_run_id
     jobDto.jobId = entity.job_id
-    jobDto.date = entity.end_time
-    jobDto.created = entity.created
-    jobDto.updated = entity.updated
-    jobDto.deleted = entity.deleted
+    jobDto.startDate = entity.start_time
+    jobDto.endDate = entity.end_time
+    jobDto.duration = dateDiffInMinuts(entity.start_time, entity.end_time)
+
     jobDto.sparkJobRunMetrics.numOfExecutors = entity.num_of_executors
     jobDto.sparkJobRunMetrics.cpuUtilization = entity.cpu_utilization
     jobDto.sparkJobRunMetrics.peakMemoryUsage = entity.peak_memory_usage
@@ -97,10 +98,9 @@ export class JobService {
     jobDto.id = entity.id
     jobDto.pipelineRunId = entity.pipeline_run_id
     jobDto.jobId = entity.job_id
-    jobDto.date = entity.end_time
-    jobDto.created = entity.created
-    jobDto.updated = entity.updated
-    jobDto.deleted = entity.deleted
+    jobDto.startDate = entity.start_time
+    jobDto.endDate = entity.end_time
+    jobDto.duration = dateDiffInMinuts(entity.start_time, entity.end_time)
 
     jobDto.sparkJobMetrics.avgNumOfExecutors = entity.num_of_executors
     jobDto.sparkJobMetrics.avgCpuUtilization = entity.cpu_utilization

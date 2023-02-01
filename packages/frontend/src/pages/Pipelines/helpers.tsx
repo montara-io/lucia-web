@@ -1,29 +1,14 @@
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { Routes } from '../../constants/routes';
 import { ColumnName } from '../../constants/table-columns';
-import {
-  formatField,
-  getCommonTableHeaders,
-} from '../../services/table.service';
-import { formatDate } from '../../utils/date';
+import { formatColumn, getCommonTableHeaders } from '../../services/table';
 
 export type PipelineAllResponse = {
-  id: string;
   pipelineId: string;
-  avgRuntime: number;
+  lastRunDate: string;
   numberOfJobs: number;
-  avgNumOfExecutors: number;
-  avgTotalMemoryPerExecutor: number;
-  avgTotalBytesRead: number;
-  avgTotalBytesWritten: number;
-  avgTotalShuffleRead: number;
-  avgTotalShuffleWrite: number;
-  avgTotalCpuTimeUsed: number;
-  avgTotalCpuUptime: number;
-  avgPeakMemoryUsage: number;
-  avgTotalCoresNum: number;
-  avgCpuUtilization: number;
-  date: string; // ISO date string
+  avgDuration: number;
+  lastRunDuration: number;
 };
 
 export function dataFormatterCallback(params: {
@@ -36,10 +21,12 @@ export function dataFormatterCallback(params: {
     headerData: getCommonTableHeaders({
       fields: [
         ColumnName.pipelineId,
-        ColumnName.lastRunDate,
-        ColumnName.avgTotalCpuUptime,
-        ColumnName.avgTotalBytesRead,
-        ColumnName.avgTotalBytesWritten,
+        ColumnName.numberOfJobs,
+        ColumnName.AvgDuration,
+        ColumnName.lastRunDuration,
+        ColumnName.LastRunDate,
+
+        // Last run date, last run duration, avg duration, number of jobs,
       ],
       ctaText: 'Explore',
       onCtaClick: ({ pipelineId }) =>
@@ -47,18 +34,19 @@ export function dataFormatterCallback(params: {
     }),
     bodyData: responseData.map((rd) => ({
       pipelineId: rd.pipelineId,
-      id: rd.pipelineId,
-      lastRunDate: formatDate(rd.date),
-      avgTotalBytesRead: formatField({
-        fieldName: 'avgTotalBytesRead',
-        fieldValue: rd.avgTotalBytesRead,
+      lastRunDate: formatColumn({
+        columnName: ColumnName.LastRunDate,
+        dataObject: rd,
       }),
-      avgTotalBytesWritten: formatField({
-        fieldName: 'avgTotalBytesWritten',
-        fieldValue: rd.avgTotalBytesWritten,
+      numberOfJobs: rd.numberOfJobs,
+      avgDuration: formatColumn({
+        columnName: ColumnName.AvgDuration,
+        dataObject: rd,
       }),
-
-      avgTotalCpuUptime: `${rd.avgTotalCpuUptime} Hrs.`,
+      lastRunDuration: formatColumn({
+        columnName: ColumnName.lastRunDuration,
+        dataObject: rd,
+      }),
     })),
   };
 }

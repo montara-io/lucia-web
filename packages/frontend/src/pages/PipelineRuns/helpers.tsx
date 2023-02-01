@@ -2,17 +2,16 @@ import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { ColumnName } from '../../constants/table-columns';
 
 import {
-  formatField,
+  formatColumn,
   getCommonTableHeaders,
   getTableColumnDefinition,
-} from '../../services/table.service';
+} from '../../services/table';
 import { OverviewItem } from '../../stories/Overview/Overview';
 import { arrayAverage } from '../../utils/arrays';
 import { formatDate } from '../../utils/date';
 
 export type PipelineRunResponse = {
   pipelineRunId: string;
-  pipelineId: string;
   numberOfJobs: number;
   avgNumOfExecutors: number;
   avgTotalMemoryPerExecutor: number;
@@ -25,7 +24,9 @@ export type PipelineRunResponse = {
   avgPeakMemoryUsage: number;
   avgTotalCoresNum: number;
   avgCpuUtilization: number;
-  date: string;
+  startDate: string;
+  endDate: string;
+  duration: number;
 };
 
 export function dataFormatterCallback(params: {
@@ -37,48 +38,35 @@ export function dataFormatterCallback(params: {
 
   return {
     headerData: getCommonTableHeaders({
-      fields: [
-        ColumnName.date,
-        ColumnName.avgTotalCpuUptime,
-        ColumnName.avgTotalBytesRead,
-        ColumnName.avgTotalBytesWritten,
-      ],
+      fields: [ColumnName.Date, ColumnName.Duration, ColumnName.numberOfJobs],
       ctaText: 'Explore',
       onCtaClick: ({ pipelineRunId }) =>
         navigate(`/pipeline/${pipelineId}/runs/${pipelineRunId}/jobs`),
     }),
     bodyData: responseData.map((rd) => ({
       pipelineRunId: rd.pipelineRunId,
-      date: formatDate(rd.date),
-      avgTotalCpuUptime: formatField({
-        fieldName: 'avgTotalCpuUptime',
-        fieldValue: rd.avgTotalCpuUptime,
+      date: formatDate(rd.startDate),
+      runtime: formatColumn({
+        columnName: ColumnName.Duration,
+        dataObject: rd,
       }),
-      avgTotalBytesRead: formatField({
-        fieldName: 'avgTotalBytesRead',
-        fieldValue: rd.avgTotalBytesRead,
+      duration: formatColumn({
+        columnName: ColumnName.Duration,
+        dataObject: rd,
       }),
-      avgTotalBytesWritten: formatField({
-        fieldName: 'avgTotalBytesWritten',
-        fieldValue: rd.avgTotalBytesWritten,
-      }),
+      numberOfJobs: rd.numberOfJobs,
     })),
   };
 }
 
-const overviewItems = [
-  ColumnName.numberOfJobs,
-  ColumnName.avgTotalCpuUptime,
-  ColumnName.avgTotalBytesRead,
-  ColumnName.avgTotalBytesWritten,
-];
+const overviewItems = [ColumnName.numberOfJobs, ColumnName.Duration];
 
 export function formatOverview(
   pipelineRuns: PipelineRunResponse[],
 ): OverviewItem[] {
   const prefix: OverviewItem[] = [
     {
-      title: 'Num. of Runs',
+      title: 'Number of Runs',
       score: pipelineRuns.length,
       tooltip: 'How many times the job was triggered',
     },
@@ -87,10 +75,11 @@ export function formatOverview(
     overviewItems.map((oi) => ({
       title: getTableColumnDefinition(oi).title,
       tooltip: getTableColumnDefinition(oi).helpIconText,
-      score: formatField({
-        fieldName: oi,
-        fieldValue: arrayAverage(
+      score: formatColumn({
+        columnName: oi,
+        columnValue: arrayAverage(
           pipelineRuns.map((pipelineRun) => pipelineRun[oi] || 0),
+          5,
         ),
       }),
     })),
