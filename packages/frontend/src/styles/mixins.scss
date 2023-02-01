@@ -1,21 +1,5 @@
 @import 'colors';
 
-@mixin none-severity {
-  background: $gray230;
-}
-
-@mixin no-severity {
-  background: $no-severity;
-}
-
-@mixin mid-severity {
-  background: $mid-severity;
-}
-
-@mixin high-severity {
-  background: $high-severity;
-}
-
 @mixin internal-link {
   font-family: inherit;
   float: right;

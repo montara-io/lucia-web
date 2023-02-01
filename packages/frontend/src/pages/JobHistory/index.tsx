@@ -47,6 +47,7 @@ export const JobPage = () => {
           <Card>
             <Container small={true}>
               <BasicLineChart
+                key={currLineChartData.chartTitle}
                 data={currLineChartData.scores.map((score) => ({
                   id: score.label,
                   score: score.score,

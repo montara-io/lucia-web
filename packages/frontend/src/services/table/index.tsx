@@ -45,11 +45,25 @@ type formatColumnParams = {
   columnValue?: any;
 };
 
+function numberWithCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 export function formatDuration(duration: number) {
   if (duration < 1) {
     return `${Math.round(duration * 60)} Mins.`;
   } else {
     return `${Math.round(duration)} Hrs.`;
+  }
+}
+
+export function formatStorage(storage: number) {
+  const storageInMb = storage / 1024 / 1024;
+
+  if (storageInMb < 1024) {
+    return `${numberWithCommas(Math.round(storageInMb))} MB`;
+  } else {
+    return `${numberWithCommas(Math.round(storageInMb / 1024))} GB`;
   }
 }
 
@@ -66,12 +80,13 @@ export function formatColumn({
 
   switch (columnDefinition?.unit) {
     case UnitType.Duration:
-      console.log(fieldValue);
       return formatDuration(fieldValue as number);
     case UnitType.Date:
       return formatDate(fieldValue);
     case UnitType.Storage:
-      return `${fieldValue} Bytes`;
+      return formatStorage(fieldValue as number);
+    case UnitType.Percentage:
+      return `${fieldValue}%`;
     default:
       break;
   }

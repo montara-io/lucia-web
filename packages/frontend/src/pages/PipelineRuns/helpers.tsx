@@ -59,7 +59,7 @@ export function dataFormatterCallback(params: {
   };
 }
 
-const overviewItems = [ColumnName.numberOfJobs, ColumnName.AvgDuration];
+const overviewItems = [ColumnName.numberOfJobs, ColumnName.Duration];
 
 export function formatOverview(
   pipelineRuns: PipelineRunResponse[],

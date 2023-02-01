@@ -14,7 +14,15 @@ export enum ColumnName {
   TotalBytesWritten = 'totalBytesWritten',
 
   jobId = 'jobId',
-  avgNumOfExecutors = 'avgNumOfExecutors',
+  AvgNumOfExecutors = 'avgNumOfExecutors',
+  NumOfExecutors = 'numOfExecutors',
+  TotalMemoryPerExecutor = 'totalMemoryPerExecutor',
+  TotalShuffleRead = 'totalShuffleRead',
+  TotalShuffleWrite = 'totalShuffleWrite',
+  TotalCpuTimeUsed = 'totalCpuTimeUsed',
+  PeakMemoryUsage = 'peakMemoryUsage',
+  TotalCoresNum = 'totalCoresNum',
+  CpuUtilization = 'cpuUtilization',
 }
 
 export enum ColumnType {
@@ -27,6 +35,7 @@ export enum UnitType {
   Storage = 'storage',
   Duration = 'duration',
   Date = 'date',
+  Percentage = 'percentage',
 }
 
 export const TABLE_COLUMNS = {
@@ -64,7 +73,7 @@ export const TABLE_COLUMNS = {
       'The sum of the duration of each job executor CPU multiplied by the number of CPUs per job.',
   },
   [ColumnName.TotalCpuUptime]: {
-    title: 'Total CPU Uptime',
+    title: 'CPU Uptime',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Duration,
@@ -116,11 +125,17 @@ export const TABLE_COLUMNS = {
     sortType: 'string',
   },
 
-  [ColumnName.avgNumOfExecutors]: {
+  [ColumnName.AvgNumOfExecutors]: {
     title: 'Avg. Number of Executors',
     sortable: true,
     sortType: 'number',
     helpIconText: 'The average number of executors used across jobs',
+  },
+  [ColumnName.NumOfExecutors]: {
+    title: 'Number of Executors',
+    sortable: true,
+    sortType: 'number',
+    helpIconText: 'The number of executors used',
   },
   [ColumnName.lastRunDuration]: {
     title: 'Last Run Duration',
@@ -128,5 +143,53 @@ export const TABLE_COLUMNS = {
     sortType: 'string',
     unit: UnitType.Duration,
     helpIconText: 'The duration of the last pipeline run',
+  },
+  [ColumnName.TotalMemoryPerExecutor]: {
+    title: 'Memory Per Executor',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Storage,
+    helpIconText: 'The total memory per executor',
+  },
+  [ColumnName.TotalShuffleRead]: {
+    title: 'Shuffle Read',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Storage,
+    helpIconText: 'The total shuffle read',
+  },
+  [ColumnName.TotalShuffleWrite]: {
+    title: 'Shuffle Write',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Storage,
+    helpIconText: 'The total shuffle write',
+  },
+  [ColumnName.TotalCpuTimeUsed]: {
+    title: 'CPU Time Used',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Duration,
+    helpIconText: 'The total CPU time used',
+  },
+  [ColumnName.PeakMemoryUsage]: {
+    title: 'Peak Memory Usage',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Storage,
+    helpIconText: 'The peak memory usage',
+  },
+  [ColumnName.TotalCoresNum]: {
+    title: 'Number of Cores',
+    sortable: true,
+    sortType: 'number',
+    helpIconText: 'Number of cores available in all the executors.',
+  },
+  [ColumnName.CpuUtilization]: {
+    title: 'CPU Utilization',
+    sortable: true,
+    sortType: 'number',
+    helpIconText: 'The CPU utilization',
+    unit: UnitType.Percentage,
   },
 };

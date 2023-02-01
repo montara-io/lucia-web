@@ -47,7 +47,7 @@ export function dataFormatterCallback(params: {
     bodyData: responseData.map((rd) => ({
       jobId: rd.jobId,
       avgNumOfExecutors: formatColumn({
-        columnName: ColumnName.avgNumOfExecutors,
+        columnName: ColumnName.AvgNumOfExecutors,
         dataObject: rd.sparkJobMetrics,
       }),
       avgTotalBytesRead: formatColumn({

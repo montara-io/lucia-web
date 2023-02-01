@@ -115,7 +115,7 @@ describe('get pipelines summary component test', () => {
       Math.floor(
         pipelines.filter((pipeline) => {
           return pipeline.pipelineId == pipelineId
-        })[0].avgRuntime / 1440,
+        })[0].avgDuration / 1440,
       ),
     ).toEqual(3)
   })

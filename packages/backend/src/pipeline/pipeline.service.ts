@@ -66,10 +66,10 @@ export class PipelineService {
   convertPipelineEntityToPipelineSummaryDto(entity: SparkJobRunEntity): PipelineSummaryDTO {
     const pipelineSummaryDto = new PipelineSummaryDTO()
     pipelineSummaryDto.pipelineId = entity.pipeline_id
-    pipelineSummaryDto.avgRuntime = entity['avg_duration']
+    pipelineSummaryDto.avgDuration = entity['avg_duration']
     pipelineSummaryDto.lastRunDate = entity.end_time
     pipelineSummaryDto.numberOfJobs = entity.number_of_jobs
-    pipelineSummaryDto.lastRunRuntime = dateDiffInMinuts(entity.start_time, entity.end_time)
+    pipelineSummaryDto.lastRunDuration = dateDiffInMinuts(entity.start_time, entity.end_time)
 
     return pipelineSummaryDto
   }

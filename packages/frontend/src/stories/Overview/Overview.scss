@@ -27,37 +27,22 @@
 
 .overview-container {
   width: inherit;
-  height: 150px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  overflow: auto;
+  flex-wrap: wrap;
   align-content: center;
 
   .overview-item {
     height: 90px;
-    width: 11.125rem;
+    width: 16rem;
     margin-left: 2.625rem;
     position: relative;
     .no-severity {
       &:before {
         @include severity-indicator;
         background-color: $no-severity;
-      }
-    }
-
-    .mid-severity {
-      &:before {
-        @include severity-indicator;
-        background-color: $mid-severity;
-      }
-    }
-
-    .high-severity {
-      &:before {
-        @include severity-indicator;
-        background-color: $high-severity;
       }
     }
 
