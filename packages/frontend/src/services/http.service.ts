@@ -1,10 +1,22 @@
 import axios from 'axios';
+const backendPort = '3001';
 
-const baseURL = window?.__RUNTIME_CONFIG__?.REACT_APP_BACKEND_URL || '';
+export function getBackendUrl({
+  baseUrl = window.location.origin,
+  port = window.location.port,
+} = {}) {
+  const withoutPort = !!port
+    ? baseUrl.substring(0, baseUrl.lastIndexOf(':'))
+    : baseUrl;
+
+  return withoutPort + ':' + backendPort;
+}
+
+const baseBackendURL = `${getBackendUrl()}`;
 
 export async function get(url: string) {
   try {
-    const response = await axios.get(`${baseURL}${url}`);
+    const response = await axios.get(`${baseBackendURL}${url}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -14,7 +26,7 @@ export async function get(url: string) {
 
 export async function post(url: string, data: any) {
   try {
-    const response = await axios.post(`${baseURL}${url}`, data);
+    const response = await axios.post(`${baseBackendURL}${url}`, data);
     return response.data;
   } catch (error) {
     console.error(error);
