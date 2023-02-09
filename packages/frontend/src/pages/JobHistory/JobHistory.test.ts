@@ -96,6 +96,6 @@ describe('Job History', () => {
   it('should format the line chart data', () => {
     const result = formatLineChartData(jobsMock);
     expect(result).toHaveLength(11);
-    expect(result[2].scores[0].score).toBe(17.07);
+    expect(result[2].scores[0].score).toBe(17.1);
   });
 });

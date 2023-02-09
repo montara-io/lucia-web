@@ -51,15 +51,24 @@ function numberWithCommas(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+// Duration is in seconds
 export function formatDuration(duration: number, excludeUnit = false) {
-  if (duration < 1) {
-    return `${Math.round(duration * 60)}${excludeUnit ? '' : ' Mins.'}`;
+  if (duration < 60) {
+    return `${duration.toFixed(1)}${excludeUnit ? '' : ' Secs.'}`;
+  } else if (duration < 3600) {
+    return `${Math.round(duration / 60)}${excludeUnit ? '' : ' Mins.'}`;
   } else {
-    return `${Math.round(duration)}${excludeUnit ? '' : ' Hrs.'}`;
+    return `${Math.round(duration / 3600)}${excludeUnit ? '' : ' Hrs.'}`;
   }
 }
 
 export function formatStorage(storage: number | string, excludeUnit = false) {
+  const unitToDecimal = {
+    Bytes: 0,
+    KB: 0,
+    MB: 1,
+    GB: 2,
+  };
   let storageNumeric = Number(storage);
   let unit;
   if (storageNumeric < 1024) {
@@ -75,7 +84,7 @@ export function formatStorage(storage: number | string, excludeUnit = false) {
 
     unit = 'GB';
   }
-  const toFixed = unit === 'Bytes' ? 0 : 2;
+  const toFixed = unitToDecimal[unit];
   const numberFormatted = numberWithCommas(storageNumeric.toFixed(toFixed));
   return excludeUnit ? numberFormatted : `${numberFormatted} ${unit}`;
 }

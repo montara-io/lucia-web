@@ -20,15 +20,11 @@ describe('Table Service', () => {
     const columnName = ColumnName.AvgDuration;
     const dataObject = { [ColumnName.AvgDuration]: 0.5 };
     const formatted = formatColumn({ columnName, dataObject });
-    expect(formatted).toEqual('30 Mins.');
-  });
-
-  it('should format field data - duration seconds', () => {
-    expect(formatDuration(0.07)).toBe('4 Mins.');
+    expect(formatted).toEqual('0.5 Secs.');
   });
 
   it('should format storage', () => {
     expect(formatStorage(1234567890)).toBe('1.15 GB');
-    expect(formatStorage('4571')).toBe('4.46 KB');
+    expect(formatStorage('4571')).toBe('4 KB');
   });
 });
