@@ -9,8 +9,6 @@ export const responseDataFallback: JobRun[] = [
     jobId: 'Feature Engine',
     pipelineRunId: 'asdasd',
     sparkJobRunMetrics: {
-      id: 'asdasd',
-      jobRunId: 'asdasd',
       numOfExecutors: 5,
       peakMemoryUsage: 5,
       totalBytesRead: 5,
@@ -32,8 +30,6 @@ export const responseDataFallback: JobRun[] = [
     jobId: 'Feature Engine',
     pipelineRunId: 'asdasd',
     sparkJobRunMetrics: {
-      id: 'asdasd',
-      jobRunId: 'asdasd',
       numOfExecutors: 5,
       peakMemoryUsage: 5,
       totalBytesRead: 5,

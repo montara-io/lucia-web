@@ -1,4 +1,4 @@
-import { formatColumn, formatDuration } from '.';
+import { formatColumn, formatDuration, formatStorage } from './table.service';
 import { ColumnName } from './../../constants/table-columns';
 
 describe('Table Service', () => {
@@ -25,5 +25,10 @@ describe('Table Service', () => {
 
   it('should format field data - duration seconds', () => {
     expect(formatDuration(0.07)).toBe('4 Mins.');
+  });
+
+  it('should format storage', () => {
+    expect(formatStorage(1234567890)).toBe('1.15 GB');
+    expect(formatStorage('4571')).toBe('4.46 KB');
   });
 });

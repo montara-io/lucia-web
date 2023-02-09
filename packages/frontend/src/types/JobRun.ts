@@ -6,14 +6,12 @@ export type JobRun = {
   endDate: string;
   duration: number;
   sparkJobRunMetrics?: {
-    id: string;
-    jobRunId: string;
     numOfExecutors: number;
     totalMemoryPerExecutor: number;
-    totalBytesRead: number;
-    totalBytesWritten: number;
-    totalShuffleRead: number;
-    totalShuffleWrite: number;
+    totalBytesRead: number | string;
+    totalBytesWritten: number | string;
+    totalShuffleRead: number | string;
+    totalShuffleWrite: number | string;
     totalCpuTimeUsed: number;
     totalCpuUptime: number;
     peakMemoryUsage: number;

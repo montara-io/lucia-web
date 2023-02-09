@@ -97,6 +97,7 @@ export const TABLE_COLUMNS = {
     sortType: 'string',
     unit: UnitType.Storage,
     helpIconText: 'The total number of bytes read across jobs',
+    columnType: ColumnType.Number,
   },
   [ColumnName.avgTotalBytesWritten]: {
     title: 'Data Written',
@@ -132,7 +133,7 @@ export const TABLE_COLUMNS = {
     helpIconText: 'The average number of executors used across jobs',
   },
   [ColumnName.NumOfExecutors]: {
-    title: 'Number of Executors',
+    title: '# of Executors',
     sortable: true,
     sortType: 'number',
     helpIconText: 'The number of executors used',
@@ -145,7 +146,7 @@ export const TABLE_COLUMNS = {
     helpIconText: 'The duration of the last pipeline run',
   },
   [ColumnName.TotalMemoryPerExecutor]: {
-    title: 'Memory Per Executor',
+    title: 'Memory / Executor',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Storage,
@@ -164,6 +165,7 @@ export const TABLE_COLUMNS = {
     sortType: 'string',
     unit: UnitType.Storage,
     helpIconText: 'The total shuffle write',
+    columnType: ColumnType.Number,
   },
   [ColumnName.TotalCpuTimeUsed]: {
     title: 'CPU Time Used',
@@ -180,7 +182,7 @@ export const TABLE_COLUMNS = {
     helpIconText: 'The peak memory usage',
   },
   [ColumnName.TotalCoresNum]: {
-    title: 'Number of Cores',
+    title: '# of Cores',
     sortable: true,
     sortType: 'number',
     helpIconText: 'Number of cores available in all the executors.',

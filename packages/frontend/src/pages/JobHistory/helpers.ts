@@ -1,5 +1,8 @@
 import { ColumnName } from '../../constants/table-columns';
-import { formatColumn, getTableColumnDefinition } from '../../services/table';
+import {
+  formatColumn,
+  getTableColumnDefinition,
+} from '../../services/table/table.service';
 import { JobRun } from '../../types/JobRun';
 import { arrayAverage } from '../../utils/arrays';
 import { formatDate } from '../../utils/date';
@@ -53,10 +56,26 @@ export function formatOverview(jobs: JobRun[]): OverviewItem[] {
 export function formatLineChartData(jobs: JobRun[]): LineChartData[] {
   return PageMetrics.map((currMetric) => ({
     chartTitle: getTableColumnDefinition(currMetric).title,
-    scores: jobs.map((job) => ({
-      score: job.sparkJobRunMetrics?.[currMetric] || 0,
-      label: formatDate(job.startDate),
-      date: formatDate(job.startDate),
-    })),
+    scores: jobs.map((job) => {
+      const score = Number(
+        formatColumn({
+          columnName: currMetric,
+          columnValue: job.sparkJobRunMetrics?.[currMetric] || 0,
+          excludeUnit: true,
+        }),
+      );
+
+      return {
+        label: formatDate(job.startDate),
+        date: formatDate(job.startDate),
+        score,
+      };
+    }),
+
+    // scores: jobs.map((job) => ({
+    //   score: Number(job.sparkJobRunMetrics?.[currMetric] || 0),
+    //   label: formatDate(job.startDate),
+    //   date: formatDate(job.startDate),
+    // })),
   }));
 }
