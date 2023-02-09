@@ -5,6 +5,7 @@ import { formatColumn, getCommonTableHeaders } from '../../services/table';
 import { JobRun } from '../../types/JobRun';
 
 const TableFields = [
+  ColumnName.Duration,
   ColumnName.NumOfExecutors,
   ColumnName.TotalMemoryPerExecutor,
   ColumnName.TotalBytesRead,

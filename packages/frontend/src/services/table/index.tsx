@@ -89,7 +89,7 @@ export function formatColumn({
     case UnitType.Storage:
       return formatStorage(fieldValue as number);
     case UnitType.Percentage:
-      return `${fieldValue}%`;
+      return `${fieldValue.toFixed(2)}%`;
     default:
       break;
   }

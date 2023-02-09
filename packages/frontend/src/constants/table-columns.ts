@@ -176,7 +176,7 @@ export const TABLE_COLUMNS = {
     title: 'Peak Memory Usage',
     sortable: true,
     sortType: 'string',
-    unit: UnitType.Storage,
+    unit: UnitType.Percentage,
     helpIconText: 'The peak memory usage',
   },
   [ColumnName.TotalCoresNum]: {
