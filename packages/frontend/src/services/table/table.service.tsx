@@ -1,6 +1,7 @@
 import ExploreButton from '../../components/common/ExploreButton';
 import {
   ColumnName,
+  ColumnType,
   TABLE_COLUMNS,
   UnitType,
 } from '../../constants/table-columns';
@@ -43,55 +44,77 @@ type formatColumnParams = {
   columnName: ColumnName;
   dataObject?: any;
   columnValue?: any;
+  excludeUnit?: boolean;
 };
 
 function numberWithCommas(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-export function formatDuration(duration: number) {
-  if (duration < 1) {
-    return `${Math.round(duration * 60)} Mins.`;
+// Duration is in seconds
+export function formatDuration(duration: number, excludeUnit = false) {
+  if (duration < 60) {
+    return `${duration.toFixed(1)}${excludeUnit ? '' : ' Secs.'}`;
+  } else if (duration < 3600) {
+    return `${Math.round(duration / 60)}${excludeUnit ? '' : ' Mins.'}`;
   } else {
-    return `${Math.round(duration)} Hrs.`;
+    return `${Math.round(duration / 3600)}${excludeUnit ? '' : ' Hrs.'}`;
   }
 }
 
-export function formatStorage(storage: number) {
-  if (storage < 1024 * 1024) {
-    return `${numberWithCommas(Math.round(storage))} Bytes`;
-  }
-  const storageInMb = storage / 1024 / 1024;
-
-  if (storageInMb < 1024) {
-    return `${numberWithCommas(Math.round(storageInMb))} MB`;
+export function formatStorage(storage: number | string, excludeUnit = false) {
+  const unitToDecimal = {
+    Bytes: 0,
+    KB: 0,
+    MB: 1,
+    GB: 2,
+  };
+  let storageNumeric = Number(storage);
+  let unit;
+  if (storageNumeric < 1024) {
+    unit = 'Bytes';
+  } else if (storageNumeric / 1024 < 1024) {
+    unit = 'KB';
+    storageNumeric = storageNumeric / 1024;
+  } else if (storageNumeric / 1024 / 1024 < 1024) {
+    storageNumeric = storageNumeric / 1024 / 1024;
+    unit = 'MB';
   } else {
-    return `${numberWithCommas((storageInMb / 1024).toFixed(2))} GB`;
+    storageNumeric = storageNumeric / 1024 / 1024 / 1024;
+
+    unit = 'GB';
   }
+  const toFixed = unitToDecimal[unit];
+  const numberFormatted = numberWithCommas(storageNumeric.toFixed(toFixed));
+  return excludeUnit ? numberFormatted : `${numberFormatted} ${unit}`;
 }
 
 export function formatColumn({
   columnName,
   dataObject,
   columnValue,
+  excludeUnit = false,
 }: formatColumnParams) {
   const columnDefinition = getTableColumnDefinition(columnName);
 
-  const fieldValue = columnValue ?? dataObject[columnName];
+  let fieldValue = columnValue ?? dataObject[columnName];
+  if (columnDefinition.columnType === ColumnType.Number) {
+    fieldValue = Number(fieldValue);
+  }
 
   if (!columnDefinition?.unit) return columnValue ?? dataObject?.[columnName];
 
   switch (columnDefinition?.unit) {
     case UnitType.Duration:
-      return formatDuration(fieldValue as number);
+      return formatDuration(fieldValue as number, excludeUnit);
     case UnitType.Date:
       return formatDate(fieldValue);
     case UnitType.Storage:
-      return formatStorage(fieldValue as number);
+      return formatStorage(fieldValue, excludeUnit);
     case UnitType.Percentage:
-      return `${fieldValue}%`;
+      return `${fieldValue.toFixed(2)}${excludeUnit ? '' : '%'}`;
     default:
-      break;
+      return fieldValue;
   }
 }
 
@@ -101,6 +124,7 @@ type TableColumnDefinition = {
   sortType?: string | number;
   unit?: UnitType;
   helpIconText?: string;
+  columnType?: ColumnType;
 };
 
 export function getTableColumnDefinition(
@@ -109,6 +133,5 @@ export function getTableColumnDefinition(
   if (!TABLE_COLUMNS[columnId]) {
     throw new Error(`Column not found: ${columnId}`);
   }
-
   return TABLE_COLUMNS[columnId];
 }

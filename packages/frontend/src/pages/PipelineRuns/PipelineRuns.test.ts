@@ -42,6 +42,6 @@ describe('Pipeline runs', () => {
   it('should format overview', () => {
     const result = formatOverview(mockResponse);
     const avgDuration = result.find((s) => s.title === 'Duration')?.score;
-    expect(avgDuration).toBe('5 Mins.');
+    expect(avgDuration).toBe('0.1 Secs.');
   });
 });

@@ -70,7 +70,7 @@ export const TABLE_COLUMNS = {
     sortType: 'string',
     unit: UnitType.Duration,
     helpIconText:
-      'The sum of the duration of each job executor CPU multiplied by the number of CPUs per job.',
+      'The sum of the lifetime duration of each executor multiplied by the number of CPUs per executor (number of cores). The value is expressed in seconds.',
   },
   [ColumnName.TotalCpuUptime]: {
     title: 'CPU Uptime',
@@ -78,7 +78,7 @@ export const TABLE_COLUMNS = {
     sortType: 'string',
     unit: UnitType.Duration,
     helpIconText:
-      'The sum of the duration of each job executor CPU multiplied by the number of CPUs per job.',
+      'The sum of the lifetime duration of each executor multiplied by the number of CPUs per executor (number of cores). The value is expressed in seconds.',
   },
   [ColumnName.numberOfJobs]: {
     title: 'Number of Jobs',
@@ -96,28 +96,36 @@ export const TABLE_COLUMNS = {
     sortable: true,
     sortType: 'string',
     unit: UnitType.Storage,
-    helpIconText: 'The total number of bytes read across jobs',
-  },
-  [ColumnName.avgTotalBytesWritten]: {
-    title: 'Data Written',
-    sortable: true,
-    sortType: 'string',
-    unit: UnitType.Storage,
-    helpIconText: 'The total number of bytes written across jobs',
+    helpIconText:
+      'Total number of bytes while reading data from org.apache.spark.rdd.HadoopRDD or from persisted data.',
+    columnType: ColumnType.Number,
   },
   [ColumnName.TotalBytesRead]: {
     title: 'Data Read',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Storage,
-    helpIconText: 'The total number of bytes read',
+    helpIconText:
+      'Total number of bytes while reading data from org.apache.spark.rdd.HadoopRDD or from persisted data.',
+    columnType: ColumnType.Number,
+  },
+  [ColumnName.avgTotalBytesWritten]: {
+    title: 'Data Written',
+    sortable: true,
+    sortType: 'string',
+    unit: UnitType.Storage,
+    helpIconText:
+      'Total number of bytes associated with external data writing (e.g. to a distributed filesystem), defined only in tasks with output.',
+    columnType: ColumnType.Number,
   },
   [ColumnName.TotalBytesWritten]: {
     title: 'Data Written',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Storage,
-    helpIconText: 'The total number of bytes written',
+    helpIconText:
+      'Total number of bytes associated with external data writing (e.g. to a distributed filesystem), defined only in tasks with output.',
+    columnType: ColumnType.Number,
   },
   [ColumnName.jobId]: {
     title: 'Job',
@@ -132,7 +140,7 @@ export const TABLE_COLUMNS = {
     helpIconText: 'The average number of executors used across jobs',
   },
   [ColumnName.NumOfExecutors]: {
-    title: 'Number of Executors',
+    title: '# of Executors',
     sortable: true,
     sortType: 'number',
     helpIconText: 'The number of executors used',
@@ -145,42 +153,49 @@ export const TABLE_COLUMNS = {
     helpIconText: 'The duration of the last pipeline run',
   },
   [ColumnName.TotalMemoryPerExecutor]: {
-    title: 'Memory Per Executor',
+    title: 'Memory / Executor',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Storage,
     helpIconText: 'The total memory per executor',
+    columnType: ColumnType.Number,
   },
   [ColumnName.TotalShuffleRead]: {
     title: 'Shuffle Read',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Storage,
-    helpIconText: 'The total shuffle read',
+    helpIconText:
+      'Total number of bytes read in shuffle operations (both local and remote), summed from all the executors.',
   },
   [ColumnName.TotalShuffleWrite]: {
     title: 'Shuffle Write',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Storage,
-    helpIconText: 'The total shuffle write',
+    helpIconText:
+      'Total number of bytes written in shuffle operations, summed from all the executors.',
+    columnType: ColumnType.Number,
   },
   [ColumnName.TotalCpuTimeUsed]: {
     title: 'CPU Time Used',
     sortable: true,
     sortType: 'string',
     unit: UnitType.Duration,
-    helpIconText: 'The total CPU time used',
+    helpIconText:
+      'Sum of all the executors CPU time. CPU time of the executor is the time it spent running all the tasks. This includes time fetching shuffle data. The value is expressed in seconds.',
+    columnType: ColumnType.Number,
   },
   [ColumnName.PeakMemoryUsage]: {
     title: 'Peak Memory Usage',
     sortable: true,
     sortType: 'string',
-    unit: UnitType.Storage,
-    helpIconText: 'The peak memory usage',
+    unit: UnitType.Percentage,
+    helpIconText:
+      'The maximum memory usage observed from all the executors, (including Java Virtual Machine memory usage and Python processes memory usage).The total available memory is inferred from the Spark configurations.For each executor: total memory used in the executor/total available memory of the executor.',
   },
   [ColumnName.TotalCoresNum]: {
-    title: 'Number of Cores',
+    title: '# of Cores',
     sortable: true,
     sortType: 'number',
     helpIconText: 'Number of cores available in all the executors.',
@@ -189,7 +204,7 @@ export const TABLE_COLUMNS = {
     title: 'CPU Utilization',
     sortable: true,
     sortType: 'number',
-    helpIconText: 'The CPU utilization',
+    helpIconText: 'Total CPU time used/Total CPU uptime.',
     unit: UnitType.Percentage,
   },
 };

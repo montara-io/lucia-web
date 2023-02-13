@@ -1,7 +1,10 @@
 import { DataFormatterResponse } from '../../components/common/PageWithTable';
 import { Routes } from '../../constants/routes';
 import { ColumnName } from '../../constants/table-columns';
-import { formatColumn, getCommonTableHeaders } from '../../services/table';
+import {
+  formatColumn,
+  getCommonTableHeaders,
+} from '../../services/table/table.service';
 import { JobRun } from '../../types/JobRun';
 
 const TableFields = [

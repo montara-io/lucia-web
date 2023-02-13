@@ -5,7 +5,7 @@ import {
   formatColumn,
   getCommonTableHeaders,
   getTableColumnDefinition,
-} from '../../services/table';
+} from '../../services/table/table.service';
 import { OverviewItem } from '../../stories/Overview/Overview';
 import { arrayAverage } from '../../utils/arrays';
 import { formatDate } from '../../utils/date';

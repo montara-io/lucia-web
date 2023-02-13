@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { get } from '../../services/http.service';
+import { get } from '../../services/http/http.service';
 import Card from '../../stories/Card/Card';
 import BasicLineChart from '../../stories/LineCharts/BasicLineChart/BasicLineChart';
 import Loading from '../../stories/Loading/Loading';

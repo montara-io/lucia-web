@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { get } from '../../../services/http.service';
+import { get } from '../../../services/http/http.service';
+
 import DataTable, {
   DataRow,
   HeaderRow,
