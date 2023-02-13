@@ -1,5 +1,5 @@
 import axios from 'axios';
-const backendPort = '3001';
+
 
 export function getBackendUrl({
   baseUrl = window.location.origin,
@@ -9,7 +9,7 @@ export function getBackendUrl({
     ? baseUrl.substring(0, baseUrl.lastIndexOf(':'))
     : baseUrl;
 
-  return withoutPort + ':' + backendPort;
+  return `${withoutPort}/api`;
 }
 
 const baseBackendURL = `${getBackendUrl()}`;
